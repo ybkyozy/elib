@@ -1,26 +1,4 @@
-﻿  EZipUtils.cpp
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/fnshare.h(27): warning C4005: “_WT”: 宏重定义
-  e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/lib2.h(78): note: 参见“_WT”的前一个定义
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(111): error C2061: 语法错误: 标识符“CArchive”
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(112): error C2061: 语法错误: 标识符“CArchive”
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(161): error C2061: 语法错误: 标识符“CString”
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(162): error C2061: 语法错误: 标识符“CString”
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(195): error C3861: “ASSERT”: 找不到标识符
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(200): error C3861: “ASSERT”: 找不到标识符
-e:\编程\易语言\支持库\eziputils\eziputils\../../elib_sdk/mem.h(206): error C3861: “ASSERT”: 找不到标识符
-EZipUtils.cpp(64): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(72): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(79): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(86): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(93): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(101): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(107): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(115): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(122): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(128): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(350): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(541): error C3861: “SystemTimeToVariantTime”: 找不到标识符
-EZipUtils.cpp(545): error C3861: “SystemTimeToVariantTime”: 找不到标识符
-EZipUtils.cpp(549): error C3861: “SystemTimeToVariantTime”: 找不到标识符
-EZipUtils.cpp(606): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
-EZipUtils.cpp(619): warning C4838: 从“LONG”转换到“DATA_TYPE”需要收缩转换
+﻿  EZipUtils.vcxproj -> E:\编程\易语言\支持库\EZipUtils\Release\EZipUtils.fne
+  EZipUtils.vcxproj -> E:\编程\易语言\支持库\EZipUtils\Release\EZipUtils.pdb (Full PDB)
+  E:\编程\易语言\支持库\EZipUtils\Release\EZipUtils.fne
+  复制了 1 个文件

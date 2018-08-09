@@ -1,6 +1,8 @@
 #pragma once
 
 #include <WTypes.h>
+#include <Windows.h>
+#include <oleauto.h>
 
 #ifndef __E_STATIC_LIB
 
@@ -31,4 +33,17 @@ struct ZipStruct
 	HZIP m_hZip;
 };
 
+#pragma pack(4)
+struct ZipInfoStruct
+{
+	int index;
+	LPTSTR name;
+	int attr;
+	double atime;
+	double ctime;
+	double mtime;
+	int comp_size; 
+	int unc_size;
+};
+#pragma pack()
 #define DTP_ZIPINFO		MAKELONG(1,0)
