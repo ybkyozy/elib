@@ -30,3 +30,5 @@ struct ZipStruct
 {
 	HZIP m_hZip;
 };
+
+#define DTP_ZIPINFO		MAKELONG(1,0)
