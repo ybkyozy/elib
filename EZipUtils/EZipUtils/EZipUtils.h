@@ -1,6 +1,5 @@
 #pragma once
 
-#include <WTypes.h>
 #include <Windows.h>
 #include <oleauto.h>
 
