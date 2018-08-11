@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: eziputils - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ybkyo\AppData\Local\Temp\RSP6734.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "EZIPUTILS_EXPORTS" /Fp"Release/eziputils.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\编程\VC6Project\eziputils\EZipUtils.cpp"
+"E:\编程\VC6Project\eziputils\zip_utils_src\unzip.cpp"
+"E:\编程\VC6Project\eziputils\zip_utils_src\zip.cpp"
+]
+Creating command line "cl.exe @C:\Users\ybkyo\AppData\Local\Temp\RSP6734.tmp" 
+Creating temporary file "C:\Users\ybkyo\AppData\Local\Temp\RSP6735.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"Release/eziputils.pdb" /machine:I386 /def:".\EZipUtils.def" /out:"Release/eziputils.fne" /implib:"Release/eziputils.lib" 
+".\Release\EZipUtils.obj"
+".\Release\unzip.obj"
+".\Release\zip.obj"
+]
+Creating command line "link.exe @C:\Users\ybkyo\AppData\Local\Temp\RSP6735.tmp"
+<h3>Output Window</h3>
+Compiling...
+EZipUtils.cpp
+E:\编程\VC6Project\eziputils\elib_sdk/fnshare.h(27) : warning C4005: '_WT' : macro redefinition
+        E:\编程\VC6Project\eziputils\elib_sdk/lib2.h(78) : see previous definition of '_WT'
+unzip.cpp
+zip.cpp
+Linking...
+   Creating library Release/eziputils.lib and object Release/eziputils.exp
+LINK : warning LNK4089: all references to "GDI32.dll" discarded by /OPT:REF
+
+
+
+<h3>Results</h3>
+eziputils.fne - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

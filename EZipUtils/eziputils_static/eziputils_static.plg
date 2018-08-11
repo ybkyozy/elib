@@ -1,0 +1,370 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: eziputils_static - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "link.exe -lib /nologo /out:"Release\eziputils_static.lib"  ".\Release\EZipUtils.obj" ".\Release\unzip.obj" ".\Release\zip.obj" "
+<h3>Output Window</h3>
+Creating library...
+Creating temporary file "C:\Users\ybkyo\AppData\Local\Temp\RSPA168.bat" with contents
+[
+@echo off
+"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile=".\Release\eziputils_static.lib" outfile=".\Release\eziputils_static.lib"
+]
+Creating command line "C:\Users\ybkyo\AppData\Local\Temp\RSPA168.bat"
+
+resym "?lasterrorZ@@3KA" to "eziputils_?lasterrorZ@@3KA", in obj: .\Release\zip.obj
+resym "?has_seeded@@3_NA" to "eziputils_?has_seeded@@3_NA", in obj: .\Release\zip.obj
+resym "??0TTreeState@@QAE@XZ" to "eziputils_??0TTreeState@@QAE@XZ", in obj: .\Release\zip.obj
+resym "?Assert@@YAXAAUTState@@_NPBD@Z" to "eziputils_?Assert@@YAXAAUTState@@_NPBD@Z", in obj: .\Release\zip.obj
+resym "?Trace@@YAXPBDZZ" to "eziputils_?Trace@@YAXPBDZZ", in obj: .\Release\zip.obj
+resym "?Tracec@@YAX_NPBDZZ" to "eziputils_?Tracec@@YAX_NPBDZZ", in obj: .\Release\zip.obj
+resym "?ct_init@@YAXAAUTState@@PAG@Z" to "eziputils_?ct_init@@YAXAAUTState@@PAG@Z", in obj: .\Release\zip.obj
+resym "??_C@_0BJ@EBPM@ct_init?3?5256?$CLdist?5?$CB?$DN?5512?$AA@" to "eziputils_??_C@_0BJ@EBPM@ct_init?3?5256?$CLdist?5?$CB?$DN?5512?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BF@EBEH@ct_init?3?5dist?5?$CB?$DN?5256?$AA@" to "eziputils_??_C@_0BF@EBEH@ct_init?3?5dist?5?$CB?$DN?5256?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BH@ELLN@ct_init?3?5length?5?$CB?$DN?5256?$AA@" to "eziputils_??_C@_0BH@ELLN@ct_init?3?5length?5?$CB?$DN?5256?$AA@", in obj: .\Release\zip.obj
+resym "?init_block@@YAXAAUTState@@@Z" to "eziputils_?init_block@@YAXAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "?pqdownheap@@YAXAAUTState@@PAUct_data@@H@Z" to "eziputils_?pqdownheap@@YAXAAUTState@@PAUct_data@@H@Z", in obj: .\Release\zip.obj
+resym "?gen_bitlen@@YAXAAUTState@@PAUtree_desc@@@Z" to "eziputils_?gen_bitlen@@YAXAAUTState@@PAUtree_desc@@@Z", in obj: .\Release\zip.obj
+resym "??_C@_0BF@JLCK@code?5?$CFd?5bits?5?$CFd?9?$DO?$CFd?6?$AA@" to "eziputils_??_C@_0BF@JLCK@code?5?$CFd?5bits?5?$CFd?9?$DO?$CFd?6?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BG@FPCF@?6bit?5length?5overflow?6?$AA@" to "eziputils_??_C@_0BG@FPCF@?6bit?5length?5overflow?6?$AA@", in obj: .\Release\zip.obj
+resym "?gen_codes@@YAXAAUTState@@PAUct_data@@H@Z" to "eziputils_?gen_codes@@YAXAAUTState@@PAUct_data@@H@Z", in obj: .\Release\zip.obj
+resym "??_C@_0BJ@LKN@?6gen_codes?3?5max_code?5?$CFd?5?$AA@" to "eziputils_??_C@_0BJ@LKN@?6gen_codes?3?5max_code?5?$CFd?5?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BI@KLFN@inconsistent?5bit?5counts?$AA@" to "eziputils_??_C@_0BI@KLFN@inconsistent?5bit?5counts?$AA@", in obj: .\Release\zip.obj
+resym "?build_tree@@YAXAAUTState@@PAUtree_desc@@@Z" to "eziputils_?build_tree@@YAXAAUTState@@PAUtree_desc@@@Z", in obj: .\Release\zip.obj
+resym "?scan_tree@@YAXAAUTState@@PAUct_data@@H@Z" to "eziputils_?scan_tree@@YAXAAUTState@@PAUct_data@@H@Z", in obj: .\Release\zip.obj
+resym "?send_tree@@YAXAAUTState@@PAUct_data@@H@Z" to "eziputils_?send_tree@@YAXAAUTState@@PAUct_data@@H@Z", in obj: .\Release\zip.obj
+resym "??_C@_05CMOC@?53_6?$DP?$AA@" to "eziputils_??_C@_05CMOC@?53_6?$DP?$AA@", in obj: .\Release\zip.obj
+resym "?build_bl_tree@@YAHAAUTState@@@Z" to "eziputils_?build_bl_tree@@YAHAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "??_C@_0BO@FAHN@?6dyn?5trees?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@" to "eziputils_??_C@_0BO@FAHN@?6dyn?5trees?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "?send_all_trees@@YAXAAUTState@@HHH@Z" to "eziputils_?send_all_trees@@YAXAAUTState@@HHH@Z", in obj: .\Release\zip.obj
+resym "??_C@_0BF@NLBM@?6dist?5tree?3?5sent?5?$CFld?$AA@" to "eziputils_??_C@_0BF@NLBM@?6dist?5tree?3?5sent?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BE@LJHF@?6lit?5tree?3?5sent?5?$CFld?$AA@" to "eziputils_??_C@_0BE@LJHF@?6lit?5tree?3?5sent?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BD@KFBG@?6bl?5tree?3?5sent?5?$CFld?$AA@" to "eziputils_??_C@_0BD@KFBG@?6bl?5tree?3?5sent?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0O@JHPF@?6bl?5code?5?$CF2d?5?$AA@" to "eziputils_??_C@_0O@JHPF@?6bl?5code?5?$CF2d?5?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0N@FNHA@?6bl?5counts?3?5?$AA@" to "eziputils_??_C@_0N@FNHA@?6bl?5counts?3?5?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0P@KHBO@too?5many?5codes?$AA@" to "eziputils_??_C@_0P@KHBO@too?5many?5codes?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BB@CHIN@not?5enough?5codes?$AA@" to "eziputils_??_C@_0BB@CHIN@not?5enough?5codes?$AA@", in obj: .\Release\zip.obj
+resym "?flush_block@@YAKAAUTState@@PADKH@Z" to "eziputils_?flush_block@@YAKAAUTState@@PADKH@Z", in obj: .\Release\zip.obj
+resym "??_C@_01BJG@?6?$AA@" to "eziputils_??_C@_01BJG@?6?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BE@DDJE@bad?5compressed?5size?$AA@" to "eziputils_??_C@_0BE@DDJE@bad?5compressed?5size?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0DH@IIKG@?6opt?5?$CFlu?$CI?$CFlu?$CJ?5stat?5?$CFlu?$CI?$CFlu?$CJ?5stor@" to "eziputils_??_C@_0DH@IIKG@?6opt?5?$CFlu?$CI?$CFlu?$CJ?5stat?5?$CFlu?$CI?$CFlu?$CJ?5stor@", in obj: .\Release\zip.obj
+resym "??_C@_0BO@NFFO@?6dist?5data?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@" to "eziputils_??_C@_0BO@NFFO@?6dist?5data?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BN@NABM@?6lit?5data?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@" to "eziputils_??_C@_0BN@NABM@?6lit?5data?3?5dyn?5?$CFld?0?5stat?5?$CFld?$AA@", in obj: .\Release\zip.obj
+resym "?ct_tally@@YAHAAUTState@@HH@Z" to "eziputils_?ct_tally@@YAHAAUTState@@HH@Z", in obj: .\Release\zip.obj
+resym "??_C@_0DF@LAFM@?6last_lit?5?$CFu?0?5last_dist?5?$CFu?0?5in?5?$CF@" to "eziputils_??_C@_0DF@LAFM@?6last_lit?5?$CFu?0?5last_dist?5?$CFu?0?5in?5?$CF@", in obj: .\Release\zip.obj
+resym "??_C@_0BE@CEAO@ct_tally?3?5bad?5match?$AA@" to "eziputils_??_C@_0BE@CEAO@ct_tally?3?5bad?5match?$AA@", in obj: .\Release\zip.obj
+resym "?compress_block@@YAXAAUTState@@PAUct_data@@1@Z" to "eziputils_?compress_block@@YAXAAUTState@@PAUct_data@@1@Z", in obj: .\Release\zip.obj
+resym "??_C@_0L@LIBA@bad?5d_code?$AA@" to "eziputils_??_C@_0L@LIBA@bad?5d_code?$AA@", in obj: .\Release\zip.obj
+resym "?set_file_type@@YAXAAUTState@@@Z" to "eziputils_?set_file_type@@YAXAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "?bi_init@@YAXAAUTState@@PADIH@Z" to "eziputils_?bi_init@@YAXAAUTState@@PADIH@Z", in obj: .\Release\zip.obj
+resym "?send_bits@@YAXAAUTState@@HH@Z" to "eziputils_?send_bits@@YAXAAUTState@@HH@Z", in obj: .\Release\zip.obj
+resym "??_C@_0P@OBHP@invalid?5length?$AA@" to "eziputils_??_C@_0P@OBHP@invalid?5length?$AA@", in obj: .\Release\zip.obj
+resym "?bi_reverse@@YAIIH@Z" to "eziputils_?bi_reverse@@YAIIH@Z", in obj: .\Release\zip.obj
+resym "?bi_windup@@YAXAAUTState@@@Z" to "eziputils_?bi_windup@@YAXAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "?copy_block@@YAXAAUTState@@PADIH@Z" to "eziputils_?copy_block@@YAXAAUTState@@PADIH@Z", in obj: .\Release\zip.obj
+resym "??_C@_0DC@PDBE@output?5buffer?5too?5small?5for?5in?9m@" to "eziputils_??_C@_0DC@PDBE@output?5buffer?5too?5small?5for?5in?9m@", in obj: .\Release\zip.obj
+resym "?lm_init@@YAXAAUTState@@HPAG@Z" to "eziputils_?lm_init@@YAXAAUTState@@HPAG@Z", in obj: .\Release\zip.obj
+resym "??_C@_0P@FFGF@bad?5pack?5level?$AA@" to "eziputils_??_C@_0P@FFGF@bad?5pack?5level?$AA@", in obj: .\Release\zip.obj
+resym "?longest_match@@YAHAAUTState@@I@Z" to "eziputils_?longest_match@@YAHAAUTState@@I@Z", in obj: .\Release\zip.obj
+resym "??_C@_09EALK@wild?5scan?$AA@" to "eziputils_??_C@_09EALK@wild?5scan?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_09KCEA@no?5future?$AA@" to "eziputils_??_C@_09KCEA@no?5future?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BH@PPCO@insufficient?5lookahead?$AA@" to "eziputils_??_C@_0BH@PPCO@insufficient?5lookahead?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BA@FHCA@Code?5too?5clever?$AA@" to "eziputils_??_C@_0BA@FHCA@Code?5too?5clever?$AA@", in obj: .\Release\zip.obj
+resym "?fill_window@@YAXAAUTState@@@Z" to "eziputils_?fill_window@@YAXAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "??_C@_08HPB@more?5?$DM?52?$AA@" to "eziputils_??_C@_08HPB@more?5?$DM?52?$AA@", in obj: .\Release\zip.obj
+resym "?deflate_fast@@YAKAAUTState@@@Z" to "eziputils_?deflate_fast@@YAKAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "??_C@_0CK@PBJO@Call?5UPDATE_HASH?$CI?$CJ?5MIN_MATCH?93?5m@" to "eziputils_??_C@_0CK@PBJO@Call?5UPDATE_HASH?$CI?$CJ?5MIN_MATCH?93?5m@", in obj: .\Release\zip.obj
+resym "?deflate@@YAKAAUTState@@@Z" to "eziputils_?deflate@@YAKAAUTState@@@Z", in obj: .\Release\zip.obj
+resym "?putlocal@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z" to "eziputils_?putlocal@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z", in obj: .\Release\zip.obj
+resym "?putextended@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z" to "eziputils_?putextended@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z", in obj: .\Release\zip.obj
+resym "?putcentral@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z" to "eziputils_?putcentral@@YAHPAUzlist@@P6AIPAXPBDI@Z1@Z", in obj: .\Release\zip.obj
+resym "?putend@@YAHHKKIPADP6AIPAXPBDI@Z1@Z" to "eziputils_?putend@@YAHHKKIPADP6AIPAXPBDI@Z1@Z", in obj: .\Release\zip.obj
+resym "?crc32@@YAKKPBEI@Z" to "eziputils_?crc32@@YAKKPBEI@Z", in obj: .\Release\zip.obj
+resym "?update_keys@@YAXPAKD@Z" to "eziputils_?update_keys@@YAXPAKD@Z", in obj: .\Release\zip.obj
+resym "?decrypt_byte@@YADPAK@Z" to "eziputils_?decrypt_byte@@YADPAK@Z", in obj: .\Release\zip.obj
+resym "?zencode@@YADPAKD@Z" to "eziputils_?zencode@@YADPAKD@Z", in obj: .\Release\zip.obj
+resym "?HasZipSuffix@@YA_NPBD@Z" to "eziputils_?HasZipSuffix@@YA_NPBD@Z", in obj: .\Release\zip.obj
+resym "??_C@_04LABF@?4tgz?$AA@" to "eziputils_??_C@_04LABF@?4tgz?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_03HPHD@?4gz?$AA@" to "eziputils_??_C@_03HPHD@?4gz?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_04EOK@?4arj?$AA@" to "eziputils_??_C@_04EOK@?4arj?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_04GOGJ@?4lzh?$AA@" to "eziputils_??_C@_04GOGJ@?4lzh?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_04PKMF@?4arc?$AA@" to "eziputils_??_C@_04PKMF@?4arc?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_04NADI@?4zoo?$AA@" to "eziputils_??_C@_04NADI@?4zoo?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_04POK@?4zip?$AA@" to "eziputils_??_C@_04POK@?4zip?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_02BKNP@?4Z?$AA@" to "eziputils_??_C@_02BKNP@?4Z?$AA@", in obj: .\Release\zip.obj
+resym "?filetime2timet@@YA_JU_FILETIME@@@Z" to "eziputils_?filetime2timet@@YA_JU_FILETIME@@@Z", in obj: .\Release\zip.obj
+resym "?filetime2dosdatetime@@YAXU_FILETIME@@PAG1@Z" to "eziputils_?filetime2dosdatetime@@YAXU_FILETIME@@PAG1@Z", in obj: .\Release\zip.obj
+resym "?GetFileInfo@@YAKPAXPAKPAJPAUiztimes@@1@Z" to "eziputils_?GetFileInfo@@YAKPAXPAKPAJPAUiztimes@@1@Z", in obj: .\Release\zip.obj
+resym "?Create@TZip@@QAEKPAXIK@Z" to "eziputils_?Create@TZip@@QAEKPAXIK@Z", in obj: .\Release\zip.obj
+resym "?sflush@TZip@@SAIPAXPBDPAI@Z" to "eziputils_?sflush@TZip@@SAIPAXPBDPAI@Z", in obj: .\Release\zip.obj
+resym "?swrite@TZip@@SAIPAXPBDI@Z" to "eziputils_?swrite@TZip@@SAIPAXPBDI@Z", in obj: .\Release\zip.obj
+resym "?write@TZip@@QAEIPBDI@Z" to "eziputils_?write@TZip@@QAEIPBDI@Z", in obj: .\Release\zip.obj
+resym "?oseek@TZip@@QAE_NI@Z" to "eziputils_?oseek@TZip@@QAE_NI@Z", in obj: .\Release\zip.obj
+resym "?GetMemory@TZip@@QAEKPAPAXPAK@Z" to "eziputils_?GetMemory@TZip@@QAEKPAPAXPAK@Z", in obj: .\Release\zip.obj
+resym "?Close@TZip@@QAEKXZ" to "eziputils_?Close@TZip@@QAEKXZ", in obj: .\Release\zip.obj
+resym "?open_file@TZip@@QAEKPBD@Z" to "eziputils_?open_file@TZip@@QAEKPBD@Z", in obj: .\Release\zip.obj
+resym "?open_handle@TZip@@QAEKPAXI@Z" to "eziputils_?open_handle@TZip@@QAEKPAXI@Z", in obj: .\Release\zip.obj
+resym "?open_mem@TZip@@QAEKPAXI@Z" to "eziputils_?open_mem@TZip@@QAEKPAXI@Z", in obj: .\Release\zip.obj
+resym "?open_dir@TZip@@QAEKXZ" to "eziputils_?open_dir@TZip@@QAEKXZ", in obj: .\Release\zip.obj
+resym "?sread@TZip@@SAIAAUTState@@PADI@Z" to "eziputils_?sread@TZip@@SAIAAUTState@@PADI@Z", in obj: .\Release\zip.obj
+resym "?read@TZip@@QAEIPADI@Z" to "eziputils_?read@TZip@@QAEIPADI@Z", in obj: .\Release\zip.obj
+resym "?iclose@TZip@@QAEKXZ" to "eziputils_?iclose@TZip@@QAEKXZ", in obj: .\Release\zip.obj
+resym "?ideflate@TZip@@QAEKPAUzlist@@@Z" to "eziputils_?ideflate@TZip@@QAEKPAUzlist@@@Z", in obj: .\Release\zip.obj
+resym "?istore@TZip@@QAEKXZ" to "eziputils_?istore@TZip@@QAEKXZ", in obj: .\Release\zip.obj
+resym "?Add@TZip@@QAEKPBDPAXIK@Z" to "eziputils_?Add@TZip@@QAEKPBDPAXIK@Z", in obj: .\Release\zip.obj
+resym "??_C@_01FDLN@?1?$AA@" to "eziputils_??_C@_01FDLN@?1?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_00A@?$AA@" to "eziputils_??_C@_00A@?$AA@", in obj: .\Release\zip.obj
+resym "?AddCentral@TZip@@QAEKXZ" to "eziputils_?AddCentral@TZip@@QAEKXZ", in obj: .\Release\zip.obj
+resym "?FormatZipMessageZ@@YAIKPADI@Z" to "eziputils_?FormatZipMessageZ@@YAIKPADI@Z", in obj: .\Release\zip.obj
+resym "??_C@_0CK@LCDH@Zip?9bug?3?5an?5internal?5error?5durin@" to "eziputils_??_C@_0CK@LCDH@Zip?9bug?3?5an?5internal?5error?5durin@", in obj: .\Release\zip.obj
+resym "??_C@_0CP@FBPD@Zip?9bug?3?5tried?5to?5change?5mind?0?5b@" to "eziputils_??_C@_0CP@FBPD@Zip?9bug?3?5tried?5to?5change?5mind?0?5b@", in obj: .\Release\zip.obj
+resym "??_C@_0CP@JENP@Zip?9bug?3?5internal?5initialisation@" to "eziputils_??_C@_0CP@JENP@Zip?9bug?3?5internal?5initialisation@", in obj: .\Release\zip.obj
+resym "??_C@_0CH@HFCI@Zip?9bug?3?5trying?5to?5seek?5the?5unse@" to "eziputils_??_C@_0CH@HFCI@Zip?9bug?3?5trying?5to?5seek?5the?5unse@", in obj: .\Release\zip.obj
+resym "??_C@_0CL@LKLA@Caller?3?5mixing?5creation?5and?5open@" to "eziputils_??_C@_0CL@LKLA@Caller?3?5mixing?5creation?5and?5open@", in obj: .\Release\zip.obj
+resym "??_C@_0CP@NJLJ@Zip?9bug?3?5the?5anticipated?5size?5tu@" to "eziputils_??_C@_0CP@NJLJ@Zip?9bug?3?5the?5anticipated?5size?5tu@", in obj: .\Release\zip.obj
+resym "??_C@_0DF@EGPF@Caller?3?5the?5file?5had?5already?5bee@" to "eziputils_??_C@_0DF@EGPF@Caller?3?5the?5file?5had?5already?5bee@", in obj: .\Release\zip.obj
+resym "??_C@_0DF@NOLF@Caller?3?5additions?5to?5the?5zip?5hav@" to "eziputils_??_C@_0DF@NOLF@Caller?3?5additions?5to?5the?5zip?5hav@", in obj: .\Release\zip.obj
+resym "??_C@_0DG@OOAK@Caller?3?5not?5enough?5space?5allocat@" to "eziputils_??_C@_0DG@OOAK@Caller?3?5not?5enough?5space?5allocat@", in obj: .\Release\zip.obj
+resym "??_C@_0CD@HBOC@Caller?3?5there?5was?5a?5previous?5err@" to "eziputils_??_C@_0CD@HBOC@Caller?3?5there?5was?5a?5previous?5err@", in obj: .\Release\zip.obj
+resym "??_C@_0DA@BDOC@Caller?3?5can?5only?5get?5memory?5of?5a@" to "eziputils_??_C@_0DA@BDOC@Caller?3?5can?5only?5get?5memory?5of?5a@", in obj: .\Release\zip.obj
+resym "??_C@_0BJ@MOGJ@Caller?3?5faulty?5arguments?$AA@" to "eziputils_??_C@_0BJ@MOGJ@Caller?3?5faulty?5arguments?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BD@GJJJ@Error?5reading?5file?$AA@" to "eziputils_??_C@_0BD@GJJJ@Error?5reading?5file?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BJ@IICI@Still?5more?5data?5to?5unzip?$AA@" to "eziputils_??_C@_0BJ@IICI@Still?5more?5data?5to?5unzip?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0CE@LLJN@Zipfile?5is?5corrupt?5or?5not?5a?5zipf@" to "eziputils_??_C@_0CE@LLJN@Zipfile?5is?5corrupt?5or?5not?5a?5zipf@", in obj: .\Release\zip.obj
+resym "??_C@_0BO@CKL@File?5not?5found?5in?5the?5zipfile?$AA@" to "eziputils_??_C@_0BO@CKL@File?5not?5found?5in?5the?5zipfile?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BK@ILBP@Failed?5to?5allocate?5memory?$AA@" to "eziputils_??_C@_0BK@ILBP@Failed?5to?5allocate?5memory?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BG@LOL@Error?5writing?5to?5file?$AA@" to "eziputils_??_C@_0BG@LOL@Error?5writing?5to?5file?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BK@JDPP@Couldn?8t?5create?1open?5file?$AA@" to "eziputils_??_C@_0BK@JDPP@Couldn?8t?5create?1open?5file?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_07FEHI@Success?$AA@" to "eziputils_??_C@_07FEHI@Success?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BJ@CCAF@Culdn?8t?5duplicate?5handle?$AA@" to "eziputils_??_C@_0BJ@CCAF@Culdn?8t?5duplicate?5handle?$AA@", in obj: .\Release\zip.obj
+resym "??_C@_0BI@DBL@unknown?5zip?5result?5code?$AA@" to "eziputils_??_C@_0BI@DBL@unknown?5zip?5result?5code?$AA@", in obj: .\Release\zip.obj
+resym "?CreateZipInternal@@YAPAUHZIP__@@PAXIKPBD@Z" to "eziputils_?CreateZipInternal@@YAPAUHZIP__@@PAXIKPBD@Z", in obj: .\Release\zip.obj
+resym "?CreateZipHandle@@YAPAUHZIP__@@PAXPBD@Z" to "eziputils_?CreateZipHandle@@YAPAUHZIP__@@PAXPBD@Z", in obj: .\Release\zip.obj
+resym "?CreateZip@@YAPAUHZIP__@@PBD0@Z" to "eziputils_?CreateZip@@YAPAUHZIP__@@PBD0@Z", in obj: .\Release\zip.obj
+resym "?CreateZip@@YAPAUHZIP__@@PAXIPBD@Z" to "eziputils_?CreateZip@@YAPAUHZIP__@@PAXIPBD@Z", in obj: .\Release\zip.obj
+resym "?ZipAddInternal@@YAKPAUHZIP__@@PBDPAXIK@Z" to "eziputils_?ZipAddInternal@@YAKPAUHZIP__@@PBDPAXIK@Z", in obj: .\Release\zip.obj
+resym "?ZipAdd@@YAKPAUHZIP__@@PBD1@Z" to "eziputils_?ZipAdd@@YAKPAUHZIP__@@PBD1@Z", in obj: .\Release\zip.obj
+resym "?ZipAdd@@YAKPAUHZIP__@@PBDPAXI@Z" to "eziputils_?ZipAdd@@YAKPAUHZIP__@@PBDPAXI@Z", in obj: .\Release\zip.obj
+resym "?ZipAddHandle@@YAKPAUHZIP__@@PBDPAX@Z" to "eziputils_?ZipAddHandle@@YAKPAUHZIP__@@PBDPAX@Z", in obj: .\Release\zip.obj
+resym "?ZipAddHandle@@YAKPAUHZIP__@@PBDPAXI@Z" to "eziputils_?ZipAddHandle@@YAKPAUHZIP__@@PBDPAXI@Z", in obj: .\Release\zip.obj
+resym "?ZipAddFolder@@YAKPAUHZIP__@@PBD@Z" to "eziputils_?ZipAddFolder@@YAKPAUHZIP__@@PBD@Z", in obj: .\Release\zip.obj
+resym "?ZipGetMemory@@YAKPAUHZIP__@@PAPAXPAK@Z" to "eziputils_?ZipGetMemory@@YAKPAUHZIP__@@PAPAXPAK@Z", in obj: .\Release\zip.obj
+resym "?CloseZipZ@@YAKPAUHZIP__@@@Z" to "eziputils_?CloseZipZ@@YAKPAUHZIP__@@@Z", in obj: .\Release\zip.obj
+resym "?IsZipHandleZ@@YA_NPAUHZIP__@@@Z" to "eziputils_?IsZipHandleZ@@YA_NPAUHZIP__@@@Z", in obj: .\Release\zip.obj
+resym "?lasterrorU@@3KA" to "eziputils_?lasterrorU@@3KA", in obj: .\Release\unzip.obj
+resym "?inflate_copyright@@3QBDB" to "eziputils_?inflate_copyright@@3QBDB", in obj: .\Release\unzip.obj
+resym "??_C@_0BF@HPBB@incompatible?5version?$AA@" to "eziputils_??_C@_0BF@HPBB@incompatible?5version?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0N@EHHN@buffer?5error?$AA@" to "eziputils_??_C@_0N@EHHN@buffer?5error?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BE@EMHE@insufficient?5memory?$AA@" to "eziputils_??_C@_0BE@EMHE@insufficient?5memory?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0L@EBEB@data?5error?$AA@" to "eziputils_??_C@_0L@EBEB@data?5error?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0N@OPOA@stream?5error?$AA@" to "eziputils_??_C@_0N@OPOA@stream?5error?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0L@DFEP@file?5error?$AA@" to "eziputils_??_C@_0L@DFEP@file?5error?$AA@", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_00A@?$AA@_0" 
+resym "??_C@_00A@?$AA@" to "eziputils_??_C@_00A@?$AA@_0", in obj: .\Release\unzip.obj
+resym "??_C@_0L@JPFB@stream?5end?$AA@" to "eziputils_??_C@_0L@JPFB@stream?5end?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BA@FKCH@need?5dictionary?$AA@" to "eziputils_??_C@_0BA@FKCH@need?5dictionary?$AA@", in obj: .\Release\unzip.obj
+resym "?inflate_flush@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z" to "eziputils_?inflate_flush@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z", in obj: .\Release\unzip.obj
+resym "?inflate_codes_new@@YAPAUinflate_codes_state@@IIPBUinflate_huft_s@@0PAUz_stream_s@@@Z" to "eziputils_?inflate_codes_new@@YAPAUinflate_codes_state@@IIPBUinflate_huft_s@@0PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflate_codes@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z" to "eziputils_?inflate_codes@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z", in obj: .\Release\unzip.obj
+resym "??_C@_0BG@EGK@invalid?5distance?5code?$AA@" to "eziputils_??_C@_0BG@EGK@invalid?5distance?5code?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BM@CHJP@invalid?5literal?1length?5code?$AA@" to "eziputils_??_C@_0BM@CHJP@invalid?5literal?1length?5code?$AA@", in obj: .\Release\unzip.obj
+resym "?inflate_codes_free@@YAXPAUinflate_codes_state@@PAUz_stream_s@@@Z" to "eziputils_?inflate_codes_free@@YAXPAUinflate_codes_state@@PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflate_blocks_reset@@YAXPAUinflate_blocks_state@@PAUz_stream_s@@PAK@Z" to "eziputils_?inflate_blocks_reset@@YAXPAUinflate_blocks_state@@PAUz_stream_s@@PAK@Z", in obj: .\Release\unzip.obj
+resym "?inflate_blocks_new@@YAPAUinflate_blocks_state@@PAUz_stream_s@@P6AKKPBEI@ZI@Z" to "eziputils_?inflate_blocks_new@@YAPAUinflate_blocks_state@@PAUz_stream_s@@P6AKKPBEI@ZI@Z", in obj: .\Release\unzip.obj
+resym "?inflate_blocks@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z" to "eziputils_?inflate_blocks@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@H@Z", in obj: .\Release\unzip.obj
+resym "??_C@_0BK@BNJN@invalid?5bit?5length?5repeat?$AA@" to "eziputils_??_C@_0BK@BNJN@invalid?5bit?5length?5repeat?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0CE@LAKP@too?5many?5length?5or?5distance?5symb@" to "eziputils_??_C@_0CE@LAKP@too?5many?5length?5or?5distance?5symb@", in obj: .\Release\unzip.obj
+resym "??_C@_0BN@DBOJ@invalid?5stored?5block?5lengths?$AA@" to "eziputils_??_C@_0BN@DBOJ@invalid?5stored?5block?5lengths?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BD@IFBC@invalid?5block?5type?$AA@" to "eziputils_??_C@_0BD@IFBC@invalid?5block?5type?$AA@", in obj: .\Release\unzip.obj
+resym "?inflate_blocks_free@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@@Z" to "eziputils_?inflate_blocks_free@@YAHPAUinflate_blocks_state@@PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?huft_build@@YAHPAIIIPBI1PAPAUinflate_huft_s@@0PAU1@00@Z" to "eziputils_?huft_build@@YAHPAIIIPBI1PAPAUinflate_huft_s@@0PAU1@00@Z", in obj: .\Release\unzip.obj
+resym "?inflate_trees_bits@@YAHPAI0PAPAUinflate_huft_s@@PAU1@PAUz_stream_s@@@Z" to "eziputils_?inflate_trees_bits@@YAHPAI0PAPAUinflate_huft_s@@PAU1@PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "??_C@_0CE@MFNM@incomplete?5dynamic?5bit?5lengths?5t@" to "eziputils_??_C@_0CE@MFNM@incomplete?5dynamic?5bit?5lengths?5t@", in obj: .\Release\unzip.obj
+resym "??_C@_0CI@BBGL@oversubscribed?5dynamic?5bit?5lengt@" to "eziputils_??_C@_0CI@BBGL@oversubscribed?5dynamic?5bit?5lengt@", in obj: .\Release\unzip.obj
+resym "?inflate_trees_dynamic@@YAHIIPAI00PAPAUinflate_huft_s@@1PAU1@PAUz_stream_s@@@Z" to "eziputils_?inflate_trees_dynamic@@YAHIIPAI00PAPAUinflate_huft_s@@1PAU1@PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "??_C@_0BP@KPP@incomplete?5literal?1length?5tree?$AA@" to "eziputils_??_C@_0BP@KPP@incomplete?5literal?1length?5tree?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0CD@ODII@oversubscribed?5literal?1length?5tr@" to "eziputils_??_C@_0CD@ODII@oversubscribed?5literal?1length?5tr@", in obj: .\Release\unzip.obj
+resym "??_C@_0CB@INA@empty?5distance?5tree?5with?5lengths@" to "eziputils_??_C@_0CB@INA@empty?5distance?5tree?5with?5lengths@", in obj: .\Release\unzip.obj
+resym "??_C@_0BJ@NKOC@incomplete?5distance?5tree?$AA@" to "eziputils_??_C@_0BJ@NKOC@incomplete?5distance?5tree?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BN@OAAG@oversubscribed?5distance?5tree?$AA@" to "eziputils_??_C@_0BN@OAAG@oversubscribed?5distance?5tree?$AA@", in obj: .\Release\unzip.obj
+resym "?inflate_trees_fixed@@YAHPAI0PAPBUinflate_huft_s@@1PAUz_stream_s@@@Z" to "eziputils_?inflate_trees_fixed@@YAHPAI0PAPBUinflate_huft_s@@1PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflate_fast@@YAHIIPBUinflate_huft_s@@0PAUinflate_blocks_state@@PAUz_stream_s@@@Z" to "eziputils_?inflate_fast@@YAHIIPBUinflate_huft_s@@0PAUinflate_blocks_state@@PAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?get_crc_table@@YAPBKXZ" to "eziputils_?get_crc_table@@YAPBKXZ", in obj: .\Release\unzip.obj
+resym "?ucrc32@@YAKKPBEI@Z" to "eziputils_?ucrc32@@YAKKPBEI@Z", in obj: .\Release\unzip.obj
+resym "?Uupdate_keys@@YAXPAKD@Z" to "eziputils_?Uupdate_keys@@YAXPAKD@Z", in obj: .\Release\unzip.obj
+resym "?Udecrypt_byte@@YADPAK@Z" to "eziputils_?Udecrypt_byte@@YADPAK@Z", in obj: .\Release\unzip.obj
+resym "?zdecode@@YADPAKD@Z" to "eziputils_?zdecode@@YADPAKD@Z", in obj: .\Release\unzip.obj
+resym "?adler32@@YAKKPBEI@Z" to "eziputils_?adler32@@YAKKPBEI@Z", in obj: .\Release\unzip.obj
+resym "?zlibVersion@@YAPBDXZ" to "eziputils_?zlibVersion@@YAPBDXZ", in obj: .\Release\unzip.obj
+resym "??_C@_05NLJN@1?41?43?$AA@" to "eziputils_??_C@_05NLJN@1?41?43?$AA@", in obj: .\Release\unzip.obj
+resym "?zError@@YAPBDH@Z" to "eziputils_?zError@@YAPBDH@Z", in obj: .\Release\unzip.obj
+resym "?zcalloc@@YAPAXPAXII@Z" to "eziputils_?zcalloc@@YAPAXPAXII@Z", in obj: .\Release\unzip.obj
+resym "?zcfree@@YAXPAX0@Z" to "eziputils_?zcfree@@YAXPAX0@Z", in obj: .\Release\unzip.obj
+resym "?inflateReset@@YAHPAUz_stream_s@@@Z" to "eziputils_?inflateReset@@YAHPAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflateEnd@@YAHPAUz_stream_s@@@Z" to "eziputils_?inflateEnd@@YAHPAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflateInit2@@YAHPAUz_stream_s@@@Z" to "eziputils_?inflateInit2@@YAHPAUz_stream_s@@@Z", in obj: .\Release\unzip.obj
+resym "?inflate@@YAHPAUz_stream_s@@H@Z" to "eziputils_?inflate@@YAHPAUz_stream_s@@H@Z", in obj: .\Release\unzip.obj
+resym "??_C@_0BF@OBFI@incorrect?5data?5check?$AA@" to "eziputils_??_C@_0BF@OBFI@incorrect?5data?5check?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BH@NLIB@incorrect?5header?5check?$AA@" to "eziputils_??_C@_0BH@NLIB@incorrect?5header?5check?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BE@FAJE@invalid?5window?5size?$AA@" to "eziputils_??_C@_0BE@FAJE@invalid?5window?5size?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_0BL@KPEJ@unknown?5compression?5method?$AA@" to "eziputils_??_C@_0BL@KPEJ@unknown?5compression?5method?$AA@", in obj: .\Release\unzip.obj
+resym "?lufopen@@YAPAULUFILE@@PAXIKPAK@Z" to "eziputils_?lufopen@@YAPAULUFILE@@PAXIKPAK@Z", in obj: .\Release\unzip.obj
+resym "?lufclose@@YAHPAULUFILE@@@Z" to "eziputils_?lufclose@@YAHPAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?luferror@@YAHPAULUFILE@@@Z" to "eziputils_?luferror@@YAHPAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?luftell@@YAJPAULUFILE@@@Z" to "eziputils_?luftell@@YAJPAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?lufseek@@YAHPAULUFILE@@JH@Z" to "eziputils_?lufseek@@YAHPAULUFILE@@JH@Z", in obj: .\Release\unzip.obj
+resym "?lufread@@YAIPAXIIPAULUFILE@@@Z" to "eziputils_?lufread@@YAIPAXIIPAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_getByte@@YAHPAULUFILE@@PAH@Z" to "eziputils_?unzlocal_getByte@@YAHPAULUFILE@@PAH@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_getShort@@YAHPAULUFILE@@PAK@Z" to "eziputils_?unzlocal_getShort@@YAHPAULUFILE@@PAK@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_getLong@@YAHPAULUFILE@@PAK@Z" to "eziputils_?unzlocal_getLong@@YAHPAULUFILE@@PAK@Z", in obj: .\Release\unzip.obj
+resym "?strcmpcasenosensitive_internal@@YAHPBD0@Z" to "eziputils_?strcmpcasenosensitive_internal@@YAHPBD0@Z", in obj: .\Release\unzip.obj
+resym "?unzStringFileNameCompare@@YAHPBD0H@Z" to "eziputils_?unzStringFileNameCompare@@YAHPBD0H@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_SearchCentralDir@@YAKPAULUFILE@@@Z" to "eziputils_?unzlocal_SearchCentralDir@@YAKPAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?unzOpenInternal@@YAPAUunz_s@@PAULUFILE@@@Z" to "eziputils_?unzOpenInternal@@YAPAUunz_s@@PAULUFILE@@@Z", in obj: .\Release\unzip.obj
+resym "?unzClose@@YAHPAUunz_s@@@Z" to "eziputils_?unzClose@@YAHPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzGetGlobalInfo@@YAHPAUunz_s@@PAUunz_global_info_s@@@Z" to "eziputils_?unzGetGlobalInfo@@YAHPAUunz_s@@PAUunz_global_info_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_DosDateToTmuDate@@YAXKPAUtm_unz_s@@@Z" to "eziputils_?unzlocal_DosDateToTmuDate@@YAXKPAUtm_unz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_GetCurrentFileInfoInternal@@YAHPAUunz_s@@PAUunz_file_info_s@@PAUunz_file_info_internal_s@@PADKPAXK3K@Z" to "eziputils_?unzlocal_GetCurrentFileInfoInternal@@YAHPAUunz_s@@PAUunz_file_info_s@@PAUunz_file_info_internal_s@@PADKPAXK3K@Z", in obj: .\Release\unzip.obj
+resym "?unzGetCurrentFileInfo@@YAHPAUunz_s@@PAUunz_file_info_s@@PADKPAXK2K@Z" to "eziputils_?unzGetCurrentFileInfo@@YAHPAUunz_s@@PAUunz_file_info_s@@PADKPAXK2K@Z", in obj: .\Release\unzip.obj
+resym "?unzGoToFirstFile@@YAHPAUunz_s@@@Z" to "eziputils_?unzGoToFirstFile@@YAHPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzGoToNextFile@@YAHPAUunz_s@@@Z" to "eziputils_?unzGoToNextFile@@YAHPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzLocateFile@@YAHPAUunz_s@@PBDH@Z" to "eziputils_?unzLocateFile@@YAHPAUunz_s@@PBDH@Z", in obj: .\Release\unzip.obj
+resym "?unzlocal_CheckCurrentFileCoherencyHeader@@YAHPAUunz_s@@PAIPAK1@Z" to "eziputils_?unzlocal_CheckCurrentFileCoherencyHeader@@YAHPAUunz_s@@PAIPAK1@Z", in obj: .\Release\unzip.obj
+resym "?unzOpenCurrentFile@@YAHPAUunz_s@@PBD@Z" to "eziputils_?unzOpenCurrentFile@@YAHPAUunz_s@@PBD@Z", in obj: .\Release\unzip.obj
+resym "?unzReadCurrentFile@@YAHPAUunz_s@@PAXIPA_N@Z" to "eziputils_?unzReadCurrentFile@@YAHPAUunz_s@@PAXIPA_N@Z", in obj: .\Release\unzip.obj
+resym "?unztell@@YAJPAUunz_s@@@Z" to "eziputils_?unztell@@YAJPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzeof@@YAHPAUunz_s@@@Z" to "eziputils_?unzeof@@YAHPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzGetLocalExtrafield@@YAHPAUunz_s@@PAXI@Z" to "eziputils_?unzGetLocalExtrafield@@YAHPAUunz_s@@PAXI@Z", in obj: .\Release\unzip.obj
+resym "?unzCloseCurrentFile@@YAHPAUunz_s@@@Z" to "eziputils_?unzCloseCurrentFile@@YAHPAUunz_s@@@Z", in obj: .\Release\unzip.obj
+resym "?unzGetGlobalComment@@YAHPAUunz_s@@PADK@Z" to "eziputils_?unzGetGlobalComment@@YAHPAUunz_s@@PADK@Z", in obj: .\Release\unzip.obj
+resym "?timet2filetime@@YA?AU_FILETIME@@_I@Z" to "eziputils_?timet2filetime@@YA?AU_FILETIME@@_I@Z", in obj: .\Release\unzip.obj
+resym "?dosdatetime2filetime@@YA?AU_FILETIME@@GG@Z" to "eziputils_?dosdatetime2filetime@@YA?AU_FILETIME@@GG@Z", in obj: .\Release\unzip.obj
+resym "?Open@TUnzip@@QAEKPAXIK@Z" to "eziputils_?Open@TUnzip@@QAEKPAXIK@Z", in obj: .\Release\unzip.obj
+resym "??_C@_01PCFE@?2?$AA@" to "eziputils_??_C@_01PCFE@?2?$AA@", in obj: .\Release\unzip.obj
+resym "?SetUnzipBaseDir@TUnzip@@QAEKPBD@Z" to "eziputils_?SetUnzipBaseDir@TUnzip@@QAEKPBD@Z", in obj: .\Release\unzip.obj
+resym "?Get@TUnzip@@QAEKHPAUZIPENTRY@@@Z" to "eziputils_?Get@TUnzip@@QAEKHPAUZIPENTRY@@@Z", in obj: .\Release\unzip.obj
+resym "??_C@_02CKOA@UT?$AA@" to "eziputils_??_C@_02CKOA@UT?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_04KBNG@?1?4?4?2?$AA@" to "eziputils_??_C@_04KBNG@?1?4?4?2?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_04DP@?1?4?4?1?$AA@" to "eziputils_??_C@_04DP@?1?4?4?1?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_04MECP@?2?4?4?1?$AA@" to "eziputils_??_C@_04MECP@?2?4?4?1?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_04GFMG@?2?4?4?2?$AA@" to "eziputils_??_C@_04GFMG@?2?4?4?2?$AA@", in obj: .\Release\unzip.obj
+resym "?Find@TUnzip@@QAEKPBD_NPAHPAUZIPENTRY@@@Z" to "eziputils_?Find@TUnzip@@QAEKPBD_NPAHPAUZIPENTRY@@@Z", in obj: .\Release\unzip.obj
+resym "?EnsureDirectory@@YAXPBD0@Z" to "eziputils_?EnsureDirectory@@YAXPBD0@Z", in obj: .\Release\unzip.obj
+resym "?Unzip@TUnzip@@QAEKHPAXIK@Z" to "eziputils_?Unzip@TUnzip@@QAEKHPAXIK@Z", in obj: .\Release\unzip.obj
+resym "??_C@_04DCMN@?$CFs?$CFs?$AA@" to "eziputils_??_C@_04DCMN@?$CFs?$CFs?$AA@", in obj: .\Release\unzip.obj
+resym "??_C@_06KKCN@?$CFs?$CFs?$CFs?$AA@" to "eziputils_??_C@_06KKCN@?$CFs?$CFs?$CFs?$AA@", in obj: .\Release\unzip.obj
+resym "?Close@TUnzip@@QAEKXZ" to "eziputils_?Close@TUnzip@@QAEKXZ", in obj: .\Release\unzip.obj
+resym "?FormatZipMessageU@@YAIKPADI@Z" to "eziputils_?FormatZipMessageU@@YAIKPADI@Z", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CK@LCDH@Zip?9bug?3?5an?5internal?5error?5durin@_0" 
+resym "??_C@_0CK@LCDH@Zip?9bug?3?5an?5internal?5error?5durin@" to "eziputils_??_C@_0CK@LCDH@Zip?9bug?3?5an?5internal?5error?5durin@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CP@FBPD@Zip?9bug?3?5tried?5to?5change?5mind?0?5b@_0" 
+resym "??_C@_0CP@FBPD@Zip?9bug?3?5tried?5to?5change?5mind?0?5b@" to "eziputils_??_C@_0CP@FBPD@Zip?9bug?3?5tried?5to?5change?5mind?0?5b@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CP@JENP@Zip?9bug?3?5internal?5initialisation@_0" 
+resym "??_C@_0CP@JENP@Zip?9bug?3?5internal?5initialisation@" to "eziputils_??_C@_0CP@JENP@Zip?9bug?3?5internal?5initialisation@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CH@HFCI@Zip?9bug?3?5trying?5to?5seek?5the?5unse@_0" 
+resym "??_C@_0CH@HFCI@Zip?9bug?3?5trying?5to?5seek?5the?5unse@" to "eziputils_??_C@_0CH@HFCI@Zip?9bug?3?5trying?5to?5seek?5the?5unse@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CL@LKLA@Caller?3?5mixing?5creation?5and?5open@_0" 
+resym "??_C@_0CL@LKLA@Caller?3?5mixing?5creation?5and?5open@" to "eziputils_??_C@_0CL@LKLA@Caller?3?5mixing?5creation?5and?5open@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CP@NJLJ@Zip?9bug?3?5the?5anticipated?5size?5tu@_0" 
+resym "??_C@_0CP@NJLJ@Zip?9bug?3?5the?5anticipated?5size?5tu@" to "eziputils_??_C@_0CP@NJLJ@Zip?9bug?3?5the?5anticipated?5size?5tu@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0DF@EGPF@Caller?3?5the?5file?5had?5already?5bee@_0" 
+resym "??_C@_0DF@EGPF@Caller?3?5the?5file?5had?5already?5bee@" to "eziputils_??_C@_0DF@EGPF@Caller?3?5the?5file?5had?5already?5bee@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0DF@NOLF@Caller?3?5additions?5to?5the?5zip?5hav@_0" 
+resym "??_C@_0DF@NOLF@Caller?3?5additions?5to?5the?5zip?5hav@" to "eziputils_??_C@_0DF@NOLF@Caller?3?5additions?5to?5the?5zip?5hav@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0DG@OOAK@Caller?3?5not?5enough?5space?5allocat@_0" 
+resym "??_C@_0DG@OOAK@Caller?3?5not?5enough?5space?5allocat@" to "eziputils_??_C@_0DG@OOAK@Caller?3?5not?5enough?5space?5allocat@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CD@HBOC@Caller?3?5there?5was?5a?5previous?5err@_0" 
+resym "??_C@_0CD@HBOC@Caller?3?5there?5was?5a?5previous?5err@" to "eziputils_??_C@_0CD@HBOC@Caller?3?5there?5was?5a?5previous?5err@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0DA@BDOC@Caller?3?5can?5only?5get?5memory?5of?5a@_0" 
+resym "??_C@_0DA@BDOC@Caller?3?5can?5only?5get?5memory?5of?5a@" to "eziputils_??_C@_0DA@BDOC@Caller?3?5can?5only?5get?5memory?5of?5a@_0", in obj: .\Release\unzip.obj
+resym "??_C@_0BK@GFOM@Correct?5password?5required?$AA@" to "eziputils_??_C@_0BK@GFOM@Correct?5password?5required?$AA@", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BJ@MOGJ@Caller?3?5faulty?5arguments?$AA@_0" 
+resym "??_C@_0BJ@MOGJ@Caller?3?5faulty?5arguments?$AA@" to "eziputils_??_C@_0BJ@MOGJ@Caller?3?5faulty?5arguments?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BD@GJJJ@Error?5reading?5file?$AA@_0" 
+resym "??_C@_0BD@GJJJ@Error?5reading?5file?$AA@" to "eziputils_??_C@_0BD@GJJJ@Error?5reading?5file?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BJ@IICI@Still?5more?5data?5to?5unzip?$AA@_0" 
+resym "??_C@_0BJ@IICI@Still?5more?5data?5to?5unzip?$AA@" to "eziputils_??_C@_0BJ@IICI@Still?5more?5data?5to?5unzip?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0CE@LLJN@Zipfile?5is?5corrupt?5or?5not?5a?5zipf@_0" 
+resym "??_C@_0CE@LLJN@Zipfile?5is?5corrupt?5or?5not?5a?5zipf@" to "eziputils_??_C@_0CE@LLJN@Zipfile?5is?5corrupt?5or?5not?5a?5zipf@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BO@CKL@File?5not?5found?5in?5the?5zipfile?$AA@_0" 
+resym "??_C@_0BO@CKL@File?5not?5found?5in?5the?5zipfile?$AA@" to "eziputils_??_C@_0BO@CKL@File?5not?5found?5in?5the?5zipfile?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BK@ILBP@Failed?5to?5allocate?5memory?$AA@_0" 
+resym "??_C@_0BK@ILBP@Failed?5to?5allocate?5memory?$AA@" to "eziputils_??_C@_0BK@ILBP@Failed?5to?5allocate?5memory?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BG@LOL@Error?5writing?5to?5file?$AA@_0" 
+resym "??_C@_0BG@LOL@Error?5writing?5to?5file?$AA@" to "eziputils_??_C@_0BG@LOL@Error?5writing?5to?5file?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BK@JDPP@Couldn?8t?5create?1open?5file?$AA@_0" 
+resym "??_C@_0BK@JDPP@Couldn?8t?5create?1open?5file?$AA@" to "eziputils_??_C@_0BK@JDPP@Couldn?8t?5create?1open?5file?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_07FEHI@Success?$AA@_0" 
+resym "??_C@_07FEHI@Success?$AA@" to "eziputils_??_C@_07FEHI@Success?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BJ@CCAF@Culdn?8t?5duplicate?5handle?$AA@_0" 
+resym "??_C@_0BJ@CCAF@Culdn?8t?5duplicate?5handle?$AA@" to "eziputils_??_C@_0BJ@CCAF@Culdn?8t?5duplicate?5handle?$AA@_0", in obj: .\Release\unzip.obj
+  try to get an unique(in the lib) symbol name: "eziputils_??_C@_0BI@DBL@unknown?5zip?5result?5code?$AA@_0" 
+resym "??_C@_0BI@DBL@unknown?5zip?5result?5code?$AA@" to "eziputils_??_C@_0BI@DBL@unknown?5zip?5result?5code?$AA@_0", in obj: .\Release\unzip.obj
+resym "?OpenZipInternal@@YAPAUHZIP__@@PAXIKPBD@Z" to "eziputils_?OpenZipInternal@@YAPAUHZIP__@@PAXIKPBD@Z", in obj: .\Release\unzip.obj
+resym "?OpenZipHandle@@YAPAUHZIP__@@PAXPBD@Z" to "eziputils_?OpenZipHandle@@YAPAUHZIP__@@PAXPBD@Z", in obj: .\Release\unzip.obj
+resym "?OpenZip@@YAPAUHZIP__@@PBD0@Z" to "eziputils_?OpenZip@@YAPAUHZIP__@@PBD0@Z", in obj: .\Release\unzip.obj
+resym "?OpenZip@@YAPAUHZIP__@@PAXIPBD@Z" to "eziputils_?OpenZip@@YAPAUHZIP__@@PAXIPBD@Z", in obj: .\Release\unzip.obj
+resym "?GetZipItem@@YAKPAUHZIP__@@HPAUZIPENTRY@@@Z" to "eziputils_?GetZipItem@@YAKPAUHZIP__@@HPAUZIPENTRY@@@Z", in obj: .\Release\unzip.obj
+resym "?FindZipItem@@YAKPAUHZIP__@@PBD_NPAHPAUZIPENTRY@@@Z" to "eziputils_?FindZipItem@@YAKPAUHZIP__@@PBD_NPAHPAUZIPENTRY@@@Z", in obj: .\Release\unzip.obj
+resym "?UnzipItemInternal@@YAKPAUHZIP__@@HPAXIK@Z" to "eziputils_?UnzipItemInternal@@YAKPAUHZIP__@@HPAXIK@Z", in obj: .\Release\unzip.obj
+resym "?UnzipItemHandle@@YAKPAUHZIP__@@HPAX@Z" to "eziputils_?UnzipItemHandle@@YAKPAUHZIP__@@HPAX@Z", in obj: .\Release\unzip.obj
+resym "?UnzipItem@@YAKPAUHZIP__@@HPBD@Z" to "eziputils_?UnzipItem@@YAKPAUHZIP__@@HPBD@Z", in obj: .\Release\unzip.obj
+resym "?UnzipItem@@YAKPAUHZIP__@@HPAXI@Z" to "eziputils_?UnzipItem@@YAKPAUHZIP__@@HPAXI@Z", in obj: .\Release\unzip.obj
+resym "?SetUnzipBaseDir@@YAKPAUHZIP__@@PBD@Z" to "eziputils_?SetUnzipBaseDir@@YAKPAUHZIP__@@PBD@Z", in obj: .\Release\unzip.obj
+resym "?CloseZipU@@YAKPAUHZIP__@@@Z" to "eziputils_?CloseZipU@@YAKPAUHZIP__@@@Z", in obj: .\Release\unzip.obj
+resym "?IsZipHandleU@@YA_NPAUHZIP__@@@Z" to "eziputils_?IsZipHandleU@@YA_NPAUHZIP__@@@Z", in obj: .\Release\unzip.obj
+resym "?g_fn_OnSysNotify@@3P6AHHKK@ZA" to "eziputils_?g_fn_OnSysNotify@@3P6AHHKK@ZA", in obj: .\Release\EZipUtils.obj
+resym "?g_fnNotifySys@@3P6GHHKK@ZA" to "eziputils_?g_fnNotifySys@@3P6GHHKK@ZA", in obj: .\Release\EZipUtils.obj
+resym "?g_nLastNotifyResult@@3HA" to "eziputils_?g_nLastNotifyResult@@3HA", in obj: .\Release\EZipUtils.obj
+resym "?ProcessNotifyLib@@YGHHKK@Z" to "eziputils_?ProcessNotifyLib@@YGHHKK@Z", in obj: .\Release\EZipUtils.obj
+resym "?NotifySys@@YGHHKK@Z" to "eziputils_?NotifySys@@YGHHKK@Z", in obj: .\Release\EZipUtils.obj
+resym "?CloneTextData@@YAPADPAD@Z" to "eziputils_?CloneTextData@@YAPADPAD@Z", in obj: .\Release\EZipUtils.obj
+resym "?CloneTextData@@YAPADPADH@Z" to "eziputils_?CloneTextData@@YAPADPADH@Z", in obj: .\Release\EZipUtils.obj
+resym "?CloneBinData@@YAPAEPAEH@Z" to "eziputils_?CloneBinData@@YAPAEPAEH@Z", in obj: .\Release\EZipUtils.obj
+resym "?GReportError@@YAXPAD@Z" to "eziputils_?GReportError@@YAXPAD@Z", in obj: .\Release\EZipUtils.obj
+resym "?MMalloc@@YAPAXH@Z" to "eziputils_?MMalloc@@YAPAXH@Z", in obj: .\Release\EZipUtils.obj
+resym "?MFree@@YAXPAX@Z" to "eziputils_?MFree@@YAXPAX@Z", in obj: .\Release\EZipUtils.obj
+resym "?GetAryElementInf@@YAPAEPAXPAH@Z" to "eziputils_?GetAryElementInf@@YAPAEPAXPAH@Z", in obj: .\Release\EZipUtils.obj
+resym "?GetDataTypeType@@YAHK@Z" to "eziputils_?GetDataTypeType@@YAHK@Z", in obj: .\Release\EZipUtils.obj
+resym "?_GetPointerByIndex@@YAPAXPAXH@Z" to "eziputils_?_GetPointerByIndex@@YAPAXPAXH@Z", in obj: .\Release\EZipUtils.obj
+resym "?_GetIntByIndex@@YAHPAXH@Z" to "eziputils_?_GetIntByIndex@@YAHPAXH@Z", in obj: .\Release\EZipUtils.obj
+resym "?_SetIntByIndex@@YAXPAXHH@Z" to "eziputils_?_SetIntByIndex@@YAXPAXHH@Z", in obj: .\Release\EZipUtils.obj
+resym "?GetIntByIndex@@YAHPAUMDATA_INF@@H@Z" to "eziputils_?GetIntByIndex@@YAHPAUMDATA_INF@@H@Z", in obj: .\Release\EZipUtils.obj
+resym "?SetIntByIndex@@YAXPAUMDATA_INF@@HH@Z" to "eziputils_?SetIntByIndex@@YAXPAUMDATA_INF@@HH@Z", in obj: .\Release\EZipUtils.obj
+resym "?GetPointerByIndex@@YAPAXPAUMDATA_INF@@H@Z" to "eziputils_?GetPointerByIndex@@YAPAXPAUMDATA_INF@@H@Z", in obj: .\Release\EZipUtils.obj
+resym "?SetLogfont_CompileLanVer@@YAXPAUtagLOGFONTA@@@Z" to "eziputils_?SetLogfont_CompileLanVer@@YAXPAUtagLOGFONTA@@@Z", in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?CreateZipHandle@@YAPAUHZIP__@@PAXPBD@Z" to "eziputils_?CreateZipHandle@@YAPAUHZIP__@@PAXPBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?CreateZip@@YAPAUHZIP__@@PBD0@Z" to "eziputils_?CreateZip@@YAPAUHZIP__@@PBD0@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?CreateZip@@YAPAUHZIP__@@PAXIPBD@Z" to "eziputils_?CreateZip@@YAPAUHZIP__@@PAXIPBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?ZipAdd@@YAKPAUHZIP__@@PBD1@Z" to "eziputils_?ZipAdd@@YAKPAUHZIP__@@PBD1@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?ZipAdd@@YAKPAUHZIP__@@PBDPAXI@Z" to "eziputils_?ZipAdd@@YAKPAUHZIP__@@PBDPAXI@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?ZipAddFolder@@YAKPAUHZIP__@@PBD@Z" to "eziputils_?ZipAddFolder@@YAKPAUHZIP__@@PBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?ZipGetMemory@@YAKPAUHZIP__@@PAPAXPAK@Z" to "eziputils_?ZipGetMemory@@YAKPAUHZIP__@@PAPAXPAK@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?CloseZipZ@@YAKPAUHZIP__@@@Z" to "eziputils_?CloseZipZ@@YAKPAUHZIP__@@@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?OpenZipHandle@@YAPAUHZIP__@@PAXPBD@Z" to "eziputils_?OpenZipHandle@@YAPAUHZIP__@@PAXPBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?OpenZip@@YAPAUHZIP__@@PBD0@Z" to "eziputils_?OpenZip@@YAPAUHZIP__@@PBD0@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?OpenZip@@YAPAUHZIP__@@PAXIPBD@Z" to "eziputils_?OpenZip@@YAPAUHZIP__@@PAXIPBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?GetZipItem@@YAKPAUHZIP__@@HPAUZIPENTRY@@@Z" to "eziputils_?GetZipItem@@YAKPAUHZIP__@@HPAUZIPENTRY@@@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?FindZipItem@@YAKPAUHZIP__@@PBD_NPAHPAUZIPENTRY@@@Z" to "eziputils_?FindZipItem@@YAKPAUHZIP__@@PBD_NPAHPAUZIPENTRY@@@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?UnzipItemHandle@@YAKPAUHZIP__@@HPAX@Z" to "eziputils_?UnzipItemHandle@@YAKPAUHZIP__@@HPAX@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?UnzipItem@@YAKPAUHZIP__@@HPBD@Z" to "eziputils_?UnzipItem@@YAKPAUHZIP__@@HPBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?UnzipItem@@YAKPAUHZIP__@@HPAXI@Z" to "eziputils_?UnzipItem@@YAKPAUHZIP__@@HPAXI@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?SetUnzipBaseDir@@YAKPAUHZIP__@@PBD@Z" to "eziputils_?SetUnzipBaseDir@@YAKPAUHZIP__@@PBD@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?CloseZipU@@YAKPAUHZIP__@@@Z" to "eziputils_?CloseZipU@@YAKPAUHZIP__@@@Z" in obj: .\Release\EZipUtils.obj
+resym referenced symbol "?IsZipHandleU@@YA_NPAUHZIP__@@@Z" to "eziputils_?IsZipHandleU@@YA_NPAUHZIP__@@@Z" in obj: .\Release\EZipUtils.obj
+
+
+OK, 298 symbol(s) have been resymed. 
+The outfile has been output successfully to: .\Release\eziputils_static.lib
+
+
+
+<h3>Results</h3>
+eziputils_static.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
