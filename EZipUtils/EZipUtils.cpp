@@ -916,7 +916,7 @@ static LIB_INFO s_LibInfo =
 #ifndef __COMPILE_FNR
 						/*CategoryCount*/   0,			// 加了类别需加此值。
 						/*category*/       	NULL,			// 类别说明表每项为一字符串,前四位数字表示图象索引号(从1开始,0无).
-	/*CmdCount*/        sizeof(s_CmdInfo) / sizeof(s_ConstInfo[0]),
+	/*CmdCount*/        sizeof(s_CmdInfo) / sizeof(s_CmdInfo[0]),
 	/*BeginCmd*/        s_CmdInfo,
 #else
 						// fnr版本不需要以下信息
