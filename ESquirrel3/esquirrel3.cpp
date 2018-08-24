@@ -54,10 +54,14 @@ ARG_INFO s_arg_newthread[] =
 
 ARG_INFO s_arg_onlyvm[] =
 {
-	{ _WT("虚拟机句柄"), _WT("由打开或新建的线程返回的虚拟机句柄"),0,0, SDT_INT, 0, NULL },
+	{ _WT("虚拟机句柄"), _WT("由打开返回的虚拟机句柄"),0,0, SDT_INT, 0, NULL },
 };
 
-
+ARG_INFO s_arg_setforeignptr[] =
+{
+	{ _WT("虚拟机句柄"), _WT("由打开返回的虚拟机句柄"),0,0, SDT_INT, 0, NULL },
+	{ _WT("用户指针"), _WT("用户自定义指针"),0,0, SDT_INT, 0, NULL },
+};
 // 命令信息
 static CMD_INFO s_CmdInfo[] =
 {
@@ -118,7 +122,62 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
 		/*arg lp*/	s_arg_onlyvm,
 	},
-
+	{
+		/*ccname*/	_WT("松鼠_置外部指针"),
+		/*egname*/	_WT("sq_setforeignptr"),
+		/*explain*/	_WT("设置一个与虚拟机关联的外部指针"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setforeignptr) / sizeof(s_arg_setforeignptr[0]),
+		/*arg lp*/	s_arg_setforeignptr,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取外部指针"),
+		/*egname*/	_WT("sq_getforeignptr"),
+		/*explain*/	_WT("获取一个与虚拟机关联的外部指针"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置共享外部指针"),
+		/*egname*/	_WT("sq_setsharedforeignptr"),
+		/*explain*/	_WT("设置一个与虚拟机关联的外部共享指针，这个外部指针是可以与线程的虚拟机共享的"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setforeignptr) / sizeof(s_arg_setforeignptr[0]),
+		/*arg lp*/	s_arg_setforeignptr,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取共享外部指针"),
+		/*egname*/	_WT("sq_getsharedforeignptr"),
+		/*explain*/	_WT("获取一个与虚拟机关联的外部共享指针，这个外部指针是可以与线程的虚拟机共享的"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
 };
 #endif
 
@@ -140,9 +199,27 @@ EXTERN_C void esquirrel3_fn_sq_seterrorhandler(PMDATA_INF pRetData, INT iArgCoun
 EXTERN_C void esquirrel3_fn_sq_close(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	sq_close((HSQUIRRELVM)pArgInf[0].m_int);
-	
 }
 
+EXTERN_C void esquirrel3_fn_sq_setforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	sq_setforeignptr((HSQUIRRELVM)pArgInf[0].m_int, (SQUserPointer)pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_getforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	pRetData->m_int = sq_getforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_setsharedforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	sq_setsharedforeignptr((HSQUIRRELVM)pArgInf[0].m_int, (SQUserPointer)pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_getsharedforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	pRetData->m_int = sq_getsharedforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
+}
 
 #ifndef __E_STATIC_LIB
 PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
@@ -150,7 +227,11 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	esquirrel3_fn_sq_open,
 	esquirrel3_fn_sq_newthread,
 	esquirrel3_fn_sq_seterrorhandler,
-	esquirrel3_fn_sq_close
+	esquirrel3_fn_sq_close,
+	esquirrel3_fn_sq_setforeignptr,
+	esquirrel3_fn_sq_getforeignptr,
+	esquirrel3_fn_sq_setsharedforeignptr,
+	esquirrel3_fn_sq_getsharedforeignptr,
 };
 
 static const char* const g_CmdNames[] =
@@ -158,7 +239,12 @@ static const char* const g_CmdNames[] =
 	"esquirrel3_fn_sq_open",
 	"esquirrel3_fn_sq_newthread",
 	"esquirrel3_fn_sq_seterrorhandler",
-	"esquirrel3_fn_sq_close"
+	"esquirrel3_fn_sq_close",
+	"esquirrel3_fn_sq_setforeignptr",
+	"esquirrel3_fn_sq_getforeignptr",
+	"esquirrel3_fn_sq_setsharedforeignptr",
+	"esquirrel3_fn_sq_getsharedforeignptr",
+
 };
 #endif
 
@@ -169,7 +255,7 @@ EXTERN_C INT WINAPI  esquirrel3_ProcessNotifyLib(INT nMsg, DWORD dwParam1, DWORD
 		return (INT)g_CmdNames;
 	else if (nMsg == NL_GET_NOTIFY_LIB_FUNC_NAME) // 返回处理系统通知的函数名称(PFN_NOTIFY_LIB函数名称), 支持静态编译的动态库必须处理
 		return (INT)"esquirrel3_ProcessNotifyLib";
-	else if (nMsg == NL_GET_DEPENDENT_LIBS) return (INT)NULL;
+	else if (nMsg == NL_GET_DEPENDENT_LIBS) return NULL;
 	// 返回静态库所依赖的其它静态库文件名列表(格式为\0分隔的文本,结尾两个\0), 支持静态编译的动态库必须处理
 	// kernel32.lib user32.lib gdi32.lib 等常用的系统库不需要放在此列表中
 	// 返回NULL或NR_ERR表示不指定依赖文件  
