@@ -1,10 +1,10 @@
 #include "helper.h"
 #include "string.h"
 
-void* helper::stdcall_to_cdecl(void* pStdcall, int num_args)
+void * stdcall_to_cdecl(void * pStdcall, int num_args)
 {
 	LPVOID pCdecl = ::VirtualAlloc(NULL, 12 + 6 * num_args, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
-	if(!pCdecl)
+	if (!pCdecl)
 	{
 		return NULL;
 	}
@@ -31,7 +31,27 @@ void* helper::stdcall_to_cdecl(void* pStdcall, int num_args)
 	return pStdcall;
 }
 
-void helper::stdcall_to_cdecl_free(void* pCdecl)
+void stdcall_to_cdecl_free(void * pCdecl)
 {
 	VirtualFree(pCdecl, 0, MEM_RELEASE);
+}
+
+void* get_map_ptr(std::map<INT, INT>& ptr_map, INT key)
+{
+	void* hook = NULL;
+	if (key == 0)
+	{
+		return hook;
+	}
+	std::map<INT, INT>::iterator iter = ptr_map.find(key);
+	if (iter != ptr_map.end())
+	{
+		hook = (void*)iter->second;
+	}
+	else
+	{
+		hook = stdcall_to_cdecl((LPVOID)key, 2);
+		g_sqPtrMap[key] = (INT)hook;
+	}
+	return hook;
 }

@@ -9,6 +9,8 @@
 #include "elib_sdk/fnshare.cpp"
 #include "squirrel.h"
 
+std::map<INT, INT> g_sqPtrMap;
+
 /************************************************************************/
 /* 常量定义
 /************************************************************************/
@@ -62,6 +64,13 @@ ARG_INFO s_arg_setforeignptr[] =
 	{ _WT("虚拟机句柄"), _WT("由打开返回的虚拟机句柄"),0,0, SDT_INT, 0, NULL },
 	{ _WT("用户指针"), _WT("用户自定义指针"),0,0, SDT_INT, 0, NULL },
 };
+
+ARG_INFO s_arg_setvmreleasehook[] =
+{
+	{ _WT("虚拟机句柄"), _WT("由打开返回的虚拟机句柄"),0,0, SDT_INT, 0, NULL },
+	{ _WT("释放回调函数"), _WT("返回值：整数型 （整数型 外部指针，整数型 大小）"),0,0, SDT_INT, 0, NULL },
+};
+
 // 命令信息
 static CMD_INFO s_CmdInfo[] =
 {
@@ -178,6 +187,34 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
 		/*arg lp*/	s_arg_onlyvm,
 	},
+	{
+		/*ccname*/	_WT("松鼠_置虚拟机释放钩子"),
+		/*egname*/	_WT("sq_setvmreleasehook"),
+		/*explain*/	_WT("当一个虚拟机被释放时，调用这个钩子回调函数，SQUserPointer 是 松鼠_置外部指针() 设置的指针"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setvmreleasehook) / sizeof(s_arg_setvmreleasehook[0]),
+		/*arg lp*/	s_arg_setvmreleasehook,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取虚拟机释放钩子"),
+		/*egname*/	_WT("sq_getvmreleasehook"),
+		/*explain*/	_WT("获取虚拟机的释放钩子回调函数"),
+		/*category*/0,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
 };
 #endif
 
@@ -208,7 +245,7 @@ EXTERN_C void esquirrel3_fn_sq_setforeignptr(PMDATA_INF pRetData, INT iArgCount,
 
 EXTERN_C void esquirrel3_fn_sq_getforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	pRetData->m_int = sq_getforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
+	pRetData->m_int = (INT)sq_getforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
 }
 
 EXTERN_C void esquirrel3_fn_sq_setsharedforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
@@ -218,7 +255,18 @@ EXTERN_C void esquirrel3_fn_sq_setsharedforeignptr(PMDATA_INF pRetData, INT iArg
 
 EXTERN_C void esquirrel3_fn_sq_getsharedforeignptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	pRetData->m_int = sq_getsharedforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
+	pRetData->m_int = (INT)sq_getsharedforeignptr((HSQUIRRELVM)pArgInf[0].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_setvmreleasehook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SQRELEASEHOOK hook = (SQRELEASEHOOK)get_map_ptr(g_sqPtrMap, pArgInf[1].m_int);
+	sq_setvmreleasehook((HSQUIRRELVM)pArgInf[0].m_int, hook);
+}
+
+EXTERN_C void esquirrel3_fn_sq_getvmreleasehook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	pRetData->m_int = (INT)sq_getvmreleasehook((HSQUIRRELVM)pArgInf[0].m_int);
 }
 
 #ifndef __E_STATIC_LIB
@@ -232,6 +280,8 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	esquirrel3_fn_sq_getforeignptr,
 	esquirrel3_fn_sq_setsharedforeignptr,
 	esquirrel3_fn_sq_getsharedforeignptr,
+	esquirrel3_fn_sq_setvmreleasehook,
+	esquirrel3_fn_sq_getvmreleasehook
 };
 
 static const char* const g_CmdNames[] =
@@ -244,7 +294,8 @@ static const char* const g_CmdNames[] =
 	"esquirrel3_fn_sq_getforeignptr",
 	"esquirrel3_fn_sq_setsharedforeignptr",
 	"esquirrel3_fn_sq_getsharedforeignptr",
-
+	"esquirrel3_fn_sq_setvmreleasehook"
+	"esquirrel3_fn_sq_getvmreleasehook"
 };
 #endif
 

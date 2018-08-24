@@ -90,6 +90,8 @@
     <IntDir>.\fne\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.fne</TargetExt>
+    <IncludePath>./squirrel3/include;$(IncludePath)</IncludePath>
+    <LibraryPath>./squirrel3/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -247,7 +249,7 @@
       <Optimization>MaxSpeed</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>./squirrel3/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ESQUIRREL3_EXPORTS;_MSC_VER=1200;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\fne\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
@@ -278,7 +280,7 @@
       <SubSystem>Windows</SubSystem>
       <OutputFile>fne/esquirrel3.fne</OutputFile>
       <ImportLibrary>.\Release\esquirrel3.lib</ImportLibrary>
-      <AdditionalLibraryDirectories>./squirrel3/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;squirrel.lib;sqstdlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /IGNORE:4089</AdditionalOptions>
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>

@@ -1,7 +1,9 @@
 #pragma once
 
+
 #include <Windows.h>
 #include <oleauto.h>
+#include "helper.h"
 
 #ifndef __E_STATIC_LIB
 
@@ -26,3 +28,4 @@
 #define LIB_TYPE_COUNT 1 /*命令分类数量*/
 #define LIB_TYPE_STR "0000虚拟机\0""\0" /*命令分类*/
 #endif
+
