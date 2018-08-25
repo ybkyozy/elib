@@ -279,7 +279,7 @@
       <LinkDLL>true</LinkDLL>
       <SubSystem>Windows</SubSystem>
       <OutputFile>fne/esquirrel3.fne</OutputFile>
-      <ImportLibrary>.\Release\esquirrel3.lib</ImportLibrary>
+      <ImportLibrary>.\fne\esquirrel3.lib</ImportLibrary>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;squirrel.lib;sqstdlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /IGNORE:4089</AdditionalOptions>

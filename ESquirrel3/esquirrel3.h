@@ -4,6 +4,21 @@
 #include <Windows.h>
 #include <oleauto.h>
 #include "helper.h"
+#include "squirrel.h"
+
+#ifndef EPRINT_CALLBACK
+#define EPRINT_CALLBACK	1
+#endif
+
+#ifndef EERROR_CALLBACK
+#define EERROR_CALLBACK	2
+#endif
+
+#ifndef ECMPILERERROR_CALLBACK
+#define ECMPILERERROR_CALLBACK	3
+#endif
+
+#define SETUP_VM(x)	HSQUIRRELVM vm = ((HSQUIRRELVM)x[0].m_int)
 
 #ifndef __E_STATIC_LIB
 
@@ -40,3 +55,5 @@
 						"\0" /*√¸¡Ó∑÷¿‡*/
 #endif
 
+typedef void(CALLBACK *ESQPRINTFUNCTION)(HSQUIRRELVM, const SQChar *);
+typedef void(CALLBACK *ESQCOMPILERERROR)(HSQUIRRELVM, const SQChar * /*desc*/, const SQChar * /*source*/, SQInteger /*line*/, SQInteger /*column*/);

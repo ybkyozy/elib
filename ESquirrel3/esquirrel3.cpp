@@ -7,7 +7,6 @@
 #include "elib_sdk/lang.h"
 #include "elib_sdk/fnshare.h"
 #include "elib_sdk/fnshare.cpp"
-#include "squirrel.h"
 
 
 std::map<INT, INT> g_sqPtrMap;
@@ -62,6 +61,12 @@ ARG_INFO s_arg_newthread[] =
 ARG_INFO s_arg_onlyvm[] =
 {
 	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+};
+
+ARG_INFO s_arg_vm_and_idx[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
 };
 
 ARG_INFO s_arg_setforeignptr[] =
@@ -130,6 +135,50 @@ ARG_INFO s_arg_setcompilererrorhandler[] =
 {
 	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
 	{ _WT("编译错误回调函数"), _WT("返回值：无（整数型 虚拟机句柄，文本型 目标，文本型 源，整数型 行号，整数型 列号）"),0,0, SDT_INT, 0, NULL },
+};
+
+ARG_INFO s_arg_pop[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("弹出数量"), _WT("要弹出栈的数量"),0,0, SDT_INT, 0, NULL },
+};
+
+ARG_INFO s_arg_settop[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("新栈顶"), _WT("可用于恢复之前的栈顶索引"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_reservestack[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("新栈大小"), _WT("所需的栈大小"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_move[] =
+{
+	{ _WT("目标虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("源虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("源栈索引"), _WT("源栈中的索引"),0,0, SDT_INT, 0, NULL }
+};
+ARG_INFO s_arg_newuserdata[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("大小"), _WT("以字节为单位的大小"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_newtableex[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("表初始数量"), _WT("预分配的键/值对的数量"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_newarray[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("数组大小"), _WT("要创建的数组大小"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_newclosure[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("本地函数"), _WT("返回值：整数型（整数型 虚拟机句柄）\r\n 返回1表示有返回值，这个时候要在栈中压入返回值\r\n 返回0表示没有返回值"),0,0, SDT_INT, 0, NULL },
+	{ _WT("自由变量数"), _WT("如果 > 0 则会从栈中弹出N个元素，作为闭包的自由变量"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
 };
 
 // 命令信息
@@ -475,6 +524,204 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_setcompilererrorhandler) / sizeof(s_arg_setcompilererrorhandler[0]),
 		/*arg lp*/	s_arg_setcompilererrorhandler,
 	},
+	//////////////////////////////////////////////////////////////////////////栈操作
+	{
+		/*ccname*/	_WT("松鼠_压入"),
+		/*egname*/	_WT("sq_push"),
+		/*explain*/	_WT("将参数\"栈索引\"中的值压入栈"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_and_idx) / sizeof(s_arg_vm_and_idx[0]),
+		/*arg lp*/	s_arg_vm_and_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_弹出"),
+		/*egname*/	_WT("sq_pop"),
+		/*explain*/	_WT("从栈中弹出指定数量的元素"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pop) / sizeof(s_arg_pop[0]),
+		/*arg lp*/	s_arg_pop,
+	},
+	{
+		/*ccname*/	_WT("松鼠_弹出栈顶"),
+		/*egname*/	_WT("sq_poptop"),
+		/*explain*/	_WT("从栈中弹出1个元素"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_移除"),
+		/*egname*/	_WT("sq_remove"),
+		/*explain*/	_WT("从栈中的指定位置移除1个元素"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_and_idx) / sizeof(s_arg_vm_and_idx[0]),
+		/*arg lp*/	s_arg_vm_and_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取栈顶"),
+		/*egname*/	_WT("sq_gettop"),
+		/*explain*/	_WT("从栈中的指定位置移除1个元素"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置栈顶"),
+		/*egname*/	_WT("sq_settop"),
+		/*explain*/	_WT("设置新的栈顶索引，如果比旧的栈顶大，则压入空值"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_settop) / sizeof(s_arg_settop[0]),
+		/*arg lp*/	s_arg_settop,
+	},
+	{
+		/*ccname*/	_WT("松鼠_重置栈大小"),
+		/*egname*/	_WT("sq_reservestack"),
+		/*explain*/	_WT("重置栈大小，成功返回>=0，确保剩余的栈空间至少是指定的大小。如果栈较小，它将自动增长。 如果当前正在运行 元方法(memtamethod)，函数将失败并且栈将不会调整大小，则此情况必须被视为“栈溢出”"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_reservestack) / sizeof(s_arg_reservestack[0]),
+		/*arg lp*/	s_arg_reservestack,
+	},
+	{
+		/*ccname*/	_WT("松鼠_比较"),
+		/*egname*/	_WT("sq_cmp"),
+		/*explain*/	_WT("比较栈中的两个对象。\r\n 返回 > 0 表示 对象1 > 对象2；\r\n 返回 = 0 表示 相等；\r\n 返回 < 0 表示 对象1 < 对象2 \r\n"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_移动"),
+		/*egname*/	_WT("sq_move"),
+		/*explain*/	_WT("将源栈的位置的值压入到目标栈中"),
+		/*category*/3,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_move) / sizeof(s_arg_move[0]),
+		/*arg lp*/	s_arg_move,
+	},
+	//////////////////////////////////////////////////////////////////////////对象创建和处理
+	{
+		/*ccname*/	_WT("松鼠_新建用户数据"),
+		/*egname*/	_WT("sq_newuserdata"),
+		/*explain*/	_WT("创建一个新的userdata并将其压入栈，返回用户数据指针"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_newuserdata) / sizeof(s_arg_newuserdata[0]),
+		/*arg lp*/	s_arg_newuserdata,
+	},
+	{
+		/*ccname*/	_WT("松鼠_新建表"),
+		/*egname*/	_WT("sq_newtable"),
+		/*explain*/	_WT("创建一个新表并将其压入栈"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_新建表Ex"),
+		/*egname*/	_WT("sq_newtableex"),
+		/*explain*/	_WT("创建一个新表并将其压入栈，此函数允许指定表的初始容量，以便在创建时知道所需的插槽数，防止不必要的重置散列。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_newtableex) / sizeof(s_arg_newtableex[0]),
+		/*arg lp*/	s_arg_newtableex,
+	},
+	{
+		/*ccname*/	_WT("松鼠_新建数组"),
+		/*egname*/	_WT("sq_newarray"),
+		/*explain*/	_WT("创建一个新数组并将其压入栈"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_newarray) / sizeof(s_arg_newarray[0]),
+		/*arg lp*/	s_arg_newarray,
+	},
+	{
+		/*ccname*/	_WT("松鼠_新建闭包"),
+		/*egname*/	_WT("sq_newclosure"),
+		/*explain*/	_WT("创建一个本地闭包(函数)并将其压入栈"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_newclosure) / sizeof(s_arg_newclosure[0]),
+		/*arg lp*/	s_arg_newclosure,
+	},
 };
 #endif
 
@@ -545,7 +792,7 @@ EXTERN_C void esquirrel3_fn_sq_getsharedreleasehook(PMDATA_INF pRetData, INT iAr
 void esquirrel3_printfunction (HSQUIRRELVM v, const SQChar * fmt, ...)
 {
 	ESQPRINTFUNCTION my_print_func = NULL;
-	std::map<INT, INT>::iterator iter = g_sqPtrMap.find(1 + (INT)v);
+	std::map<INT, INT>::iterator iter = g_sqPtrMap.find(EPRINT_CALLBACK + (INT)v);
 	if (iter == g_sqPtrMap.end())
 	{
 		return;
@@ -572,7 +819,7 @@ void esquirrel3_printfunction (HSQUIRRELVM v, const SQChar * fmt, ...)
 void esquirrel3_errorfunction(HSQUIRRELVM v, const SQChar * fmt, ...)
 {
 	ESQPRINTFUNCTION my_print_func = NULL;
-	std::map<INT, INT>::iterator iter = g_sqPtrMap.find(2 + (INT)v);
+	std::map<INT, INT>::iterator iter = g_sqPtrMap.find(EERROR_CALLBACK + (INT)v);
 	if (iter == g_sqPtrMap.end())
 	{
 		return;
@@ -600,8 +847,8 @@ void esquirrel3_errorfunction(HSQUIRRELVM v, const SQChar * fmt, ...)
 
 EXTERN_C void esquirrel3_fn_sq_setprintfunc(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	g_sqPtrMap[pArgInf[0].m_int + 1] = pArgInf[1].m_int;
-	g_sqPtrMap[pArgInf[0].m_int + 2] = pArgInf[2].m_int;
+	g_sqPtrMap[pArgInf[0].m_int + EPRINT_CALLBACK] = pArgInf[1].m_int;
+	g_sqPtrMap[pArgInf[0].m_int + EERROR_CALLBACK] = pArgInf[2].m_int;
 	SQPRINTFUNCTION printHook = NULL;
 	if (pArgInf[1].m_int)
 	{
@@ -682,12 +929,107 @@ EXTERN_C void esquirrel3_fn_sq_notifyallexceptions(PMDATA_INF pRetData, INT iArg
 	sq_notifyallexceptions((HSQUIRRELVM)pArgInf[0].m_int, pArgInf[1].m_bool);
 }
 
+void esquirrel3_compilererrorfunction(HSQUIRRELVM v, const SQChar* desc, const SQChar* source, SQInteger line, SQInteger column)
+{
+	ESQCOMPILERERROR my_compilererror_func = NULL;
+	std::map<INT, INT>::iterator iter = g_sqPtrMap.find(ECMPILERERROR_CALLBACK + (INT)v);
+	if (iter == g_sqPtrMap.end())
+	{
+		return;
+	}
+	my_compilererror_func = (ESQCOMPILERERROR)iter->second;
+	my_compilererror_func(v, desc, source, line, column);
+}
+
 EXTERN_C void esquirrel3_fn_sq_setcompilererrorhandler(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	SQCOMPILERERROR func = (SQCOMPILERERROR)zy_get_map_ptr(g_sqPtrMap, pArgInf[1].m_int, 5);
+	g_sqPtrMap[pArgInf[0].m_int + ECMPILERERROR_CALLBACK] = pArgInf[1].m_int;
 
-	sq_setcompilererrorhandler((HSQUIRRELVM)pArgInf[0].m_int, func);
+	SQCOMPILERERROR compError = NULL;
+	if (pArgInf[1].m_int)
+	{
+		compError = esquirrel3_compilererrorfunction;
+	}
+	sq_setcompilererrorhandler((HSQUIRRELVM)pArgInf[0].m_int, compError);
 }
+
+//////////////////////////////////////////////////////////////////////////栈操作
+
+EXTERN_C void esquirrel3_fn_sq_push(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_push(vm, pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_pop(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pop(vm, pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_poptop(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_poptop(vm);
+}
+EXTERN_C void esquirrel3_fn_sq_remove(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_remove(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_gettop(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_gettop(vm);
+}
+EXTERN_C void esquirrel3_fn_sq_settop(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_settop(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_reservestack(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_reservestack(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_move(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_move(vm, (HSQUIRRELVM)pArgInf[1].m_int, pArgInf[2].m_int);
+}
+
+//////////////////////////////////////////////////////////////////////////对象创建和处理
+
+EXTERN_C void esquirrel3_fn_sq_newuserdata(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = (INT)sq_newuserdata(vm, pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_newtable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_newtable(vm);
+}
+EXTERN_C void esquirrel3_fn_sq_newtableex(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_newtableex(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_newarray(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_newarray(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_newclosure(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	SQFUNCTION func = (SQFUNCTION)zy_get_map_ptr(g_sqPtrMap, pArgInf[1].m_int, 1);
+
+	sq_newclosure(vm, func, pArgInf[2].m_int);
+}
+
+
 
 #ifndef __E_STATIC_LIB
 PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
@@ -716,6 +1058,19 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	esquirrel3_fn_sq_enabledebuginfo,
 	esquirrel3_fn_sq_notifyallexceptions,
 	esquirrel3_fn_sq_setcompilererrorhandler,
+	esquirrel3_fn_sq_push,
+	esquirrel3_fn_sq_pop,
+	esquirrel3_fn_sq_poptop,
+	esquirrel3_fn_sq_remove,
+	esquirrel3_fn_sq_gettop,
+	esquirrel3_fn_sq_settop,
+	esquirrel3_fn_sq_reservestack,
+	esquirrel3_fn_sq_move,
+	esquirrel3_fn_sq_newuserdata,
+	esquirrel3_fn_sq_newtable,
+	esquirrel3_fn_sq_newtableex,
+	esquirrel3_fn_sq_newarray,
+	esquirrel3_fn_sq_newclosure
 };
 
 static const char* const g_CmdNames[] =
@@ -744,6 +1099,19 @@ static const char* const g_CmdNames[] =
 	"esquirrel3_fn_sq_enabledebuginfo",
 	"esquirrel3_fn_sq_notifyallexceptions",
 	"esquirrel3_fn_sq_setcompilererrorhandler",
+	"esquirrel3_fn_sq_push",
+	"esquirrel3_fn_sq_pop",
+	"esquirrel3_fn_sq_poptop",
+	"esquirrel3_fn_sq_remove",
+	"esquirrel3_fn_sq_gettop",
+	"esquirrel3_fn_sq_settop",
+	"esquirrel3_fn_sq_reservestack",
+	"esquirrel3_fn_sq_move",
+	"esquirrel3_fn_sq_newuserdata",
+	"esquirrel3_fn_sq_newtable",
+	"esquirrel3_fn_sq_newtableex",
+	"esquirrel3_fn_sq_newarray",
+	"esquirrel3_fn_sq_newclosure"
 };
 #endif
 

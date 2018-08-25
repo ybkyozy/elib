@@ -1,6 +1,5 @@
 #include "helper.h"
-#include "string.h"
-#include <algorithm>
+
 
 void * zy_stdcall_to_cdecl(void * pStdcall, int num_args)
 {
@@ -9,18 +8,18 @@ void * zy_stdcall_to_cdecl(void * pStdcall, int num_args)
 	{
 		return NULL;
 	}
-	static unsigned char header[] = { 85, 139, 236, 184 };
-	static unsigned char push[] = { 255, 181 };
+	static unsigned char header[] = { 85, 137, 229, 184 };
+	static unsigned char push[] = { 255, 117 };
 	static unsigned char call[] = { 255, 208, 137, 236, 93, 195 };
 
 	unsigned char* ptr = (unsigned char*)pCdecl;
-
+	
 	memcpy(ptr, header, 4); // push ebp ; mov ebp,esp
 	ptr += 4;
 	memcpy(ptr, pStdcall, sizeof(void*)); //mov eax,lpfunction
 	ptr += 4;
 
-	for (int i = 0; i < num_args; ++i)
+	for (int i = 0; i < num_args; i++)
 	{
 		UINT idx = (num_args - i) * 4 + 4;
 		memcpy(ptr, push, 2);
@@ -81,9 +80,9 @@ INT zy_get_map_key(std::map<INT, INT>& ptr_map, INT value)
 	return key;
 }
 
-SQChar* zy_vsprint(const SQChar* fmt, ...)
+char* zy_vsprint(const char* fmt, ...)
 {
-	static SQChar buff[1024];
+	static char buff[1024];
 	int i;
 	va_list args;
 	va_start(args, fmt);
