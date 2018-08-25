@@ -285,6 +285,9 @@
       <AdditionalOptions> /IGNORE:4089</AdditionalOptions>
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /r /y $(ProjectDir)fne\esquirrel3.fne "E:\编程\编程工具\e\lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="esquirrel3.cpp" />
