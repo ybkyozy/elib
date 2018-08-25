@@ -4,14 +4,14 @@
 
 void * zy_stdcall_to_cdecl(void * pStdcall, int num_args)
 {
-	LPVOID pCdecl = ::VirtualAlloc(NULL, 12 + 6 * num_args, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+	LPVOID pCdecl = ::VirtualAlloc(NULL, 14 + 6 * num_args, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 	if (!pCdecl)
 	{
 		return NULL;
 	}
 	static unsigned char header[] = { 85, 139, 236, 184 };
 	static unsigned char push[] = { 255, 181 };
-	static unsigned char call[] = { 255, 208,137, 236, 93, 195 };
+	static unsigned char call[] = { 255, 208, 137, 236, 93, 195 };
 
 	unsigned char* ptr = (unsigned char*)pCdecl;
 
