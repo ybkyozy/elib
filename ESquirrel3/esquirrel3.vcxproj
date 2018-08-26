@@ -299,14 +299,6 @@
   <ItemGroup>
     <ClInclude Include="esquirrel3.h" />
     <ClInclude Include="helper.h" />
-    <ClInclude Include="squirrel3\include\sqconfig.h" />
-    <ClInclude Include="squirrel3\include\sqstdaux.h" />
-    <ClInclude Include="squirrel3\include\sqstdblob.h" />
-    <ClInclude Include="squirrel3\include\sqstdio.h" />
-    <ClInclude Include="squirrel3\include\sqstdmath.h" />
-    <ClInclude Include="squirrel3\include\sqstdstring.h" />
-    <ClInclude Include="squirrel3\include\sqstdsystem.h" />
-    <ClInclude Include="squirrel3\include\squirrel.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

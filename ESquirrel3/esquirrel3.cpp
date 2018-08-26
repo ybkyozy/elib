@@ -63,7 +63,7 @@ ARG_INFO s_arg_onlyvm[] =
 	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
 };
 
-ARG_INFO s_arg_vm_and_idx[] =
+ARG_INFO s_arg_vm_idx[] =
 {
 	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
 	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
@@ -180,6 +180,171 @@ ARG_INFO s_arg_newclosure[] =
 	{ _WT("本地函数"), _WT("返回值：整数型（整数型 虚拟机句柄）\r\n 返回1表示有返回值，这个时候要在栈中压入返回值\r\n 返回0表示没有返回值"),0,0, SDT_INT, 0, NULL },
 	{ _WT("自由变量数"), _WT("如果 > 0 则会从栈中弹出N个元素，作为闭包的自由变量"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
 };
+ARG_INFO s_arg_setparamscheck[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("参数数量"), _WT(" =0 表示不检查；\r\n >0 表示参数数量(包含隐藏的this参数)\r\n <0 表示参数至少是多少个，比如-3代表至少3个参数"),0,0, SDT_INT, 0, NULL },
+	{ _WT("类型掩码"), _WT("'o'null，'i'integer，'f'flora，'n'integer or float，'s'string，'t'table，'a'array，'u'userdata，' c'closure和nativeclosure，'g'generator，'p'userpointer，'v'thread，'x'instance(class instance)，'y'class，'b'bool, '.' 任意类型。可以用'|'来表示或操作。\r\n比如“tsn | p”表示的类型是（table，string，number 或 userpointer）"),0,0, SDT_TEXT, 0, AS_DEFAULT_VALUE_IS_EMPTY }
+};
+ARG_INFO s_arg_pushstring[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("文本"), _WT("要压入的文本"),0,0, SDT_TEXT, 0, NULL },
+};
+ARG_INFO s_arg_pushfloat[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("浮点数"), _WT("要压入的浮点数"),0,0, SDT_FLOAT, 0, NULL },
+};
+ARG_INFO s_arg_pushintegert[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("整数"), _WT("要压入的整数"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_pushbool[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("逻辑"), _WT("要压入的逻辑值"),0,0, SDT_BOOL, 0, NULL },
+};
+ARG_INFO s_arg_pushuserpointer[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("用户指针"), _WT("要压入的用户指针"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_pushthread[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("线程"), _WT("要压入的线程（HSQUIRRELVM）"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_getstring[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回文本"), _WT("返回的文本"),0,0, SDT_TEXT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getinteger[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回整数"), _WT("返回的整数"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getfloat[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回浮点数"), _WT("返回的浮点数"),0,0, SDT_FLOAT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getbool[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回逻辑"), _WT("返回的逻辑值"),0,0, SDT_BOOL, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getthread[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回线程"), _WT("返回的线程(HSQUIRRELVM)"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getuserpointer[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回用户指针"), _WT("返回的用户指针"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getuserdata[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回用户指针"), _WT("返回的用户指针"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+	{ _WT("返回类型标签"), _WT("返回的类型标签,可参阅 松鼠_置类型标签()"),0,0, SDT_INT, 0, AS_RECEIVE_VAR | AS_DEFAULT_VALUE_IS_EMPTY},
+};
+ARG_INFO s_arg_settypetag[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("类型标签"), _WT("一个任意的整数"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_gettypetag[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回类型标签"), _WT("返回的类型标签"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_setreleasehook[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("释放钩子"), _WT("返回值：整数型（整数型 用户指针，整数型 大小）"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_getscratchpad[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("请求大小"), _WT("向暂存器申请的最小内存大小"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_getfunctioninfo[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("等级"), _WT("调用栈等级，0表示当前函数，1表示调用者，依次类推"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回函数信息"), _WT("返回的函数信息数据类型"),0,0, DTP_SQFUNCTION_INFO, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getclosureinfo[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回参数数"), _WT("返回的闭包参数数量"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+	{ _WT("返回自由变量数"), _WT("返回的闭包自由变量数量"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_setnativeclosurename[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("名称"), _WT("本地闭包名称"),0,0, SDT_TEXT, 0, NULL },
+};
+ARG_INFO s_arg_setinstanceup[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("用户指针"), _WT("任意的用户指针"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_getinstanceup[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回用户指针"), _WT("返回设置的用户指针"),0,0, SDT_INT, 0, AS_RECEIVE_VAR },
+	{ _WT("类型标签"), _WT("要检查的类型标签（typetag），如果此值为0，则忽略"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
+};
+ARG_INFO s_arg_setclassudsize[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("用户数据大小"), _WT("以字节为单位"),0,0, SDT_INT, 0, NULL },
+};
+
+ARG_INFO s_arg_newclass[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("是否有基类"), _WT("如果参数为真，则函数需要在栈顶部的基类"),0,0, SDT_BOOL, 0, NULL },
+};
+ARG_INFO s_arg_getdefaultdelegate[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("对象类型"), _WT("“松鼠类型_”开头常量"),0,0, SDT_INT, 0, NULL },
+};
+
+ARG_INFO s_arg_getmemberhandle[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回成员句柄"), _WT("返回的成员句柄"),0,0, SDT_INT64, 0, AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_getbyhandle[] =
+{
+	{ _WT("虚拟机句柄"), _WT("HSQUIRRELVM"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("成员句柄"), _WT("HSQMEMBERHANDLE"),0,0, SDT_INT64, 0, AS_RECEIVE_VAR },
+};
+
 
 // 命令信息
 static CMD_INFO s_CmdInfo[] =
@@ -400,7 +565,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("松鼠_暂停虚拟机"),
 		/*egname*/	_WT("sq_suspendvm"),
-		/*explain*/	_WT("暂停一个虚拟机的运行"),
+		/*explain*/	_WT("暂停一个虚拟机的运行，成功返回>=0"),
 		/*category*/1,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -414,7 +579,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("松鼠_唤醒虚拟机"),
 		/*egname*/	_WT("sq_wakeupvm"),
-		/*explain*/	_WT("唤醒被暂停的虚拟机"),
+		/*explain*/	_WT("唤醒被暂停的虚拟机，成功返回>=0"),
 		/*category*/1,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -457,7 +622,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("松鼠_编译"),
 		/*egname*/	_WT("sq_compile"),
-		/*explain*/	_WT("编制松鼠脚本；如果成功返回0，将编译后的脚本作为函数压入到栈中，失败不会压入任何内容"),
+		/*explain*/	_WT("编制松鼠脚本；如果成功返回>=0，将编译后的脚本作为函数压入到栈中，失败不会压入任何内容"),
 		/*category*/2,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -471,7 +636,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("松鼠_编译缓冲区"),
 		/*egname*/	_WT("sq_compilebuffer"),
-		/*explain*/	_WT("编制松鼠脚本自内存缓冲区；如果成功返回0，将编译后的脚本作为函数压入到栈中，失败不会压入任何内容"),
+		/*explain*/	_WT("编制松鼠脚本自内存缓冲区；如果成功返回>=0，将编译后的脚本作为函数压入到栈中，失败不会压入任何内容"),
 		/*category*/2,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -536,8 +701,8 @@ static CMD_INFO s_CmdInfo[] =
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
 		/*bmp num*/	0,
-		/*ArgCount*/sizeof(s_arg_vm_and_idx) / sizeof(s_arg_vm_and_idx[0]),
-		/*arg lp*/	s_arg_vm_and_idx,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
 	},
 	{
 		/*ccname*/	_WT("松鼠_弹出"),
@@ -578,8 +743,8 @@ static CMD_INFO s_CmdInfo[] =
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
 		/*bmp num*/	0,
-		/*ArgCount*/sizeof(s_arg_vm_and_idx) / sizeof(s_arg_vm_and_idx[0]),
-		/*arg lp*/	s_arg_vm_and_idx,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
 	},
 	{
 		/*ccname*/	_WT("松鼠_取栈顶"),
@@ -721,6 +886,650 @@ static CMD_INFO s_CmdInfo[] =
 		/*bmp num*/	0,
 		/*ArgCount*/sizeof(s_arg_newclosure) / sizeof(s_arg_newclosure[0]),
 		/*arg lp*/	s_arg_newclosure,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置参数检查"),
+		/*egname*/	_WT("sq_setparamscheck"),
+		/*explain*/	_WT("设置栈顶位置的本地闭包的参数验证方案。允许验证函数接受的参数数量以及可选的类型。如果函数调用不符合设置的参数模式，则抛出异常。返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setparamscheck) / sizeof(s_arg_setparamscheck[0]),
+		/*arg lp*/	s_arg_setparamscheck,
+	},
+	{
+		/*ccname*/	_WT("松鼠_绑定环境"),
+		/*egname*/	_WT("sq_bindenv"),
+		/*explain*/	_WT("从栈中弹出一个对象（必须是表，实例或类）克隆\'栈索引\"处的闭包，并将弹出的对象设置为克隆闭包的环境。然后将新的克隆闭包压入栈顶部。返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置闭包根"),
+		/*egname*/	_WT("sq_setclosureroot"),
+		/*explain*/	_WT("从栈中弹出一个表，并将其设置为\"栈索引\"处的闭包的根，返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取闭包根"),
+		/*egname*/	_WT("sq_getclosureroot"),
+		/*explain*/	_WT("将\"栈索引\"处指定的闭包的根压入栈，返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入文本"),
+		/*egname*/	_WT("sq_pushstring"),
+		/*explain*/	_WT("压入文本值"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushstring) / sizeof(s_arg_pushstring[0]),
+		/*arg lp*/	s_arg_pushstring,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入浮点数"),
+		/*egname*/	_WT("sq_pushfloat"),
+		/*explain*/	_WT("压入浮点数"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushfloat) / sizeof(s_arg_pushfloat[0]),
+		/*arg lp*/	s_arg_pushfloat,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入整数"),
+		/*egname*/	_WT("sq_pushinteger"),
+		/*explain*/	_WT("压入整数"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushintegert) / sizeof(s_arg_pushintegert[0]),
+		/*arg lp*/	s_arg_pushintegert,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入逻辑"),
+		/*egname*/	_WT("sq_pushbool"),
+		/*explain*/	_WT("压入逻辑值"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushbool) / sizeof(s_arg_pushbool[0]),
+		/*arg lp*/	s_arg_pushbool,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入用户指针"),
+		/*egname*/	_WT("sq_pushuserpointer"),
+		/*explain*/	_WT("压入用户指针"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushuserpointer) / sizeof(s_arg_pushuserpointer[0]),
+		/*arg lp*/	s_arg_pushuserpointer,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入空"),
+		/*egname*/	_WT("sq_pushnull"),
+		/*explain*/	_WT("压入null"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_压入线程"),
+		/*egname*/	_WT("sq_pushthread"),
+		/*explain*/	_WT("压入线程"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_pushthread) / sizeof(s_arg_pushthread[0]),
+		/*arg lp*/	s_arg_pushthread,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取类型"),
+		/*egname*/	_WT("sq_gettype"),
+		/*explain*/	_WT("返回\"栈索引\"位置处对象的类型，\"松鼠类型_\"开头常量"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_类型"),
+		/*egname*/	_WT("sq_typeof"),
+		/*explain*/	_WT("压入\"栈索引\"位置处对象的类型名称，它还为实现它的表和类实例调用_typeof元方法; 在这种情况下，压入的对象可能不是字符串（取决于_typeof实现）。返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取大小"),
+		/*egname*/	_WT("sq_getsize"),
+		/*explain*/	_WT("返回\"栈索引\"位置处对象的大小"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取哈希"),
+		/*egname*/	_WT("sq_gethash"),
+		/*explain*/	_WT("返回\"栈索引\"位置处对象的哈希值"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取基类"),
+		/*egname*/	_WT("sq_getbase"),
+		/*explain*/	_WT("压入\"栈索引\"位置处class的基类，返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_是否类实例"),
+		/*egname*/	_WT("sq_instanceof"),
+		/*explain*/	_WT("返回真，表示栈位置-2处的对象是栈位置-1处类的实例"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_onlyvm) / sizeof(s_arg_onlyvm[0]),
+		/*arg lp*/	s_arg_onlyvm,
+	},
+	{
+		/*ccname*/	_WT("松鼠_到文本"),
+		/*egname*/	_WT("sq_tostring"),
+		/*explain*/	_WT("将\"栈索引\"位置处的对象转换为文本，并把结果文本压入栈中，返回值>=0表示成功"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_到逻辑"),
+		/*egname*/	_WT("sq_tobool"),
+		/*explain*/	_WT("将\"栈索引\"位置处的对象转换为逻辑型，并返回。如果对象不是bool，则函数根据松鼠脚本的规则将值转换为逻辑型。 例如，数字1为真，数字0假。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取文本"),
+		/*egname*/	_WT("sq_getstring"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的文本，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getstring) / sizeof(s_arg_getstring[0]),
+		/*arg lp*/	s_arg_getstring,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取整数"),
+		/*egname*/	_WT("sq_getinteger"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的整数值，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getinteger) / sizeof(s_arg_getinteger[0]),
+		/*arg lp*/	s_arg_getinteger,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取浮点数"),
+		/*egname*/	_WT("sq_getfloat"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的浮点数值，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getfloat) / sizeof(s_arg_getfloat[0]),
+		/*arg lp*/	s_arg_getfloat,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取逻辑"),
+		/*egname*/	_WT("sq_getbool"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的逻辑值，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getbool) / sizeof(s_arg_getbool[0]),
+		/*arg lp*/	s_arg_getbool,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取线程"),
+		/*egname*/	_WT("sq_getthread"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的线程指针，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getthread) / sizeof(s_arg_getthread[0]),
+		/*arg lp*/	s_arg_getthread,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取用户指针"),
+		/*egname*/	_WT("sq_getuserpointer"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的用户指针，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getuserpointer) / sizeof(s_arg_getuserpointer[0]),
+		/*arg lp*/	s_arg_getuserpointer,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取用户数据"),
+		/*egname*/	_WT("sq_getuserdata"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的用户数据指针，成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getuserdata) / sizeof(s_arg_getuserdata[0]),
+		/*arg lp*/	s_arg_getuserdata,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置类型标签"),
+		/*egname*/	_WT("sq_settypetag"),
+		/*explain*/	_WT("在\"栈索引\"位置处设置对象的类型标签（userdata 或 class），成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_settypetag) / sizeof(s_arg_settypetag[0]),
+		/*arg lp*/	s_arg_settypetag,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取类型标签"),
+		/*egname*/	_WT("sq_settypetag"),
+		/*explain*/	_WT("获取\"栈索引\"位置处对象的类型标签（用户数据(userdata) 或 类(class)），该函数也适用于实例(instance)。 如果目标对象是实例，则获取其类的类型标签。成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_gettypetag) / sizeof(s_arg_gettypetag[0]),
+		/*arg lp*/	s_arg_gettypetag,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置释放钩子"),
+		/*egname*/	_WT("sq_setreleasehook"),
+		/*explain*/	_WT("设置在\"栈索引\"位置处的对象（用户数据(userdata) 、实例(instance) 或 类(class)）的释放回调函数"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_gettypetag) / sizeof(s_arg_gettypetag[0]),
+		/*arg lp*/	s_arg_gettypetag,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取释放钩子"),
+		/*egname*/	_WT("sq_getreleasehook"),
+		/*explain*/	_WT("获取在\"栈索引\"位置处的对象（用户数据(userdata) 、实例(instance) 或 类(class)）的释放回调函数"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取暂存指针"),
+		/*egname*/	_WT("sq_getscratchpad"),
+		/*explain*/	_WT("返回一个指向内存缓冲区的指针，该指针至少与请求的一样大。 指针有效期为，直到下一次调用 松鼠_取暂存指针（）"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getscratchpad) / sizeof(s_arg_getscratchpad[0]),
+		/*arg lp*/	s_arg_getscratchpad,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取函数信息"),
+		/*egname*/	_WT("sq_getfunctioninfo"),
+		/*explain*/	_WT("返回在栈顶位置的函数信息，如果是一个本地闭包将会失败。成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getfunctioninfo) / sizeof(s_arg_getfunctioninfo[0]),
+		/*arg lp*/	s_arg_getfunctioninfo,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取闭包信息"),
+		/*egname*/	_WT("sq_getclosureinfo"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的闭包参数数量和自由变量数量。成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getclosureinfo) / sizeof(s_arg_getclosureinfo[0]),
+		/*arg lp*/	s_arg_getclosureinfo,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取闭包名"),
+		/*egname*/	_WT("sq_getclosurename"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的闭包名称，并压入栈，成功返回>=0。请注意，如果闭包是匿名的，则名称可以是字符串，也可以是null，或者没有为其指定名称的本地闭包。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置本地闭包名"),
+		/*egname*/	_WT("sq_setnativeclosurename"),
+		/*explain*/	_WT("设置在\"栈索引\"位置的本地闭包名称，成功返回>=0。本地闭包的名称纯粹是为了调试。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setnativeclosurename) / sizeof(s_arg_setnativeclosurename[0]),
+		/*arg lp*/	s_arg_setnativeclosurename,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置实例用户指针"),
+		/*egname*/	_WT("sq_setinstanceup"),
+		/*explain*/	_WT("设置在\"栈索引\"位置的实例（instance）的用户指针（userpointer），成功返回>=0。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setinstanceup) / sizeof(s_arg_setinstanceup[0]),
+		/*arg lp*/	s_arg_setinstanceup,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取实例用户指针"),
+		/*egname*/	_WT("sq_setinstanceup"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的实例（instance）的用户指针（userpointer），成功返回>=0。\r\n如果参数'类型标签'不是0，则该函数检查实例的类或基类是否用指定的标签标记; 如果不是则该函数失败。 如果'类型标签'为0，该函数将忽略标记检查。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getinstanceup) / sizeof(s_arg_getinstanceup[0]),
+		/*arg lp*/	s_arg_getinstanceup,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置类用户数据大小"),
+		/*egname*/	_WT("sq_setclassudsize"),
+		/*explain*/	_WT("设置在\"栈索引\"位置的类（class）的用户数据（userdata）大小，成功返回>=0。\r\n如果“用户数据大小”> 0，当创建类的实例时，将在存储实例的内存块的末尾保留额外的空间。 实例的用户指针也将自动设置到此内存区域。 "),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_setclassudsize) / sizeof(s_arg_setclassudsize[0]),
+		/*arg lp*/	s_arg_setclassudsize,
+	},
+	{
+		/*ccname*/	_WT("松鼠_新建类"),
+		/*egname*/	_WT("sq_newclass"),
+		/*explain*/	_WT("创建一个新的类。如果参数'是否有基类'为真，则该函数从栈中弹出一个类，并新创建的类继承自此类。成功返回>=0"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_newclass) / sizeof(s_arg_newclass[0]),
+		/*arg lp*/	s_arg_newclass,
+	},
+	{
+		/*ccname*/	_WT("松鼠_创建实例"),
+		/*egname*/	_WT("sq_createinstance"),
+		/*explain*/	_WT("在\"栈索引\"位置的类（class）创建一个实例，并压入栈，成功返回>=0。该函数不会调用实例构造函数。 要创建实例并自动调用其构造函数，必须使用 松鼠_调用() sq_call"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_置类属性"),
+		/*egname*/	_WT("sq_setattributes"),
+		/*explain*/	_WT("设置在\"栈索引\"位置的类（class）的成员属性，成功返回>=0。该函数从栈中弹出一个key和一个value，设置为栈中指定位置类的成员属性，如果key = null，则该函数设置类级别属性。如果函数成功，则将旧属性值压入栈中"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取类属性"),
+		/*egname*/	_WT("sq_getattributes"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的类（class）的成员属性，成功返回>=0。该函数从栈中弹出一个key，并压入类成员属性值value，如果key = null，则压入类级别属性值"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取类"),
+		/*egname*/	_WT("sq_getclass"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的实例（class instance）的所属类，并压入到栈中，成功返回>=0。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_弱引用"),
+		/*egname*/	_WT("sq_weakref"),
+		/*explain*/	_WT("获取在\"栈索引\"位置的对象的弱引用，并压入到栈中。如果对象是一个integer，float，bool或null，则压入对象本身而不是弱引用。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_vm_idx) / sizeof(s_arg_vm_idx[0]),
+		/*arg lp*/	s_arg_vm_idx,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取默认委托"),
+		/*egname*/	_WT("sq_getdefaultdelegate"),
+		/*explain*/	_WT("获取指定类型的默认委托，并压入到栈中，成功返回>=0。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getdefaultdelegate) / sizeof(s_arg_getdefaultdelegate[0]),
+		/*arg lp*/	s_arg_getdefaultdelegate,
+	},
+	{
+		/*ccname*/	_WT("松鼠_取成员句柄"),
+		/*egname*/	_WT("sq_getmemberhandle"),
+		/*explain*/	_WT("从栈中弹出一个值并将其用作索引来获取类成员的句柄，成功返回>=0。\r\n此方法仅适用于类和实例。 通过类获取的句柄稍后可用于设置或获取一个类实例的值，反之亦然。 从基类检索的句柄在派生类中仍然有效并且尊重继承规则。"),
+		/*category*/4,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_getmemberhandle) / sizeof(s_arg_getmemberhandle[0]),
+		/*arg lp*/	s_arg_getmemberhandle,
 	},
 };
 #endif
@@ -992,6 +1801,11 @@ EXTERN_C void esquirrel3_fn_sq_reservestack(PMDATA_INF pRetData, INT iArgCount, 
 	SETUP_VM(pArgInf);
 	sq_reservestack(vm, pArgInf[1].m_int);
 }
+EXTERN_C void esquirrel3_fn_sq_cmp(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_cmp(vm);
+}
 EXTERN_C void esquirrel3_fn_sq_move(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_VM(pArgInf);
@@ -1028,6 +1842,277 @@ EXTERN_C void esquirrel3_fn_sq_newclosure(PMDATA_INF pRetData, INT iArgCount, PM
 
 	sq_newclosure(vm, func, pArgInf[2].m_int);
 }
+EXTERN_C void esquirrel3_fn_sq_setparamscheck(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setparamscheck(vm, pArgInf[1].m_int, pArgInf[2].m_pText);
+}
+
+EXTERN_C void esquirrel3_fn_sq_bindenv(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_bindenv(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_setclosureroot(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setclosureroot(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getclosureroot(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getclosureroot(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_pushstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushstring(vm, pArgInf[1].m_pText, -1);
+}
+EXTERN_C void esquirrel3_fn_sq_pushfloat(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushfloat(vm, pArgInf[1].m_float);
+}
+EXTERN_C void esquirrel3_fn_sq_pushinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushinteger(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_pushbool(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushbool(vm, pArgInf[1].m_bool);
+}
+EXTERN_C void esquirrel3_fn_sq_pushuserpointer(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushuserpointer(vm, (SQUserPointer)pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_pushnull(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushnull(vm);
+}
+EXTERN_C void esquirrel3_fn_sq_pushthread(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_pushthread(vm, (HSQUIRRELVM)pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_gettype(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_gettype(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_typeof(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_typeof(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getsize(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getsize(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_gethash(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_gethash(vm, pArgInf[1].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_getbase(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getbase(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_instanceof(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_bool = sq_instanceof(vm);
+}
+EXTERN_C void esquirrel3_fn_sq_tostring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_tostring(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_tobool(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	SQBool b = 0;
+	sq_tobool(vm, pArgInf[1].m_int, &b);
+	pRetData->m_bool = b;
+}
+EXTERN_C void esquirrel3_fn_sq_getstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	const SQChar* pString = NULL;
+	pRetData->m_int = sq_getstring(vm, pArgInf[1].m_int, &pString);
+	free(*pArgInf[2].m_ppText);
+	*pArgInf[2].m_ppText = zy_clone_text(pString);
+}
+EXTERN_C void esquirrel3_fn_sq_getinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getinteger(vm, pArgInf[1].m_int, pArgInf[2].m_pInt);
+}
+EXTERN_C void esquirrel3_fn_sq_getfloat(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getfloat(vm, pArgInf[1].m_int, pArgInf[2].m_pFloat);
+}
+EXTERN_C void esquirrel3_fn_sq_getbool(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getbool(vm, pArgInf[1].m_int, (SQBool*)pArgInf[2].m_pBool);
+}
+EXTERN_C void esquirrel3_fn_sq_getthread(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getthread(vm, pArgInf[1].m_int, (HSQUIRRELVM*)pArgInf[2].m_pInt);
+}
+EXTERN_C void esquirrel3_fn_sq_getuserpointer(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getuserpointer(vm, pArgInf[1].m_int, (SQUserPointer*)pArgInf[2].m_pInt);
+}
+EXTERN_C void esquirrel3_fn_sq_getuserdata(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	SQUserPointer typetag;
+	pRetData->m_int = sq_getuserdata(vm, pArgInf[1].m_int, (SQUserPointer*)pArgInf[2].m_pInt, &typetag);
+	if (pArgInf[3].m_dtDataType != _SDT_NULL)
+	{
+		*pArgInf[3].m_pInt = (INT)typetag;
+	}
+}
+EXTERN_C void esquirrel3_fn_sq_settypetag(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_settypetag(vm, pArgInf[1].m_int, (SQUserPointer)pArgInf[2].m_int);
+}
+
+EXTERN_C void esquirrel3_fn_sq_gettypetag(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_gettypetag(vm, pArgInf[1].m_int, (SQUserPointer*)pArgInf[2].m_pInt);
+}
+
+EXTERN_C void esquirrel3_fn_sq_setreleasehook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	SQRELEASEHOOK func = (SQRELEASEHOOK)zy_get_map_ptr(g_sqPtrMap, pArgInf[2].m_int, 2);
+	sq_setreleasehook(vm, pArgInf[1].m_int, func);
+}
+EXTERN_C void esquirrel3_fn_sq_getreleasehook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	INT func = (INT)sq_getreleasehook(vm, pArgInf[1].m_int);
+	pRetData->m_int = zy_get_map_key(g_sqPtrMap, func);
+}
+EXTERN_C void esquirrel3_fn_sq_getscratchpad(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = (INT)sq_getscratchpad(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getfunctioninfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	SQFunctionInfo sqinfo, temp;
+	ZeroMemory(&sqinfo, sizeof(SQFunctionInfo));
+	pRetData->m_int = sq_getfunctioninfo(vm, pArgInf[1].m_int, &sqinfo);
+	//释放之前的
+	LPBYTE ptr = (LPBYTE)*pArgInf[2].m_ppCompoundData;
+	if (ptr)
+	{
+		memcpy(&temp, ptr, sizeof(SQFunctionInfo));
+		if (temp.name)
+		{
+			free((void*)temp.name);
+		}
+		if (temp.source)
+		{
+			free((void*)temp.source);
+		}
+		free(ptr);
+	}
+	ptr = (LPBYTE)malloc(sizeof(SQFunctionInfo));
+	memcpy(ptr, &sqinfo, sizeof(SQFunctionInfo));
+	*pArgInf[2].m_ppCompoundData = ptr;
+}
+EXTERN_C void esquirrel3_fn_sq_getclosureinfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getclosureinfo(vm, pArgInf[1].m_int, (SQUnsignedInteger*)pArgInf[2].m_pUInt, (SQUnsignedInteger*)pArgInf[3].m_pUInt);
+}
+EXTERN_C void esquirrel3_fn_sq_getclosurename(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getclosurename(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_setnativeclosurename(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setnativeclosurename(vm, pArgInf[1].m_int, pArgInf[2].m_pText);
+}
+EXTERN_C void esquirrel3_fn_sq_setinstanceup(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setinstanceup(vm, pArgInf[1].m_int, (SQUserPointer)pArgInf[2].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getinstanceup(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getinstanceup(vm, pArgInf[1].m_int, (SQUserPointer*)pArgInf[2].m_pInt, (SQUserPointer)pArgInf[3].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_setclassudsize(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setclassudsize(vm, pArgInf[1].m_int, pArgInf[2].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_newclass(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_newclass(vm, pArgInf[1].m_bool);
+}
+EXTERN_C void esquirrel3_fn_sq_createinstance(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_createinstance(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_setattributes(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_setattributes(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getattributes(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getattributes(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getclass(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getclass(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_weakref(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	sq_weakref(vm, pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getdefaultdelegate(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getdefaultdelegate(vm, (SQObjectType)pArgInf[1].m_int);
+}
+EXTERN_C void esquirrel3_fn_sq_getmemberhandle(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_VM(pArgInf);
+	pRetData->m_int = sq_getmemberhandle(vm, pArgInf[1].m_int, pArgInf[2].m_pInt64);
+}
+
+
+
+
 
 
 
@@ -1065,12 +2150,60 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	esquirrel3_fn_sq_gettop,
 	esquirrel3_fn_sq_settop,
 	esquirrel3_fn_sq_reservestack,
+	esquirrel3_fn_sq_cmp,
 	esquirrel3_fn_sq_move,
 	esquirrel3_fn_sq_newuserdata,
 	esquirrel3_fn_sq_newtable,
 	esquirrel3_fn_sq_newtableex,
 	esquirrel3_fn_sq_newarray,
-	esquirrel3_fn_sq_newclosure
+	esquirrel3_fn_sq_newclosure,
+	esquirrel3_fn_sq_setparamscheck,
+	esquirrel3_fn_sq_bindenv,
+	esquirrel3_fn_sq_setclosureroot,
+	esquirrel3_fn_sq_getclosureroot,
+	esquirrel3_fn_sq_pushstring,
+	esquirrel3_fn_sq_pushfloat,
+	esquirrel3_fn_sq_pushinteger,
+	esquirrel3_fn_sq_pushbool,
+	esquirrel3_fn_sq_pushuserpointer,
+	esquirrel3_fn_sq_pushnull,
+	esquirrel3_fn_sq_pushthread,
+	esquirrel3_fn_sq_gettype,
+	esquirrel3_fn_sq_typeof,
+	esquirrel3_fn_sq_getsize,
+	esquirrel3_fn_sq_gethash,
+	esquirrel3_fn_sq_getbase,
+	esquirrel3_fn_sq_instanceof,
+	esquirrel3_fn_sq_tostring,
+	esquirrel3_fn_sq_tobool,
+	esquirrel3_fn_sq_getstring,
+	esquirrel3_fn_sq_getinteger,
+	esquirrel3_fn_sq_getfloat,
+	esquirrel3_fn_sq_getbool,
+	esquirrel3_fn_sq_getthread,
+	esquirrel3_fn_sq_getuserpointer,
+	esquirrel3_fn_sq_getuserdata,
+	esquirrel3_fn_sq_settypetag,
+	esquirrel3_fn_sq_gettypetag,
+	esquirrel3_fn_sq_setreleasehook,
+	esquirrel3_fn_sq_getreleasehook,
+	esquirrel3_fn_sq_getscratchpad,
+	esquirrel3_fn_sq_getfunctioninfo,
+	esquirrel3_fn_sq_getclosureinfo,
+	esquirrel3_fn_sq_getclosurename,
+	esquirrel3_fn_sq_setnativeclosurename,
+	esquirrel3_fn_sq_setinstanceup,
+	esquirrel3_fn_sq_getinstanceup,
+	esquirrel3_fn_sq_setclassudsize,
+	esquirrel3_fn_sq_newclass,
+	esquirrel3_fn_sq_createinstance,
+	esquirrel3_fn_sq_setattributes,
+	esquirrel3_fn_sq_getattributes,
+	esquirrel3_fn_sq_getclass,
+	esquirrel3_fn_sq_weakref,
+	esquirrel3_fn_sq_getdefaultdelegate,
+	esquirrel3_fn_sq_getmemberhandle
+
 };
 
 static const char* const g_CmdNames[] =
@@ -1106,12 +2239,84 @@ static const char* const g_CmdNames[] =
 	"esquirrel3_fn_sq_gettop",
 	"esquirrel3_fn_sq_settop",
 	"esquirrel3_fn_sq_reservestack",
+	"esquirrel3_fn_sq_cmp",
 	"esquirrel3_fn_sq_move",
 	"esquirrel3_fn_sq_newuserdata",
 	"esquirrel3_fn_sq_newtable",
 	"esquirrel3_fn_sq_newtableex",
 	"esquirrel3_fn_sq_newarray",
-	"esquirrel3_fn_sq_newclosure"
+	"esquirrel3_fn_sq_newclosure",
+	"esquirrel3_fn_sq_setparamscheck",
+	"esquirrel3_fn_sq_bindenv",
+	"esquirrel3_fn_sq_setclosureroot",
+	"esquirrel3_fn_sq_getclosureroot",
+	"esquirrel3_fn_sq_pushstring",
+	"esquirrel3_fn_sq_pushfloat",
+	"esquirrel3_fn_sq_pushinteger",
+	"esquirrel3_fn_sq_pushbool",
+	"esquirrel3_fn_sq_pushuserpointer",
+	"esquirrel3_fn_sq_pushnull",
+	"esquirrel3_fn_sq_pushthread",
+	"esquirrel3_fn_sq_gettype",
+	"esquirrel3_fn_sq_typeof",
+	"esquirrel3_fn_sq_getsize",
+	"esquirrel3_fn_sq_gethash",
+	"esquirrel3_fn_sq_getbase",
+	"esquirrel3_fn_sq_instanceof",
+	"esquirrel3_fn_sq_tostring",
+	"esquirrel3_fn_sq_tobool",
+	"esquirrel3_fn_sq_getstring",
+	"esquirrel3_fn_sq_getinteger",
+	"esquirrel3_fn_sq_getfloat",
+	"esquirrel3_fn_sq_getbool",
+	"esquirrel3_fn_sq_getthread",
+	"esquirrel3_fn_sq_getuserpointer",
+	"esquirrel3_fn_sq_getuserdata",
+	"esquirrel3_fn_sq_settypetag",
+	"esquirrel3_fn_sq_gettypetag",
+	"esquirrel3_fn_sq_setreleasehook",
+	"esquirrel3_fn_sq_getreleasehook",
+	"esquirrel3_fn_sq_getscratchpad",
+	"esquirrel3_fn_sq_getfunctioninfo",
+	"esquirrel3_fn_sq_getclosureinfo",
+	"esquirrel3_fn_sq_getclosurename",
+	"esquirrel3_fn_sq_setnativeclosurename",
+	"esquirrel3_fn_sq_setinstanceup",
+	"esquirrel3_fn_sq_getinstanceup",
+	"esquirrel3_fn_sq_setclassudsize",
+	"esquirrel3_fn_sq_newclass",
+	"esquirrel3_fn_sq_createinstance",
+	"esquirrel3_fn_sq_setattributes",
+	"esquirrel3_fn_sq_getattributes",
+	"esquirrel3_fn_sq_getclass",
+	"esquirrel3_fn_sq_weakref",
+	"esquirrel3_fn_sq_getdefaultdelegate",
+	"esquirrel3_fn_sq_getmemberhandle"
+};
+#endif
+
+
+/************************************************************************/
+/* 数据类型定义
+/************************************************************************/
+
+#ifndef __E_STATIC_LIB
+
+
+LIB_DATA_TYPE_ELEMENT s_dt_element_function_info[] =
+{
+	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,成员状态 ,默认值}*/
+	{ SDT_INT, NULL,_WT("ID"), _WT("funcid"), _WT("函数的唯一标识符"), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("名称"), _WT("name"), _WT("函数名"), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("源文件名"), _WT("source"), _WT("函数所在的源文件名"), 0, 0 },
+	{ SDT_INT, NULL,_WT("行号"), _WT("line"), NULL, 0, 0 }
+};
+
+
+static LIB_DATA_TYPE_INFO s_DataTypes[] =
+{
+	/* { 中文名称, 英文名称, 数据描述, 索引数量, 命令索引, 对象状态, 图标索引, 事件数量, 事件指针, 属性数量, 属性指针, 界面指针, 元素数量, 元素指针 } */
+	{ _WT("松鼠函数信息"), _WT("SQFunctionInfo"), _WT("脚本的函数信息，不是本地函数"), 0, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, sizeof(s_dt_element_function_info) / sizeof(s_dt_element_function_info[0]), s_dt_element_function_info },
 };
 #endif
 
@@ -1162,8 +2367,8 @@ static LIB_INFO s_LibInfo =
 		NULL,				//其他信息
 		
 		//自定义数据类型
-		0,
-		NULL,
+		sizeof(s_DataTypes) / sizeof(s_DataTypes[0]),
+		s_DataTypes,
 		//类别说明
 #ifndef __COMPILE_FNR
 		/*CategoryCount*/   LIB_TYPE_COUNT,			// 加了类别需加此值。

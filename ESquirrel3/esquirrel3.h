@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <oleauto.h>
 #include "helper.h"
-#include "squirrel.h"
+#include <squirrel.h>
 
 #ifndef EPRINT_CALLBACK
 #define EPRINT_CALLBACK	1
@@ -19,6 +19,9 @@
 #endif
 
 #define SETUP_VM(x)	HSQUIRRELVM vm = ((HSQUIRRELVM)x[0].m_int)
+
+#define DTP_SQFUNCTION_INFO		MAKELONG(1,0)
+
 
 #ifndef __E_STATIC_LIB
 

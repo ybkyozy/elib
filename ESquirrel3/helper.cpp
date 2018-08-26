@@ -91,3 +91,15 @@ char* zy_vsprint(const char* fmt, ...)
 	va_end(args);
 	return buff;
 }
+
+char* zy_clone_text(const char* text)
+{
+	if (text == NULL || *text == '\0')
+		return NULL;
+
+	INT nTextLen = strlen(text);
+	char* pd = (char*)malloc(nTextLen + 1);
+	memcpy(pd, text, nTextLen);
+	pd[nTextLen] = '\0';
+	return pd;
+}
