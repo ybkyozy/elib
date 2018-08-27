@@ -170,15 +170,15 @@ typedef struct tagSQStackInfos{
 typedef struct SQVM* HSQUIRRELVM;
 typedef SQObject HSQOBJECT;
 typedef SQMemberHandle HSQMEMBERHANDLE;
-typedef SQInteger (*SQFUNCTION)(HSQUIRRELVM);
-typedef SQInteger (*SQRELEASEHOOK)(SQUserPointer,SQInteger size);
-typedef void (*SQCOMPILERERROR)(HSQUIRRELVM,const SQChar * /*desc*/,const SQChar * /*source*/,SQInteger /*line*/,SQInteger /*column*/);
-typedef void (*SQPRINTFUNCTION)(HSQUIRRELVM,const SQChar * ,...);
-typedef void (*SQDEBUGHOOK)(HSQUIRRELVM /*v*/, SQInteger /*type*/, const SQChar * /*sourcename*/, SQInteger /*line*/, const SQChar * /*funcname*/);
-typedef SQInteger (*SQWRITEFUNC)(SQUserPointer,SQUserPointer,SQInteger);
-typedef SQInteger (*SQREADFUNC)(SQUserPointer,SQUserPointer,SQInteger);
+typedef SQInteger (__stdcall *SQFUNCTION)(HSQUIRRELVM);
+typedef SQInteger (__stdcall *SQRELEASEHOOK)(SQUserPointer,SQInteger size);
+typedef void (__stdcall *SQCOMPILERERROR)(HSQUIRRELVM,const SQChar * /*desc*/,const SQChar * /*source*/,SQInteger /*line*/,SQInteger /*column*/);
+typedef void (__stdcall *SQPRINTFUNCTION)(HSQUIRRELVM,const SQChar *);
+typedef void (__stdcall *SQDEBUGHOOK)(HSQUIRRELVM /*v*/, SQInteger /*type*/, const SQChar * /*sourcename*/, SQInteger /*line*/, const SQChar * /*funcname*/);
+typedef SQInteger (__stdcall *SQWRITEFUNC)(SQUserPointer,SQUserPointer,SQInteger);
+typedef SQInteger (__stdcall *SQREADFUNC)(SQUserPointer,SQUserPointer,SQInteger);
 
-typedef SQInteger (*SQLEXREADFUNC)(SQUserPointer);
+typedef SQInteger (__stdcall *SQLEXREADFUNC)(SQUserPointer);
 
 typedef struct tagSQRegFunction{
     const SQChar *name;

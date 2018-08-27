@@ -234,7 +234,7 @@
       <Command>"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile="$(TargetPath)" outfile="$(TargetPath)"</Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>squirrel.lib;sqstdlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>squirrel.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>./squirrel3/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -281,7 +281,7 @@
       <OutputFile>fne/esquirrel3.fne</OutputFile>
       <ImportLibrary>.\fne\esquirrel3.lib</ImportLibrary>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;squirrel.lib;sqstdlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;squirrel.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /IGNORE:4089</AdditionalOptions>
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>
     </Link>

@@ -21,7 +21,7 @@
 #define SETUP_VM(x)	HSQUIRRELVM vm = ((HSQUIRRELVM)x[0].m_int)
 
 #define DTP_SQFUNCTION_INFO		MAKELONG(1,0)
-
+#define DTP_SQSTACK_INFO		MAKELONG(2,0)
 
 #ifndef __E_STATIC_LIB
 
@@ -53,7 +53,6 @@
 						"0000原始对象操作\0" \
 						"0000垃圾回收\0" \
 						"0000序列化\0" \
-						"0000内存分配\0" \
 						"0000调试\0" \
 						"\0" /*命令分类*/
 #endif

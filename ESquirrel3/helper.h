@@ -7,11 +7,5 @@
 #include <algorithm>
 
 
-extern std::map<INT, INT> g_sqPtrMap;
-
-void* zy_stdcall_to_cdecl(void* pStdcall, int num_args);
-void zy_stdcall_to_cdecl_free(void* pCdecl);
-void* zy_get_map_ptr(std::map<INT, INT>& ptr_map, INT key, int num_args);
-INT zy_get_map_key(std::map<INT, INT>& ptr_map, INT value);
 char* zy_vsprint(const char* fmt, ...);
 char* zy_clone_text(const char* text);
