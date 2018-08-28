@@ -1,0 +1,7 @@
+﻿  esquirrel3.cpp
+elib_sdk/fnshare.h(27): warning C4005: '_WT' : macro redefinition
+          elib_sdk/lib2.h(78) : see previous definition of '_WT'
+     Creating library .\fne\esquirrel3.lib and object .\fne\esquirrel3.exp
+  esquirrel3.vcxproj -> E:\编程\易语言\支持库\ESquirrel3_std\.\fne\esquirrel3.fne
+  E:\编程\易语言\支持库\ESquirrel3_std\fne\esquirrel3.fne
+  复制了 1 个文件

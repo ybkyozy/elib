@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sq", "sq\sq.vcxproj", "{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqstdlib", "sqstdlib\sqstdlib.vcxproj", "{5FE30F2C-212B-4191-9722-4F8B79773896}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "squirrel", "squirrel\squirrel.vcxproj", "{A1139BE6-E2DB-4691-B24F-72634AB3A17C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Template|x86 = Template|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Debug|x86.Build.0 = Debug|Win32
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Release|x86.ActiveCfg = Release|Win32
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Release|x86.Build.0 = Release|Win32
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Template|x86.ActiveCfg = Release|Win32
+		{C5BE3F45-3EEC-46A2-9727-779AFDE8C0E9}.Template|x86.Build.0 = Release|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Debug|x86.ActiveCfg = Debug|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Debug|x86.Build.0 = Debug|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Release|x86.ActiveCfg = Release|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Release|x86.Build.0 = Release|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Template|x86.ActiveCfg = Template|Win32
+		{5FE30F2C-212B-4191-9722-4F8B79773896}.Template|x86.Build.0 = Template|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Debug|x86.ActiveCfg = Debug|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Debug|x86.Build.0 = Debug|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Release|x86.ActiveCfg = Release|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Release|x86.Build.0 = Release|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Template|x86.ActiveCfg = Template|Win32
+		{A1139BE6-E2DB-4691-B24F-72634AB3A17C}.Template|x86.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B4DF804-4CC1-4CF5-B872-F4B7B931488F}
+	EndGlobalSection
+EndGlobal

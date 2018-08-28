@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "esquirrel3", "esquirrel3.vcxproj", "{6F173401-DBFE-4858-A042-F13D587A6A1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		fne|x86 = fne|x86
+		Release|x86 = Release|x86
+		staticlib|x86 = staticlib|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.Debug|x86.ActiveCfg = Debug|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.Debug|x86.Build.0 = Debug|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.fne|x86.ActiveCfg = fne|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.fne|x86.Build.0 = fne|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.Release|x86.ActiveCfg = Release|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.Release|x86.Build.0 = Release|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.staticlib|x86.ActiveCfg = staticlib|Win32
+		{6F173401-DBFE-4858-A042-F13D587A6A1F}.staticlib|x86.Build.0 = staticlib|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2334F710-9455-478E-AE8E-EA05E5AE96C9}
+	EndGlobalSection
+EndGlobal
