@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "lua_5.3.5.vcxproj", "{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		fne|x64 = fne|x64
+		fne|x86 = fne|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Debug|x64.ActiveCfg = Debug|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Debug|x64.Build.0 = Debug|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Debug|x86.ActiveCfg = Debug|Win32
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Debug|x86.Build.0 = Debug|Win32
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.fne|x64.ActiveCfg = fne|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.fne|x64.Build.0 = fne|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.fne|x86.ActiveCfg = fne|Win32
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.fne|x86.Build.0 = fne|Win32
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Release|x64.ActiveCfg = Release|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Release|x64.Build.0 = Release|x64
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Release|x86.ActiveCfg = Release|Win32
+		{FBC1650F-D6C5-4461-A2C1-7EB73052E8C5}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12F166C0-777F-4605-A448-F3A3DCD1688A}
+	EndGlobalSection
+EndGlobal

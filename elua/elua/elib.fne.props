@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <EYUYAN>E:\编程\编程工具\e</EYUYAN>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_MSC_VER=1200;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>xcopy /e /r /y $(TargetPath) "$(EYUYAN)\lib"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="EYUYAN">
+      <Value>$(EYUYAN)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
