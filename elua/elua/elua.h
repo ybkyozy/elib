@@ -24,12 +24,14 @@
 #define LIB_Email	 "" /*电子邮箱*/
 #define LIB_HomePage "" /*主页地址*/
 #define LIB_Other	"" /*其它信息*/
-#define LIB_TYPE_COUNT 1 /*命令分类数量*/
+#define LIB_TYPE_COUNT 2 /*命令分类数量*/
 #define LIB_TYPE_STR	"0000状态操作\0" \
+						"0000基本栈操作\0" \
 						"\0" /*命令分类*/
 
 
 #define cmd_type_idx_state_manipulation	1
+#define cmd_type_idx_basic_stack_manipulation	2
 
 #endif
 
