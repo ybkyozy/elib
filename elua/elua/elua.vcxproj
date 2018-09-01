@@ -28,9 +28,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elua.h" />
+    <ClInclude Include="helper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="elua.cpp" />
+    <ClCompile Include="helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="elua.def" />

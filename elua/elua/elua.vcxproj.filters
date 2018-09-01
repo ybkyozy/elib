@@ -18,9 +18,15 @@
     <ClInclude Include="elua.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="elua.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="helper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

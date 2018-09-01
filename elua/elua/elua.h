@@ -24,16 +24,26 @@
 #define LIB_Email	 "" /*电子邮箱*/
 #define LIB_HomePage "" /*主页地址*/
 #define LIB_Other	"" /*其它信息*/
-#define LIB_TYPE_COUNT 2 /*命令分类数量*/
+#define LIB_TYPE_COUNT 5 /*命令分类数量*/
 #define LIB_TYPE_STR	"0000状态操作\0" \
 						"0000基本栈操作\0" \
+						"0000访问函数\0" \
+						"0000比较和算术函数\0" \
+						"0000压栈函数\0" \
 						"\0" /*命令分类*/
 
 
-#define cmd_type_idx_state_manipulation	1
-#define cmd_type_idx_basic_stack_manipulation	2
+#define cmd_type_idx_state_manipulation						1
+#define cmd_type_idx_basic_stack_manipulation				2
+#define cmd_type_idx_access_functions						3
+#define cmd_type_idx_comparison_and_arithmetic_functions	4
+#define cmd_type_idx_push_functions							5
 
 #endif
 
 //#define DTP_STRUCT1		MAKELONG(1,0)
 //#define DTP_STRUCT2		MAKELONG(2,0)
+
+#ifndef SETUP_LUA_STATE
+#define	SETUP_LUA_STATE(x)	lua_State * L = (lua_State *)x[0].m_int
+#endif
