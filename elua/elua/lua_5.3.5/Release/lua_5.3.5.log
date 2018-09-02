@@ -1,1 +1,39 @@
-﻿  lua_5.3.5.vcxproj -> E:\编程\易语言\支持库\elua\elua\lua_5.3.5\Release\lualib.lib
+﻿  lapi.c
+src\lapi.c(398): warning C4244: 'return' : conversion from 'unsigned __int64 ' to 'unsigned int ', possible loss of data
+  lauxlib.c
+  lbaselib.c
+  lbitlib.c
+  lcode.c
+  lcorolib.c
+  lctype.c
+  ldblib.c
+  ldebug.c
+  ldo.c
+src\ldo.c(590): warning C4244: '=' : conversion from 'long ' to 'unsigned char ', possible loss of data
+  ldump.c
+  lfunc.c
+  lgc.c
+  linit.c
+  liolib.c
+  llex.c
+  lmathlib.c
+  lmem.c
+  loadlib.c
+  lobject.c
+  Generating Code...
+  Compiling...
+  lopcodes.c
+  loslib.c
+  lparser.c
+  lstate.c
+  lstring.c
+  lstrlib.c
+  ltable.c
+  ltablib.c
+  ltm.c
+  lundump.c
+  lutf8lib.c
+  lvm.c
+  lzio.c
+  Generating Code...
+  lua_5.3.5.vcxproj -> E:\编程\易语言\支持库\elua\elua\lua_5.3.5\Release\lualib.lib
