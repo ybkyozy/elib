@@ -55,6 +55,16 @@ LIB_CONST_INFO s_ConstInfo[] =
 	{ _WT("LUA比较_相等"), _WT("LUA_OPEQ ="), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPEQ },
 	{ _WT("LUA比较_小于"), _WT("LUA_OPLT <"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPLT },
 	{ _WT("LUA比较_小于等于"), _WT("LUA_OPLE <="), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPLE },
+
+	{ _WT("LUAGC_停止"), _WT("LUA_GCSTOP"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSTOP },
+	{ _WT("LUAGC_重启"), _WT("LUA_GCRESTART"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCRESTART },
+	{ _WT("LUAGC_垃圾回收"), _WT("LUA_GCCOLLECT 执行完整的垃圾回收"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOLLECT },
+	{ _WT("LUAGC_内存使用数"), _WT("LUA_GCCOUNT 返回当前使用的内存大小(以KB为单位)"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNT },
+	{ _WT("LUAGC_内存使用字节数"), _WT("LUA_GCCOUNTB 返回当前使用的内存大小(以字节为单位)"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNTB },
+	{ _WT("LUAGC_单步"), _WT("LUA_GCSTEP 单步执行垃圾回收"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSTEP },
+	{ _WT("LUAGC_置暂停"), _WT("LUA_GCSETPAUSE 将数据设置为垃圾回收暂停的新值，并返回旧值"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETPAUSE },
+	{ _WT("LUAGC_置步长乘数"), _WT("LUA_GCSETSTEPMUL 将数据设置为垃圾回收步长乘数的新值，并返回旧值"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETSTEPMUL },
+	{ _WT("LUAGC_是否在运行"), _WT("LUA_GCISRUNNING"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCISRUNNING },
 };
 
 #endif
@@ -274,6 +284,50 @@ ARG_INFO s_arg_lua_resume[] =
 	{ _WT("线程"), _WT("正在恢复的协程线程"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
 	{ _WT("参数个数"), _WT(""),0,0, SDT_INT, 0, NULL },
 };
+ARG_INFO s_arg_lua_gc[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("操作"), _WT("LUAGC_ 开头常量"),0,0, SDT_INT, 0, NULL },
+	{ _WT("数据"), _WT(""),0,0, SDT_INT, 0, AS_DEFAULT_VALUE_IS_EMPTY },
+};
+ARG_INFO s_arg_lua_concat[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("操作数量"), _WT("要连接的值的数量"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_stringtonumber[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("文本"), _WT("要转为为数值的文本"),0,0, SDT_TEXT, 0, NULL },
+};
+ARG_INFO s_arg_lua_getallocf[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回用户数据"), _WT("返回在设置内存分配器时给定的用户数据"),0,0, SDT_INT, 0, AS_RECEIVE_VAR | AS_DEFAULT_VALUE_IS_EMPTY },
+};
+ARG_INFO s_arg_lua_setallocf[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("内存分配函数"), _WT("返回值：整数型（整数型 用户数据，整数型 指针，整数型 源大小，整数型 新大小）"),0,0, SDT_INT, 0, NULL },
+	{ _WT("用户数据"), _WT("内存分配回调函数的参数"),0,0, SDT_INT, 0, AS_DEFAULT_VALUE_IS_EMPTY },
+};
+ARG_INFO s_arg_lua_pop[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("弹出数"), _WT("要弹出栈的数量"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_register[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数名"), _WT(""),0,0, SDT_TEXT, 0, NULL },
+	{ _WT("本地函数"), _WT("返回值：整数型（整数型 Lua状态）"),0,0, _SDT_ALL, 0, NULL },
+};
+ARG_INFO s_arg_lua_pushcfunction[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("本地函数"), _WT("返回值：整数型（整数型 Lua状态）"),0,0, _SDT_ALL, 0, NULL },
+};
+
 
 
 
@@ -807,7 +861,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*arg lp*/	s_arg_lua_pushvfstring,
 	},
 	{
-		/*ccname*/	_WT("LUA_压入本地函数"),
+		/*ccname*/	_WT("LUA_压入闭包"),
 		/*egname*/	_WT("lua_pushcclosure"),
 		/*explain*/ _WT("将本地函数压入到栈中。"),
 		/*category*/cmd_type_idx_push_functions,
@@ -1180,7 +1234,7 @@ static CMD_INFO s_CmdInfo[] =
 	},
 	{
 		/*ccname*/	_WT("LUA_安全调用K"),
-		/*egname*/	_WT("lua_pcall"),
+		/*egname*/	_WT("lua_pcallK"),
 		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。"),
 		/*category*/cmd_type_idx_load_and_call_functions,
 		/*state*/	0,
@@ -1191,6 +1245,20 @@ static CMD_INFO s_CmdInfo[] =
 		/*bmp num*/	0,
 		/*ArgCount*/sizeof(s_arg_lua_pcallk) / sizeof(s_arg_lua_pcallk[0]),
 		/*arg lp*/	s_arg_lua_pcallk,
+	},
+	{
+		/*ccname*/	_WT("LUA_安全调用"),
+		/*egname*/	_WT("lua_pcall"),
+		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。"),
+		/*category*/cmd_type_idx_load_and_call_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_pcall) / sizeof(s_arg_lua_pcall[0]),
+		/*arg lp*/	s_arg_lua_pcall,
 	},
 	{
 		/*ccname*/	_WT("LUA_载入"),
@@ -1226,7 +1294,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("LUA_暂停"),
 		/*egname*/	_WT("lua_yieldk"),
-		/*explain*/ _WT("暂停正在运行的协同程序，并对 'LUA_恢复' 返回，返回 LUA_ 开头常量。\r\n参数‘返回值个数’是栈中将作为结果传递给LUA_继续值的数量。\r\n当协同程序再次恢复时，Lua调用给定的'继续函数'继续执行。此继续函数从前一个函数接收相同的栈，删除n个结果并替换为传递给 'LUA_恢复' 的参数。此外，继续函数接收传递给 LUA_暂停 的上下文值。"),
+		/*explain*/ _WT("暂停正在运行的协程，并对 'LUA_恢复' 返回，返回 LUA_ 开头常量。\r\n参数‘返回值个数’是栈中将作为结果传递给 LUA_继续 值的数量。\r\n当协程再次恢复时，Lua调用给定的'继续函数'继续执行。此继续函数从前一个函数接收相同的栈，删除n个结果并替换为传递给 'LUA_恢复' 的参数。此外，继续函数接收传递给 LUA_暂停 的上下文值。"),
 		/*category*/cmd_type_idx_coroutine_functions,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -1240,7 +1308,7 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("LUA_恢复"),
 		/*egname*/	_WT("lua_resume"),
-		/*explain*/ _WT("在给定的线程中开始并恢复协程，返回 LUA_ 开头常量。\r\n要启动一个协程，你可以将主函数加入任何参数压入到线程栈; 然后调用 LUA_恢复。当协同程序暂停或完成其执行时，此调用将返回。 返回时，栈包含'LUA_暂停'传递的所有值，或者包含body函数返回的所有值。 如果协程暂停，则'LUA_恢复'返回LUA_YIELD，如果协程完成执行没有错误，则返回LUA_OK，如果出现错误，则返回错误代码。"),
+		/*explain*/ _WT("在给定的线程中开始并恢复协程，返回 LUA_ 开头常量。\r\n要启动一个协程，你可以将主函数加入任何参数压入到线程栈; 然后调用 LUA_恢复。当协程暂停或完成其执行时，此调用将返回。 返回时，栈包含'LUA_暂停'传递的所有值。 如果协程暂停，则'LUA_恢复'返回LUA_YIELD，如果协程完成执行没有错误，则返回LUA_OK，如果出现错误，则返回错误代码。"),
 		/*category*/cmd_type_idx_coroutine_functions,
 		/*state*/	0,
 		/*ret*/		SDT_INT,
@@ -1251,7 +1319,421 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_lua_resume) / sizeof(s_arg_lua_resume[0]),
 		/*arg lp*/	s_arg_lua_resume,
 	},
+	{
+		/*ccname*/	_WT("LUA_取状态"),
+		/*egname*/	_WT("lua_status"),
+		/*explain*/ _WT("返回线程状态， LUA_ 开头常量。"),
+		/*category*/cmd_type_idx_coroutine_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否暂停"),
+		/*egname*/	_WT("lua_isyieldable"),
+		/*explain*/ _WT(""),
+		/*category*/cmd_type_idx_coroutine_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
 
+	//////////////////////////////////////////////////////////////////////////垃圾回收
+
+	{
+		/*ccname*/	_WT("LUA_垃圾回收"),
+		/*egname*/	_WT("lua_gc"),
+		/*explain*/ _WT("控制垃圾回收器操作"),
+		/*category*/cmd_type_idx_gc_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_gc) / sizeof(s_arg_lua_gc[0]),
+		/*arg lp*/	s_arg_lua_gc,
+	},
+
+	//////////////////////////////////////////////////////////////////////////杂项操作
+
+	{
+		/*ccname*/	_WT("LUA_置错误"),
+		/*egname*/	_WT("lua_error"),
+		/*explain*/ _WT("将栈顶的值设置为LUA错误"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_下一个"),
+		/*egname*/	_WT("lua_next"),
+		/*explain*/ _WT("从栈中弹出一个键，然后压入一个键和一个值（这键值对是参数‘栈索引’指向的表的成员），如果表没有成员了，返回0"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_连接"),
+		/*egname*/	_WT("lua_concat"),
+		/*explain*/ _WT("从栈中弹出n个值，然后连接起来，压入到栈中。如果n=1，不做任何处理，如果n=0，则压入空字符串。"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_concat) / sizeof(s_arg_lua_concat[0]),
+		/*arg lp*/	s_arg_lua_concat,
+	},
+	{
+		/*ccname*/	_WT("LUA_取长度"),
+		/*egname*/	_WT("lua_len"),
+		/*explain*/ _WT("将'栈索引'指定的值的长度，压入到栈中，可能会触发'length'元方法。"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_文本到数值"),
+		/*egname*/	_WT("lua_stringtonumber"),
+		/*explain*/ _WT("将'文本'转换为数值，并压入到栈中，返回0表示失败，否则返回文本总长度(含\0)。"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_stringtonumber) / sizeof(s_arg_lua_stringtonumber[0]),
+		/*arg lp*/	s_arg_lua_stringtonumber,
+	},
+	{
+		/*ccname*/	_WT("LUA_取内存分配器"),
+		/*egname*/	_WT("lua_getallocf"),
+		/*explain*/ _WT("返回设置的内存分配回调函数。"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getallocf) / sizeof(s_arg_lua_getallocf[0]),
+		/*arg lp*/	s_arg_lua_getallocf,
+	},
+	{
+		/*ccname*/	_WT("LUA_置内存分配器"),
+		/*egname*/	_WT("lua_setallocf"),
+		/*explain*/ _WT("设置的内存分配回调函数。"),
+		/*category*/cmd_type_idx_miscellaneous_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_setallocf) / sizeof(s_arg_lua_setallocf[0]),
+		/*arg lp*/	s_arg_lua_setallocf,
+	},
+
+	//////////////////////////////////////////////////////////////////////////实用函数
+
+	{
+		/*ccname*/	_WT("LUA_取扩展空间"),
+		/*egname*/	_WT("lua_getextraspace"),
+		/*explain*/ _WT("返回与Lua状态关联的额外空间指针，大小是一个指针的大小"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_到数值"),
+		/*egname*/	_WT("lua_tonumber"),
+		/*explain*/ _WT("将‘栈索引’位置的值转换为双精度小数型。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_DOUBLE,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_到整数"),
+		/*egname*/	_WT("lua_tointeger"),
+		/*explain*/ _WT("将‘栈索引’位置的值转换为整数型。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_弹出"),
+		/*egname*/	_WT("lua_pop"),
+		/*explain*/ _WT("弹出指定数量的元素。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_pop) / sizeof(s_arg_lua_pop[0]),
+		/*arg lp*/	s_arg_lua_pop,
+	},
+	{
+		/*ccname*/	_WT("LUA_新建表"),
+		/*egname*/	_WT("lua_newtable"),
+		/*explain*/ _WT("创建一个表，并压入到栈中。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_注册函数"),
+		/*egname*/	_WT("lua_register"),
+		/*explain*/ _WT("注册一个全局函数。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_register) / sizeof(s_arg_lua_register[0]),
+		/*arg lp*/	s_arg_lua_register,
+	},
+	{
+		/*ccname*/	_WT("LUA_压入函数"),
+		/*egname*/	_WT("lua_pushcfunction"),
+		/*explain*/ _WT("将一个本地函数压入到栈中。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_pushcfunction) / sizeof(s_arg_lua_pushcfunction[0]),
+		/*arg lp*/	s_arg_lua_pushcfunction,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否函数"),
+		/*egname*/	_WT("lua_isfunction"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为函数。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否表"),
+		/*egname*/	_WT("lua_istable"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为表。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否用户指针"),
+		/*egname*/	_WT("lua_islightuserdata"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为用户指针。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否空"),
+		/*egname*/	_WT("lua_isnil"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为空。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否逻辑型"),
+		/*egname*/	_WT("lua_isboolean"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为逻辑型。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否线程"),
+		/*egname*/	_WT("lua_isthread"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否为线程。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否未知"),
+		/*egname*/	_WT("lua_isnone"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否未知。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_是否未知或空"),
+		/*egname*/	_WT("lua_isnoneornil"),
+		/*explain*/ _WT("返回‘栈索引’指向的值是否未知或空。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_压入全局表"),
+		/*egname*/	_WT("lua_pushglobaltable"),
+		/*explain*/ _WT("将全局环境表压入到栈中。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_插入"),
+		/*egname*/	_WT("lua_insert"),
+		/*explain*/ _WT("将栈顶的元素移动到参数‘栈索引’位置中，之前的‘栈索引’元素上移。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_移除"),
+		/*egname*/	_WT("lua_remove"),
+		/*explain*/ _WT("移除‘栈索引’位置的元素，上面的元素下移。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
+	{
+		/*ccname*/	_WT("LUA_替换"),
+		/*egname*/	_WT("lua_replace"),
+		/*explain*/ _WT("将栈顶的元素移动到‘栈索引’位置，并弹出栈顶元素。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
+		/*arg lp*/	s_arg_lua_idx,
+	},
 };
 #endif
 
@@ -1704,8 +2186,169 @@ EXTERN_C void elua_fn_lua_resume(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF 
 	SETUP_LUA_STATE(pArgInf);
 	pRetData->m_int = lua_resume(L, (lua_State*)pArgInf[1].m_int, pArgInf[2].m_int);
 }
+EXTERN_C void elua_fn_lua_status(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_status(L);
+}
+EXTERN_C void elua_fn_lua_isyieldable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isyieldable(L);
+}
 
+//////////////////////////////////////////////////////////////////////////垃圾回收
 
+EXTERN_C void elua_fn_lua_gc(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_gc(L, pArgInf[1].m_int, pArgInf[2].m_int);
+}
+
+//////////////////////////////////////////////////////////////////////////杂项操作
+
+EXTERN_C void elua_fn_lua_error(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_error(L);
+}
+
+EXTERN_C void elua_fn_lua_next(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_next(L, pArgInf[1].m_int);
+}
+
+EXTERN_C void elua_fn_lua_concat(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_concat(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_len(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_len(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_stringtonumber(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_stringtonumber(L, pArgInf[1].m_pText);
+}
+EXTERN_C void elua_fn_lua_getallocf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	void* ud = NULL;
+	pRetData->m_int = (INT)lua_getallocf(L, &ud);
+
+	if (pArgInf[1].m_dtDataType!= _SDT_NULL)
+	{
+		*pArgInf[1].m_pInt = (INT)ud;
+	}
+}
+EXTERN_C void elua_fn_lua_setallocf(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_setallocf(L, (lua_Alloc)pArgInf[1].m_dwSubCodeAdr, (void*)pArgInf[2].m_int);
+}
+
+//////////////////////////////////////////////////////////////////////////实用函数
+
+EXTERN_C void elua_fn_lua_getextraspace(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = (INT)lua_getextraspace(L);
+}
+EXTERN_C void elua_fn_lua_tonumber(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_double = lua_tonumber(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_tointeger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_tointeger(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_pop(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_pop(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_newtable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_newtable(L);
+}
+EXTERN_C void elua_fn_lua_register(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_register(L, pArgInf[1].m_pText, (lua_CFunction)pArgInf[2].m_dwSubCodeAdr);
+}
+EXTERN_C void elua_fn_lua_pushcfunction(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_pushcfunction(L, (lua_CFunction)pArgInf[1].m_dwSubCodeAdr);
+}
+
+EXTERN_C void elua_fn_lua_isfunction(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isfunction(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_istable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_istable(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_islightuserdata(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_islightuserdata(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_isnil(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isnil(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_isboolean(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isboolean(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_isthread(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isthread(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_isnone(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isnone(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_isnoneornil(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_bool = lua_isnoneornil(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_pushglobaltable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_pushglobaltable(L);
+}
+EXTERN_C void elua_fn_lua_insert(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_insert(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_remove(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_remove(L, pArgInf[1].m_int);
+}
+EXTERN_C void elua_fn_lua_replace(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_replace(L, pArgInf[1].m_int);
+}
 
 #ifndef __E_STATIC_LIB
 PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
@@ -1788,6 +2431,39 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	//协程操作
 	elua_fn_lua_yieldk,
 	elua_fn_lua_resume,
+	elua_fn_lua_status,
+	elua_fn_lua_isyieldable,
+	//垃圾回收
+	elua_fn_lua_gc,
+	//杂项操作
+	elua_fn_lua_error,
+	elua_fn_lua_next,
+	elua_fn_lua_concat,
+	elua_fn_lua_len,
+	elua_fn_lua_stringtonumber,
+	elua_fn_lua_getallocf,
+	elua_fn_lua_setallocf,
+	//实用函数(宏)
+	elua_fn_lua_getextraspace,
+	elua_fn_lua_tonumber,
+	elua_fn_lua_tointeger,
+	elua_fn_lua_pop,
+	elua_fn_lua_newtable,
+	elua_fn_lua_register,
+	elua_fn_lua_pushcfunction,
+	elua_fn_lua_isfunction,
+	elua_fn_lua_istable,
+	elua_fn_lua_islightuserdata,
+	elua_fn_lua_isnil,
+	elua_fn_lua_isboolean,
+	elua_fn_lua_isthread,
+	elua_fn_lua_isnone,
+	elua_fn_lua_isnoneornil,
+	elua_fn_lua_pushglobaltable,
+	elua_fn_lua_insert,
+	elua_fn_lua_remove,
+	elua_fn_lua_replace,
+
 };
 
 static const char* const g_CmdNames[] =
@@ -1870,6 +2546,38 @@ static const char* const g_CmdNames[] =
 	//协程操作
 	"elua_fn_lua_yieldk",
 	"elua_fn_lua_resume",
+	"elua_fn_lua_status",
+	"elua_fn_lua_isyieldable",
+	//垃圾回收
+	"elua_fn_lua_gc",
+	//杂项操作
+	"elua_fn_lua_error",
+	"elua_fn_lua_next",
+	"elua_fn_lua_concat",
+	"elua_fn_lua_len",
+	"elua_fn_lua_stringtonumber",
+	"elua_fn_lua_getallocf",
+	"elua_fn_lua_setallocf",
+	//实用函数（宏）
+	"elua_fn_lua_getextraspace",
+	"elua_fn_lua_tonumber",
+	"elua_fn_lua_tointeger",
+	"elua_fn_lua_pop",
+	"elua_fn_lua_newtable",
+	"elua_fn_lua_register",
+	"elua_fn_lua_pushcfunction",
+	"elua_fn_lua_isfunction",
+	"elua_fn_lua_istable",
+	"elua_fn_lua_islightuserdata",
+	"elua_fn_lua_isnil",
+	"elua_fn_lua_isboolean",
+	"elua_fn_lua_isthread",
+	"elua_fn_lua_isnone",
+	"elua_fn_lua_isnoneornil",
+	"elua_fn_lua_pushglobaltable",
+	"elua_fn_lua_insert",
+	"elua_fn_lua_remove",
+	"elua_fn_lua_replace",
 };
 
 #endif
@@ -1879,23 +2587,34 @@ static const char* const g_CmdNames[] =
 /* 数据类型定义
 /************************************************************************/
 
-//#ifndef __E_STATIC_LIB
-//
-//
-//LIB_DATA_TYPE_ELEMENT s_dt_element[] =
-//{
-//	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,成员状态 ,默认值}*/
-//	//{ SDT_INT, NULL,_WT("test"), _WT("test"), _WT("test"), 0, 0 },
-//
-//};
-//
-//
-//static LIB_DATA_TYPE_INFO s_DataTypes[] =
-//{
-//	/* { 中文名称, 英文名称, 数据描述, 索引数量, 命令索引, 对象状态, 图标索引, 事件数量, 事件指针, 属性数量, 属性指针, 界面指针, 元素数量, 元素指针 } */
-//	//{ _WT("testinfo"), _WT("testinfo"), _WT("testinfo"), 0, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, sizeof(s_dt_element) / sizeof(s_dt_element[0]), s_dt_element },
-//};
-//#endif
+#ifndef __E_STATIC_LIB
+
+
+LIB_DATA_TYPE_ELEMENT s_dt_element_lua_debug[] =
+{
+	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,成员状态 ,默认值}*/
+	{ SDT_INT, NULL,_WT("事件"), _WT("event"), _WT(""), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("名称"), _WT("name"), _WT(""), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("名称属于"), _WT("namewhat"), _WT("可以是‘global’, ‘local’, ‘method’, ‘field’, ‘upvalue’, 或 '' "), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("函数属于"), _WT("what"), _WT("如果函数是一个 Lua 函数，则为 'Lua' ； 如果是一个本地函数，'C'； 如果它是一个 chunk 的主体部分，则为 'main'； 如果是一个作了尾调用的函数，则为 'tail'。别的情况下，Lua 没有关于函数的别的信息。"), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("源"), _WT("source"), _WT("如果函数是定义在一个字符串中，source 就是这个字符串。 如果函数定义在一个文件中， source 是一个以 '@' 开头的文件名。"), 0, 0 },
+	{ SDT_INT, NULL,_WT("当前行"), _WT("currentline"), _WT("给定函数正在执行的那一行。 "), 0, 0 },
+	{ SDT_INT, NULL,_WT("定义开始行"), _WT("linedefined"), _WT("函数定义开始处的行号。 "), 0, 0 },
+	{ SDT_INT, NULL,_WT("定义结束行"), _WT("lastlinedefined"), _WT("函数定义结束处的行号。 "), 0, 0 },
+	{ SDT_SHORT, NULL,_WT("用户值数量"), _WT("nups"), _WT("函数的 upvalue 的个数。"), 0, 0 },
+	{ SDT_SHORT, NULL,_WT("参数数量"), _WT("nparams"), _WT("函数的 参数 的个数。"), 0, 0 },
+	{ SDT_BOOL, NULL,_WT("是否可变参数"), _WT("isvararg"), _WT(""), 0, 0 },
+	{ SDT_BOOL, NULL,_WT("是否尾调用"), _WT("istailcall"), _WT(""), 0, 0 },
+	{ SDT_TEXT, NULL,_WT("短源"), _WT("short_src"), _WT("可打印版本的源"), 0, 0 },
+};
+
+
+static LIB_DATA_TYPE_INFO s_DataTypes[] =
+{
+	/* { 中文名称, 英文名称, 数据描述, 索引数量, 命令索引, 对象状态, 图标索引, 事件数量, 事件指针, 属性数量, 属性指针, 界面指针, 元素数量, 元素指针 } */
+	//{ _WT("testinfo"), _WT("testinfo"), _WT("testinfo"), 0, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, sizeof(s_dt_element) / sizeof(s_dt_element[0]), s_dt_element },
+};
+#endif
 
 EXTERN_C INT WINAPI  elua_ProcessNotifyLib(INT nMsg, DWORD dwParam1, DWORD dwParam2)
 {
