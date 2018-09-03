@@ -37,34 +37,39 @@ LIB_CONST_INFO s_ConstInfo[] =
 	{ _WT("LUA类型_用户数据"), _WT("LUA_TUSERDATA"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_TUSERDATA },
 	{ _WT("LUA类型_线程"), _WT("LUA_TTHREAD"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_TTHREAD },
 
-	{ _WT("LUA操作符_加"), _WT("LUA_OPADD +"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPADD },
-	{ _WT("LUA操作符_减"), _WT("LUA_OPSUB -"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPSUB },
-	{ _WT("LUA操作符_乘"), _WT("LUA_OPMUL *"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPMUL },
-	{ _WT("LUA操作符_求余"), _WT("LUA_OPMOD %"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPMOD },
-	{ _WT("LUA操作符_求次方"), _WT("LUA_OPPOW ^"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPPOW },
-	{ _WT("LUA操作符_除"), _WT("LUA_OPDIV /"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPDIV },
-	{ _WT("LUA操作符_整除"), _WT("LUA_OPIDIV //"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPIDIV },
-	{ _WT("LUA操作符_位与"), _WT("LUA_OPBAND &"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPBAND },
-	{ _WT("LUA操作符_位或"), _WT("LUA_OPBOR |"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPBOR },
-	{ _WT("LUA操作符_位异或"), _WT("LUA_OPBXOR ~"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPBXOR },
-	{ _WT("LUA操作符_左移"), _WT("LUA_OPSHL <<"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPSHL },
-	{ _WT("LUA操作符_右移"), _WT("LUA_OPSHR >>"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPSHR },
-	{ _WT("LUA操作符_负"), _WT("LUA_OPUNM -"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPUNM },
-	{ _WT("LUA操作符_位取反"), _WT("LUA_OPBNOT ~"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPBNOT },
+	{ _WT("LUA操作符_加"), _WT("LUA_OPADD"), _WT("+"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPADD },
+	{ _WT("LUA操作符_减"), _WT("LUA_OPSUB"), _WT("-"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPSUB },
+	{ _WT("LUA操作符_乘"), _WT("LUA_OPMUL"), _WT("*"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPMUL },
+	{ _WT("LUA操作符_求余"), _WT("LUA_OPMOD"), _WT("%"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPMOD },
+	{ _WT("LUA操作符_求次方"), _WT("LUA_OPPOW"), _WT("^"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPPOW },
+	{ _WT("LUA操作符_除"), _WT("LUA_OPDIV"), _WT("/"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPDIV },
+	{ _WT("LUA操作符_整除"), _WT("LUA_OPIDIV"), _WT("//"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPIDIV },
+	{ _WT("LUA操作符_位与"), _WT("LUA_OPBAND"), _WT("&"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPBAND },
+	{ _WT("LUA操作符_位或"), _WT("LUA_OPBOR"), _WT("|"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPBOR },
+	{ _WT("LUA操作符_位异或"), _WT("LUA_OPBXOR"), _WT("~"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPBXOR },
+	{ _WT("LUA操作符_左移"), _WT("LUA_OPSHL"), _WT("<<"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPSHL },
+	{ _WT("LUA操作符_右移"), _WT("LUA_OPSHR"), _WT(">>"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPSHR },
+	{ _WT("LUA操作符_负"), _WT("LUA_OPUNM"), _WT("-"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPUNM },
+	{ _WT("LUA操作符_位取反"), _WT("LUA_OPBNOT"), _WT("~"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPBNOT },
 
-	{ _WT("LUA比较_相等"), _WT("LUA_OPEQ ="), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPEQ },
-	{ _WT("LUA比较_小于"), _WT("LUA_OPLT <"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPLT },
-	{ _WT("LUA比较_小于等于"), _WT("LUA_OPLE <="), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_OPLE },
+	{ _WT("LUA比较_相等"), _WT("LUA_OPEQ"), _WT("="), LVL_SIMPLE, CT_NUM, NULL, LUA_OPEQ },
+	{ _WT("LUA比较_小于"), _WT("LUA_OPLT"), _WT("<"), LVL_SIMPLE, CT_NUM, NULL, LUA_OPLT },
+	{ _WT("LUA比较_小于等于"), _WT("LUA_OPLE"), _WT("<="), LVL_SIMPLE, CT_NUM, NULL, LUA_OPLE },
 
 	{ _WT("LUAGC_停止"), _WT("LUA_GCSTOP"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSTOP },
 	{ _WT("LUAGC_重启"), _WT("LUA_GCRESTART"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCRESTART },
-	{ _WT("LUAGC_垃圾回收"), _WT("LUA_GCCOLLECT 执行完整的垃圾回收"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOLLECT },
-	{ _WT("LUAGC_内存使用数"), _WT("LUA_GCCOUNT 返回当前使用的内存大小(以KB为单位)"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNT },
-	{ _WT("LUAGC_内存使用字节数"), _WT("LUA_GCCOUNTB 返回当前使用的内存大小(以字节为单位)"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNTB },
-	{ _WT("LUAGC_单步"), _WT("LUA_GCSTEP 单步执行垃圾回收"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSTEP },
-	{ _WT("LUAGC_置暂停"), _WT("LUA_GCSETPAUSE 将数据设置为垃圾回收暂停的新值，并返回旧值"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETPAUSE },
-	{ _WT("LUAGC_置步长乘数"), _WT("LUA_GCSETSTEPMUL 将数据设置为垃圾回收步长乘数的新值，并返回旧值"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETSTEPMUL },
+	{ _WT("LUAGC_垃圾回收"), _WT("LUA_GCCOLLECT"), _WT("执行完整的垃圾回收"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOLLECT },
+	{ _WT("LUAGC_内存使用数"), _WT("LUA_GCCOUNT"), _WT(" 返回当前使用的内存大小(以KB为单位"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNT },
+	{ _WT("LUAGC_内存使用字节数"), _WT("LUA_GCCOUNTB"), _WT(" 返回当前使用的内存大小(以字节为单位)"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCCOUNTB },
+	{ _WT("LUAGC_单步"), _WT("LUA_GCSTEP"), _WT("单步执行垃圾回收"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCSTEP },
+	{ _WT("LUAGC_置暂停"), _WT("LUA_GCSETPAUSE"), _WT(" 将数据设置为垃圾回收暂停的新值，并返回旧值"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETPAUSE },
+	{ _WT("LUAGC_置步长乘数"), _WT("LUA_GCSETSTEPMUL"), _WT("将数据设置为垃圾回收步长乘数的新值，并返回旧值"), LVL_SIMPLE, CT_NUM, NULL, LUA_GCSETSTEPMUL },
 	{ _WT("LUAGC_是否在运行"), _WT("LUA_GCISRUNNING"), NULL, LVL_SIMPLE, CT_NUM, NULL, LUA_GCISRUNNING },
+
+	{ _WT("LUA_注册表索引"), _WT("LUA_REGISTRYINDEX"), _WT("指向注册表的虚拟索引。"), LVL_SIMPLE, CT_NUM, NULL, LUA_REGISTRYINDEX },
+	{ _WT("LUA_RIDX_主线程"), _WT("LUA_RIDX_MAINTHREAD"), _WT("注册表中的主线程索引。"), LVL_SIMPLE, CT_NUM, NULL, LUA_RIDX_MAINTHREAD },
+	{ _WT("LUA_RIDX_全局表"), _WT("LUA_RIDX_GLOBALS"), _WT("注册表中的全局表索引。"), LVL_SIMPLE, CT_NUM, NULL, LUA_RIDX_GLOBALS },
+
 };
 
 #endif
@@ -174,7 +179,7 @@ ARG_INFO s_arg_lua_pushcclosure[] =
 {
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
 	{ _WT("本地函数"), _WT("返回值：整数型（整数型 Lua状态）"),0,0, _SDT_ALL, 0, NULL },
-	{ _WT("用户值数量"), _WT("如果这个参数>0 (但是不能>256)，则会从栈中弹出n个值作为闭包的用户值，当本地函数被调用时可以获取这些值。"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
+	{ _WT("上值数量"), _WT("如果这个参数>0 (但是不能>256)，则会从栈中弹出n个值作为闭包的上值，当本地函数被调用时可以获取这些值。"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
 };
 ARG_INFO s_arg_lua_pushboolean[] =
 {
@@ -327,9 +332,37 @@ ARG_INFO s_arg_lua_pushcfunction[] =
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
 	{ _WT("本地函数"), _WT("返回值：整数型（整数型 Lua状态）"),0,0, _SDT_ALL, 0, NULL },
 };
-
-
-
+ARG_INFO s_arg_lua_upvalueindex[] =
+{
+	{ _WT("栈索引"), _WT(""),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_getstack[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("等级"), _WT("0是当前函数，1是调用者，依次类推。"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_freedebugptr[] =
+{
+	{ _WT("调试指针"), _WT("由 LUA_取栈指针（）返回的指针"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_getinfo[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("文本掩码"), _WT("what"),0,0, SDT_TEXT, 0, NULL },
+	{ _WT("调试指针"), _WT("由 LUA_取栈指针（）返回的指针 或 钩子HOOK 回调函数的参数的调试指针"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_getlocal[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("调试指针"), _WT("由 LUA_取栈指针（）返回的指针 或 钩子HOOK 回调函数的参数的调试指针"),0,0, SDT_INT, 0, NULL },
+	{ _WT("变量索引"), _WT("1表示第一个变量，2表示第二个，以此类推。-1表示vararg参数"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_getupvalue[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数索引"), _WT("函数所在的栈索引"),0,0, SDT_INT, 0, NULL },
+	{ _WT("上值索引"), _WT("1表示第一个上值"),0,0, SDT_INT, 0, NULL },
+};
 
 // 命令信息
 static CMD_INFO s_CmdInfo[] =
@@ -1734,6 +1767,121 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_lua_idx) / sizeof(s_arg_lua_idx[0]),
 		/*arg lp*/	s_arg_lua_idx,
 	},
+	{
+		/*ccname*/	_WT("LUA_取上值索引"),
+		/*egname*/	_WT("lua_upvalueindex"),
+		/*explain*/ _WT("获取闭包上值的虚拟索引。"),
+		/*category*/cmd_type_idx_useful_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_upvalueindex) / sizeof(s_arg_lua_upvalueindex[0]),
+		/*arg lp*/	s_arg_lua_upvalueindex,
+	},
+
+	//////////////////////////////////////////////////////////////////////////调试接口
+
+	{
+		/*ccname*/	_WT("LUA_取栈调试指针"),
+		/*egname*/	_WT("lua_getstack"),
+		/*explain*/ _WT("获取有关解释器运行时栈的信息的调试指针，成功返回这个指针，不使用后需要调用 LUA_释放调试指针（），失败返回0。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getstack) / sizeof(s_arg_lua_getstack[0]),
+		/*arg lp*/	s_arg_lua_getstack,
+	},
+	{
+		/*ccname*/	_WT("LUA_释放调试指针"),
+		/*egname*/	_WT("lua_freedebugptr"),
+		/*explain*/ _WT("释放由 LUA_取栈调试指针() 返回的指针"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_freedebugptr) / sizeof(s_arg_lua_freedebugptr[0]),
+		/*arg lp*/	s_arg_lua_freedebugptr,
+	},
+	{
+		/*ccname*/	_WT("LUA_取调试信息"),
+		/*egname*/	_WT("lua_getinfo"),
+		/*explain*/ _WT("返回一个指定的函数或函数调用的调试信息结构体。\r\n用于获取一个函数的信息时，可以把这个函数压入栈，然后把 '文本掩码' 参数以字符 '>' 起头。（这个情况下，LUA_取调试信息 从栈顶上弹出函数。）\r\n'文本掩码' 参数中的每个字符都筛选出结构 LUA_调试信息 结构中一些域用于填充，或是把一个值压入栈：\r\n'n': 填充 name 及 namewhat 域；\r\n'S': 填充 source， short_src，linedefined，lastlinedefined，以及 what 域；\r\n'l': 填充 currentline 域；\r\n'u': 填充 nups 域；\r\n'f': 把正在运行中指定级别处函数压入堆栈；\r\n'L': 压一个 table 入栈，这个 table 中的整数索引用于描述函数中哪些行是有效行。 "),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		DTP_LUA_DEBUG,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getinfo) / sizeof(s_arg_lua_getinfo[0]),
+		/*arg lp*/	s_arg_lua_getinfo,
+	},
+	{
+		/*ccname*/	_WT("LUA_取变量"),
+		/*egname*/	_WT("lua_getlocal"),
+		/*explain*/ _WT("获得一个局部变量，将变量的值压入栈，并且返回变量名"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_TEXT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getlocal) / sizeof(s_arg_lua_getlocal[0]),
+		/*arg lp*/	s_arg_lua_getlocal,
+	},
+	{
+		/*ccname*/	_WT("LUA_置变量"),
+		/*egname*/	_WT("lua_setlocal"),
+		/*explain*/ _WT("从栈顶弹出一个值赋值给变量，并且返回变量名。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_TEXT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getlocal) / sizeof(s_arg_lua_getlocal[0]),
+		/*arg lp*/	s_arg_lua_getlocal,
+	},
+	{
+		/*ccname*/	_WT("LUA_取上值"),
+		/*egname*/	_WT("lua_getupvalue"),
+		/*explain*/ _WT("获得一个上值，将上值的值压入栈，并且返回变量名。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_TEXT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getupvalue) / sizeof(s_arg_lua_getupvalue[0]),
+		/*arg lp*/	s_arg_lua_getupvalue,
+	},
+	{
+		/*ccname*/	_WT("LUA_置上值"),
+		/*egname*/	_WT("lua_getupvalue"),
+		/*explain*/ _WT("从栈顶弹出一个值赋值给上值，并且返回变量名。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_TEXT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getupvalue) / sizeof(s_arg_lua_getupvalue[0]),
+		/*arg lp*/	s_arg_lua_getupvalue,
+	},
 };
 #endif
 
@@ -2349,6 +2497,82 @@ EXTERN_C void elua_fn_lua_replace(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF
 	SETUP_LUA_STATE(pArgInf);
 	lua_replace(L, pArgInf[1].m_int);
 }
+EXTERN_C void elua_fn_lua_upvalueindex(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	pRetData->m_int = lua_upvalueindex(pArgInf[0].m_int);
+}
+
+//////////////////////////////////////////////////////////////////////////调试接口
+
+EXTERN_C void elua_fn_lua_getstack(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_Debug* pDebug = new lua_Debug();
+	int ret = lua_getstack(L, pArgInf[1].m_int, pDebug);
+	if (ret)
+	{
+		pRetData->m_int = (INT)pDebug;
+	}
+	delete pDebug;
+	pRetData->m_int = NULL;
+}
+EXTERN_C void elua_fn_lua_freedebugptr(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	if (pArgInf[0].m_int)
+	{
+		delete (lua_Debug*)pArgInf[0].m_int;
+	}
+}
+EXTERN_C void elua_fn_lua_getinfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_Debug* ar = (lua_Debug*)pArgInf[2].m_int;
+	int ret = lua_getinfo(L, pArgInf[1].m_pText, ar);
+	CFreqMem freqMem;
+	if (ret)
+	{
+		freqMem.AddDWord(ar->event);
+		freqMem.AddDWord((DWORD)zy_clone_text(ar->name));
+		freqMem.AddDWord((DWORD)zy_clone_text(ar->namewhat));
+		freqMem.AddDWord((DWORD)zy_clone_text(ar->what));
+		freqMem.AddDWord((DWORD)zy_clone_text(ar->source));
+		freqMem.AddDWord(ar->currentline);
+		freqMem.AddDWord(ar->linedefined);
+		freqMem.AddDWord(ar->lastlinedefined);
+		freqMem.AddDWord(ar->nups);
+		freqMem.AddDWord(ar->nparams);
+		freqMem.AddDWord(ar->isvararg);
+		freqMem.AddDWord(ar->istailcall);
+		freqMem.AddDWord((DWORD)zy_clone_text(ar->short_src));
+	}
+	pRetData->m_pCompoundData = freqMem.GetPtr();
+}
+EXTERN_C void elua_fn_lua_getlocal(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	const char* name = lua_getlocal(L, (lua_Debug*)pArgInf[1].m_int, pArgInf[2].m_int);
+	pRetData->m_pText = zy_clone_text(name);
+}
+EXTERN_C void elua_fn_lua_setlocal(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	const char* name = lua_setlocal(L, (lua_Debug*)pArgInf[1].m_int, pArgInf[2].m_int);
+	pRetData->m_pText = zy_clone_text(name);
+}
+EXTERN_C void elua_fn_lua_getupvalue(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	const char* name = lua_getupvalue(L, pArgInf[1].m_int, pArgInf[2].m_int);
+	pRetData->m_pText = zy_clone_text(name);
+}
+EXTERN_C void elua_fn_lua_setupvalue(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	const char* name = lua_setupvalue(L, pArgInf[1].m_int, pArgInf[2].m_int);
+	pRetData->m_pText = zy_clone_text(name);
+}
+
+
 
 #ifndef __E_STATIC_LIB
 PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
@@ -2463,7 +2687,15 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	elua_fn_lua_insert,
 	elua_fn_lua_remove,
 	elua_fn_lua_replace,
-
+	elua_fn_lua_upvalueindex,
+	//调试接口
+	elua_fn_lua_getstack,
+	elua_fn_lua_freedebugptr,
+	elua_fn_lua_getinfo,
+	elua_fn_lua_getlocal,
+	elua_fn_lua_setlocal,
+	elua_fn_lua_getupvalue,
+	elua_fn_lua_setupvalue,
 };
 
 static const char* const g_CmdNames[] =
@@ -2578,6 +2810,15 @@ static const char* const g_CmdNames[] =
 	"elua_fn_lua_insert",
 	"elua_fn_lua_remove",
 	"elua_fn_lua_replace",
+	"elua_fn_lua_upvalueindex",
+	//调试接口
+	"elua_fn_lua_getstack",
+	"elua_fn_lua_freedebugptr",
+	"elua_fn_lua_getinfo",
+	"elua_fn_lua_getlocal",
+	"elua_fn_lua_setlocal",
+	"elua_fn_lua_getupvalue",
+	"elua_fn_lua_setupvalue",
 };
 
 #endif
@@ -2612,7 +2853,7 @@ LIB_DATA_TYPE_ELEMENT s_dt_element_lua_debug[] =
 static LIB_DATA_TYPE_INFO s_DataTypes[] =
 {
 	/* { 中文名称, 英文名称, 数据描述, 索引数量, 命令索引, 对象状态, 图标索引, 事件数量, 事件指针, 属性数量, 属性指针, 界面指针, 元素数量, 元素指针 } */
-	//{ _WT("testinfo"), _WT("testinfo"), _WT("testinfo"), 0, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, sizeof(s_dt_element) / sizeof(s_dt_element[0]), s_dt_element },
+	{ _WT("LUA_调试信息"), _WT("lua_debug"), _WT(""), 0, NULL, NULL, 0, 0, NULL, 0, NULL, NULL, sizeof(s_dt_element_lua_debug) / sizeof(s_dt_element_lua_debug[0]), s_dt_element_lua_debug },
 };
 #endif
 
@@ -2663,8 +2904,8 @@ static LIB_INFO s_LibInfo =
 		NULL,				//其他信息
 		
 		//自定义数据类型
-		0,
-		NULL,
+		sizeof(s_DataTypes) / sizeof(s_DataTypes[0]),
+		s_DataTypes,
 		//类别说明
 #ifndef __COMPILE_FNR
 		/*CategoryCount*/   LIB_TYPE_COUNT,			// 加了类别需加此值。

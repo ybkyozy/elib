@@ -37,7 +37,7 @@
 						"0000垃圾回收\0" \
 						"0000杂项操作\0" \
 						"0000实用函数\0" \
-						"0000调试函数\0" \
+						"0000调试接口\0" \
 						"\0" /*命令分类*/
 
 
@@ -57,7 +57,7 @@
 
 #endif
 
-//#define DTP_STRUCT1		MAKELONG(1,0)
+#define DTP_LUA_DEBUG		MAKELONG(1,0)
 //#define DTP_STRUCT2		MAKELONG(2,0)
 
 #ifndef SETUP_LUA_STATE

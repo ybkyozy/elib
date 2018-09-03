@@ -418,7 +418,7 @@ typedef struct lua_Debug lua_Debug;  /* activation record */
 
 
 /* Functions to be called by the debugger in specific events */
-typedef void (*lua_Hook) (lua_State *L, lua_Debug *ar);
+typedef void (__stdcall *lua_Hook) (lua_State *L, lua_Debug *ar);
 
 
 LUA_API int (lua_getstack) (lua_State *L, int level, lua_Debug *ar);

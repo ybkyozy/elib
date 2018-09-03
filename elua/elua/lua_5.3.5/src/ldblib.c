@@ -302,7 +302,7 @@ static int __stdcall db_upvaluejoin (lua_State *L) {
 ** Call hook function registered at hook table for the current
 ** thread (if there is one)
 */
-static void hookf (lua_State *L, lua_Debug *ar) {
+static void __stdcall hookf (lua_State *L, lua_Debug *ar) {
   static const char *const hooknames[] =
     {"call", "return", "line", "count", "tail call"};
   lua_rawgetp(L, LUA_REGISTRYINDEX, &HOOKKEY);
