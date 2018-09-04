@@ -70,6 +70,16 @@ LIB_CONST_INFO s_ConstInfo[] =
 	{ _WT("LUA_RIDX_主线程"), _WT("LUA_RIDX_MAINTHREAD"), _WT("注册表中的主线程索引。"), LVL_SIMPLE, CT_NUM, NULL, LUA_RIDX_MAINTHREAD },
 	{ _WT("LUA_RIDX_全局表"), _WT("LUA_RIDX_GLOBALS"), _WT("注册表中的全局表索引。"), LVL_SIMPLE, CT_NUM, NULL, LUA_RIDX_GLOBALS },
 
+	{ _WT("LUA_HOOKCALL"), _WT("LUA_HOOKCALL"), _WT("调用钩子"), LVL_SIMPLE, CT_NUM, NULL, LUA_HOOKCALL },
+	{ _WT("LUA_HOOKRET"), _WT("LUA_HOOKRET"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_HOOKRET },
+	{ _WT("LUA_HOOKLINE"), _WT("LUA_HOOKLINE"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_HOOKLINE },
+	{ _WT("LUA_HOOKCOUNT"), _WT("LUA_HOOKCOUNT"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_HOOKCOUNT },
+	{ _WT("LUA_HOOKTAILCALL"), _WT("LUA_HOOKTAILCALL"), _WT("尾调用钩子"), LVL_SIMPLE, CT_NUM, NULL, LUA_HOOKTAILCALL },
+
+	{ _WT("LUA_MASKCALL"), _WT("LUA_MASKCALL"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_MASKCALL },
+	{ _WT("LUA_MASKRET"), _WT("LUA_MASKRET"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_MASKRET },
+	{ _WT("LUA_MASKLINE"), _WT("LUA_MASKLINE"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_MASKLINE },
+	{ _WT("LUA_MASKCOUNT"), _WT("LUA_MASKCOUNT"), _WT(""), LVL_SIMPLE, CT_NUM, NULL, LUA_MASKCOUNT },
 };
 
 #endif
@@ -362,6 +372,39 @@ ARG_INFO s_arg_lua_getupvalue[] =
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
 	{ _WT("函数索引"), _WT("函数所在的栈索引"),0,0, SDT_INT, 0, NULL },
 	{ _WT("上值索引"), _WT("1表示第一个上值"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_upvaluejoin[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数索引1"), _WT("函数所在的栈索引"),0,0, SDT_INT, 0, NULL },
+	{ _WT("上值索引1"), _WT("1表示第一个上值"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数索引2"), _WT("函数所在的栈索引"),0,0, SDT_INT, 0, NULL },
+	{ _WT("上值索引2"), _WT("1表示第一个上值"),0,0, SDT_INT, 0, NULL },
+};
+ARG_INFO s_arg_lua_sethook[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("钩子函数"), _WT("返回值：无（整数型 Lua状态，整数型 调试指针）"),0,0, _SDT_ALL, 0, NULL },
+	{ _WT("掩码"), _WT("LUA_MASK 开头常量"),0,0, SDT_INT, 0, NULL },
+	{ _WT("数量"), _WT("count"),0,0, SDT_INT, 0, AS_DEFAULT_VALUE_IS_EMPTY },
+};
+ARG_INFO s_arg_luaL_getmetafield[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("对象索引"), _WT("obj"),0,0, _SDT_ALL, 0, NULL },
+	{ _WT("字段名"), _WT("e"),0,0, SDT_TEXT, 0, NULL },
+};
+ARG_INFO s_arg_luaL_tolstring[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("返回长度"), _WT(""),0,0, SDT_INT, 0, AS_DEFAULT_VALUE_IS_EMPTY | AS_RECEIVE_VAR },
+};
+ARG_INFO s_arg_luaL_argerror[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数栈索引"), _WT("-1表示栈顶，1表示栈底"),0,0, SDT_INT, 0, NULL },
+	{ _WT("额外信息"), _WT(""),0,0, SDT_TEXT, 0, NULL },
 };
 
 // 命令信息
@@ -1882,6 +1925,161 @@ static CMD_INFO s_CmdInfo[] =
 		/*ArgCount*/sizeof(s_arg_lua_getupvalue) / sizeof(s_arg_lua_getupvalue[0]),
 		/*arg lp*/	s_arg_lua_getupvalue,
 	},
+	{
+		/*ccname*/	_WT("LUA_取上值ID"),
+		/*egname*/	_WT("lua_upvalueid"),
+		/*explain*/ _WT("返回一个上值的ID，"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_getupvalue) / sizeof(s_arg_lua_getupvalue[0]),
+		/*arg lp*/	s_arg_lua_getupvalue,
+	},
+	{
+		/*ccname*/	_WT("LUA_上值连接"),
+		/*egname*/	_WT("lua_upvaluejoin"),
+		/*explain*/ _WT("将‘函数索引1’指定的上值指向‘函数索引2’指定的上值。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_upvaluejoin) / sizeof(s_arg_lua_upvaluejoin[0]),
+		/*arg lp*/	s_arg_lua_upvaluejoin,
+	},
+	{
+		/*ccname*/	_WT("LUA_置钩子"),
+		/*egname*/	_WT("lua_sethook"),
+		/*explain*/ _WT("设置调试钩子回调函数。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua_sethook) / sizeof(s_arg_lua_sethook[0]),
+		/*arg lp*/	s_arg_lua_sethook,
+	},
+	{
+		/*ccname*/	_WT("LUA_取钩子"),
+		/*egname*/	_WT("lua_gethook"),
+		/*explain*/ _WT("获取调试钩子回调函数。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_取钩子掩码"),
+		/*egname*/	_WT("lua_gethookmask"),
+		/*explain*/ _WT("获取调试钩子掩码，返回 LUA_HOOK 开头常量。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUA_取钩子数"),
+		/*egname*/	_WT("lua_gethookcount"),
+		/*explain*/ _WT("获取调试钩子数。"),
+		/*category*/cmd_type_idx_debug_functions,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	//////////////////////////////////////////////////////////////////////////辅助库
+	{
+		/*ccname*/	_WT("LUAL_检查版本"),
+		/*egname*/	_WT("luaL_checkversion"),
+		/*explain*/ _WT("检查运行调用的核心，创建Lua状态的核心以及进行调用的代码是否都使用相同版本的Lua。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_lua) / sizeof(s_arg_lua[0]),
+		/*arg lp*/	s_arg_lua,
+	},
+	{
+		/*ccname*/	_WT("LUAL_取元表字段"),
+		/*egname*/	_WT("luaL_getmetafield"),
+		/*explain*/ _WT("从'对象索引'中的元表获取指定字段，并压入到栈中，返回字段类型。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		SDT_INT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_luaL_getmetafield) / sizeof(s_arg_luaL_getmetafield[0]),
+		/*arg lp*/	s_arg_luaL_getmetafield,
+	},
+	{
+		/*ccname*/	_WT("LUAL_调用元方法"),
+		/*egname*/	_WT("luaL_callmeta"),
+		/*explain*/ _WT("如果'对象索引'处的对象具有metatable并且存在'字段名'，则此函数调用此字段将对象作为其唯一参数传递。 在这种情况下，此函数返回真，并将调用返回的值压入栈。 如果没有metatable或没有metamethod，则此函数返回假（不在栈上压入任何值）。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		SDT_BOOL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_luaL_getmetafield) / sizeof(s_arg_luaL_getmetafield[0]),
+		/*arg lp*/	s_arg_luaL_getmetafield,
+	},
+	{
+		/*ccname*/	_WT("LUAL_到文本"),
+		/*egname*/	_WT("luaL_tolstring"),
+		/*explain*/ _WT("将'栈索引'指定的值转为为字符串，压入栈，并由函数返回。如果值具有__tostring 元方法，则把值作为参数传递给元方法，并使用调用的结果。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		SDT_TEXT,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_luaL_tolstring) / sizeof(s_arg_luaL_tolstring[0]),
+		/*arg lp*/	s_arg_luaL_tolstring,
+	},
+	{
+		/*ccname*/	_WT("LUAL_参数错误"),
+		/*egname*/	_WT("luaL_argerror"),
+		/*explain*/ _WT("引发参数错误的报告。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_luaL_argerror) / sizeof(s_arg_luaL_argerror[0]),
+		/*arg lp*/	s_arg_luaL_argerror,
+	},
 };
 #endif
 
@@ -2571,8 +2769,70 @@ EXTERN_C void elua_fn_lua_setupvalue(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 	const char* name = lua_setupvalue(L, pArgInf[1].m_int, pArgInf[2].m_int);
 	pRetData->m_pText = zy_clone_text(name);
 }
+EXTERN_C void elua_fn_lua_upvalueid(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_upvalueid(L, pArgInf[1].m_int, pArgInf[2].m_int);
+}
+EXTERN_C void elua_fn_lua_upvaluejoin(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_upvaluejoin(L, pArgInf[1].m_int, pArgInf[2].m_int, pArgInf[3].m_int, pArgInf[4].m_int);
+}
+EXTERN_C void elua_fn_lua_sethook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	lua_sethook(L, (lua_Hook)pArgInf[1].m_dwSubCodeAdr, pArgInf[2].m_int, pArgInf[3].m_int);
+}
+EXTERN_C void elua_fn_lua_gethook(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = (INT)lua_gethook(L);
+}
+EXTERN_C void elua_fn_lua_gethookmask(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_gethookmask(L);
+}
+EXTERN_C void elua_fn_lua_gethookcount(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = lua_gethookcount(L);
+}
 
+//////////////////////////////////////////////////////////////////////////辅助库
 
+EXTERN_C void elua_fn_luaL_checkversion(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	luaL_checkversion(L);
+}
+EXTERN_C void elua_fn_luaL_getmetafield(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = luaL_getmetafield(L, pArgInf[1].m_int, pArgInf[2].m_pText);
+}
+EXTERN_C void elua_fn_luaL_callmeta(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	pRetData->m_int = luaL_callmeta(L, pArgInf[1].m_int, pArgInf[2].m_pText);
+}
+EXTERN_C void elua_fn_luaL_tolstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	size_t len = 0;
+	const char* str = luaL_tolstring(L, pArgInf[1].m_int, &len);
+	if (pArgInf[2].m_dtDataType!=_SDT_NULL)
+	{
+		*pArgInf[2].m_pInt = len;
+	}
+	pRetData->m_pText = zy_clone_textlen(str, len);
+}
+EXTERN_C void elua_fn_luaL_argerror(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	luaL_argerror(L, pArgInf[1].m_int, pArgInf[2].m_pText);
+}
 
 #ifndef __E_STATIC_LIB
 PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
@@ -2696,6 +2956,18 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 	elua_fn_lua_setlocal,
 	elua_fn_lua_getupvalue,
 	elua_fn_lua_setupvalue,
+	elua_fn_lua_upvalueid,
+	elua_fn_lua_upvaluejoin,
+	elua_fn_lua_sethook,
+	elua_fn_lua_gethook,
+	elua_fn_lua_gethookmask,
+	elua_fn_lua_gethookcount,
+	//辅助库
+		elua_fn_luaL_checkversion,
+		elua_fn_luaL_getmetafield,
+		elua_fn_luaL_callmeta,
+		elua_fn_luaL_tolstring,
+		elua_fn_luaL_argerror,
 };
 
 static const char* const g_CmdNames[] =
@@ -2819,6 +3091,18 @@ static const char* const g_CmdNames[] =
 	"elua_fn_lua_setlocal",
 	"elua_fn_lua_getupvalue",
 	"elua_fn_lua_setupvalue",
+	"elua_fn_lua_upvalueid",
+	"elua_fn_lua_upvaluejoin",
+	"elua_fn_lua_sethook",
+	"elua_fn_lua_gethook",
+	"elua_fn_lua_gethookmask",
+	"elua_fn_lua_gethookcount",
+	//辅助库
+		"elua_fn_luaL_checkversion",
+		"elua_fn_luaL_getmetafield",
+		"elua_fn_luaL_callmeta",
+		"elua_fn_luaL_tolstring",
+		"elua_fn_luaL_argerror",
 };
 
 #endif

@@ -24,7 +24,7 @@
 #define LIB_Email	 "" /*电子邮箱*/
 #define LIB_HomePage "" /*主页地址*/
 #define LIB_Other	"" /*其它信息*/
-#define LIB_TYPE_COUNT 13 /*命令分类数量*/
+#define LIB_TYPE_COUNT 14 /*命令分类数量*/
 #define LIB_TYPE_STR	"0000状态操作\0" \
 						"0000基本栈操作\0" \
 						"0000访问操作\0" \
@@ -38,6 +38,7 @@
 						"0000杂项操作\0" \
 						"0000实用函数\0" \
 						"0000调试接口\0" \
+						"0000辅助库\0" \
 						"\0" /*命令分类*/
 
 
@@ -54,6 +55,7 @@
 #define cmd_type_idx_miscellaneous_functions				11
 #define cmd_type_idx_useful_functions						12
 #define cmd_type_idx_debug_functions						13
+#define cmd_type_idx_auxiliary_library						14
 
 #endif
 
