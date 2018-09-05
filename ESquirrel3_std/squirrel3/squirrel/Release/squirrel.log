@@ -1,0 +1,134 @@
+﻿  sqapi.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqbaselib.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqclass.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqcompiler.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqdebug.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+sqdebug.cpp(64): error C2660: 'vswprintf' : function does not take 4 parameters
+  sqfuncstate.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqlexer.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqmem.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqobject.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqstate.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqtable.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  sqvm.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(700): error C2733: second C linkage of overloaded function 'wmemchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(699) : see declaration of 'wmemchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(702): error C2733: second C linkage of overloaded function 'wcschr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(701) : see declaration of 'wcschr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(704): error C2733: second C linkage of overloaded function 'wcspbrk' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(703) : see declaration of 'wcspbrk'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(706): error C2733: second C linkage of overloaded function 'wcsrchr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(705) : see declaration of 'wcsrchr'
+C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(708): error C2733: second C linkage of overloaded function 'wcsstr' not allowed
+          C:\Program Files (x86)\Microsoft Visual Studio 6.0\VC98\INCLUDE\wchar.h(707) : see declaration of 'wcsstr'
+  Generating Code...

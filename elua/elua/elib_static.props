@@ -11,7 +11,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <PostBuildEvent>
-      <Command>"$(EYUYAN)\sdk\tools\resym.exe" all infile="$(TargetPath)" outfile="$(TargetPath)"</Command>
+      <Command>"$(EYUYAN)\sdk\tools\resym.exe" all infile="$(TargetDir)$(TargetFileName)" outfile="$(TargetDir)$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
