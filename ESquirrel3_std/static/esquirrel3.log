@@ -2551,4 +2551,4 @@ elib_sdk/fnshare.h(27): warning C4005: '_WT' : macro redefinition
   
   
   OK, 1401 symbol(s) have been resymed. 
-  The outfile has been output successfully to: E:\编程\易语言\支持库\ESquirrel3_std\.\static\esquirrel3_static.lib
+  The outfile has been output successfully to: E:\编程\易语言\支持库\ESquirrel3_std\static\esquirrel3_static.lib

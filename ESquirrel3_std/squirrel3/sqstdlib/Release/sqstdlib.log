@@ -1,0 +1,11 @@
+﻿  sqstdaux.cpp
+  sqstdblob.cpp
+  sqstdio.cpp
+  sqstdmath.cpp
+  sqstdrex.cpp
+  sqstdstream.cpp
+  sqstdstring.cpp
+  sqstdsystem.cpp
+  zyhelper.cpp
+  Generating Code...
+  sqstdlib.vcxproj -> E:\编程\易语言\支持库\ESquirrel3_std\squirrel3\sqstdlib\..\lib\sqstdlib.lib
