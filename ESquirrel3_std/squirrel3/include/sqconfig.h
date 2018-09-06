@@ -73,7 +73,7 @@ typedef wchar_t SQChar;
 #define scstrtol    wcstol
 #endif
 #define scstrtoul   wcstoul
-#define scvsprintf  vswprintf
+#define scvsprintf  _vsnwprintf
 #define scstrstr    wcsstr
 #define scprintf    wprintf
 

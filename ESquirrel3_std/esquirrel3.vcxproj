@@ -231,7 +231,7 @@
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile="$(TargetPath)" outfile="$(TargetPath)"</Command>
+      <Command>"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile="$(TargetDir)$(TargetFileName)" outfile="$(TargetDir)$(TargetFileName)"</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>squirrel.lib;sqstdlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
