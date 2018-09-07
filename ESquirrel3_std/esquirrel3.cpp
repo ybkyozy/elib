@@ -3246,7 +3246,16 @@ EXTERN_C void esquirrel3_fn_sq_newarray(PMDATA_INF pRetData, INT iArgCount, PMDA
 EXTERN_C void esquirrel3_fn_sq_newclosure(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_VM(pArgInf);
-	sq_newclosure(vm, (SQFUNCTION)pArgInf[1].m_int, pArgInf[2].m_int);
+	SQFUNCTION func = NULL;
+	if (pArgInf[1].m_dtDataType == SDT_INT)
+	{
+		func = (SQFUNCTION)pArgInf[1].m_int;
+	}
+	else if (pArgInf[1].m_dtDataType == SDT_SUB_PTR)
+	{
+		func = (SQFUNCTION)pArgInf[1].m_dwSubCodeAdr;
+	}
+	sq_newclosure(vm, func, pArgInf[2].m_int);
 }
 EXTERN_C void esquirrel3_fn_sq_setparamscheck(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3353,7 +3362,10 @@ EXTERN_C void esquirrel3_fn_sq_getstring(PMDATA_INF pRetData, INT iArgCount, PMD
 	SETUP_VM(pArgInf);
 	const SQChar* pString = NULL;
 	pRetData->m_int = sq_getstring(vm, pArgInf[1].m_int, &pString);
-	free(*pArgInf[2].m_ppText);
+	if (*pArgInf[2].m_ppText)
+	{
+		free(*pArgInf[2].m_ppText);
+	}
 	*pArgInf[2].m_ppText = zy_clone_text(pString);
 }
 EXTERN_C void esquirrel3_fn_sq_getinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)

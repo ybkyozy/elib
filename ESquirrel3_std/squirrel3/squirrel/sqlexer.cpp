@@ -261,7 +261,7 @@ SQInteger SQLexer::Lex()
                     SQInteger ret = ReadNumber();
                     RETURN_TOKEN(ret);
                 }
-                else if (scisalpha(CUR_CHAR) || CUR_CHAR == _SC('_')) {
+                else if (scisalpha(CUR_CHAR) || CUR_CHAR == _SC('_') || CUR_CHAR >= 0x80) {
                     SQInteger t = ReadID();
                     RETURN_TOKEN(t);
                 }
@@ -551,7 +551,7 @@ SQInteger SQLexer::ReadID()
     do {
         APPEND_CHAR(CUR_CHAR);
         NEXT();
-    } while(scisalnum(CUR_CHAR) || CUR_CHAR == _SC('_'));
+    } while(scisalnum(CUR_CHAR) || CUR_CHAR == _SC('_') || CUR_CHAR >= 0x80);
     TERMINATE_BUFFER();
     res = GetIDType(&_longstr[0],_longstr.size() - 1);
     if(res == TK_IDENTIFIER || res == TK_CONSTRUCTOR) {
