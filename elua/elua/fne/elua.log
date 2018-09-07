@@ -1,7 +1,0 @@
-﻿  elua.cpp
-elib_sdk/fnshare.h(27): warning C4005: '_WT' : macro redefinition
-          elib_sdk/lib2.h(78) : see previous definition of '_WT'
-     Creating library .\fne\elua.lib and object .\fne\elua.exp
-  elua.vcxproj -> E:\编程\易语言\支持库\elua\elua\.\fne\elua.fne
-  E:\编程\易语言\支持库\elua\elua\.\fne\elua.fne
-  复制了 1 个文件

@@ -231,7 +231,7 @@
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile="$(TargetPath)" outfile="$(TargetPath)"</Command>
+      <Command>"E:\编程\编程工具\e\sdk\tools\resym.exe" all infile="$(TargetDir)$(TargetFileName)" outfile="$(TargetDir)$(TargetFileName)"</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>squirrel.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -286,7 +286,8 @@
       <ModuleDefinitionFile>.\esquirrel3.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /e /r /y $(ProjectDir)fne\esquirrel3.fne "E:\编程\编程工具\e\lib"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

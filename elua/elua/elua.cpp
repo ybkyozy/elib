@@ -2835,7 +2835,7 @@ EXTERN_C void elua_fn_lua_type(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pA
 EXTERN_C void elua_fn_lua_typename(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	const char* name = lua_typename((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_lua_tonumberx(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -2864,7 +2864,7 @@ EXTERN_C void elua_fn_lua_tolstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 {
 	size_t len = 0;
 	const char* name = lua_tolstring((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int, &len);
-	pRetData->m_pText = zy_clone_textlen(name, len);
+	pRetData->m_pText = CloneTextData((char*)name, len);
 }
 EXTERN_C void elua_fn_lua_rawlen(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3393,10 +3393,10 @@ EXTERN_C void elua_fn_lua_getinfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF
 	if (ret)
 	{
 		freqMem.AddDWord(ar->event);
-		freqMem.AddDWord((DWORD)zy_clone_text(ar->name));
-		freqMem.AddDWord((DWORD)zy_clone_text(ar->namewhat));
-		freqMem.AddDWord((DWORD)zy_clone_text(ar->what));
-		freqMem.AddDWord((DWORD)zy_clone_text(ar->source));
+		freqMem.AddDWord((DWORD)CloneTextData((char*)ar->name));
+		freqMem.AddDWord((DWORD)CloneTextData((char*)ar->namewhat));
+		freqMem.AddDWord((DWORD)CloneTextData((char*)ar->what));
+		freqMem.AddDWord((DWORD)CloneTextData((char*)ar->source));
 		freqMem.AddDWord(ar->currentline);
 		freqMem.AddDWord(ar->linedefined);
 		freqMem.AddDWord(ar->lastlinedefined);
@@ -3404,7 +3404,7 @@ EXTERN_C void elua_fn_lua_getinfo(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF
 		freqMem.AddDWord(ar->nparams);
 		freqMem.AddDWord(ar->isvararg);
 		freqMem.AddDWord(ar->istailcall);
-		freqMem.AddDWord((DWORD)zy_clone_text(ar->short_src));
+		freqMem.AddDWord((DWORD)CloneTextData(ar->short_src));
 	}
 	pRetData->m_pCompoundData = freqMem.GetPtr();
 }
@@ -3412,25 +3412,25 @@ EXTERN_C void elua_fn_lua_getlocal(PMDATA_INF pRetData, INT iArgCount, PMDATA_IN
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* name = lua_getlocal(L, (lua_Debug*)pArgInf[1].m_int, pArgInf[2].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_lua_setlocal(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* name = lua_setlocal(L, (lua_Debug*)pArgInf[1].m_int, pArgInf[2].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_lua_getupvalue(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* name = lua_getupvalue(L, pArgInf[1].m_int, pArgInf[2].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_lua_setupvalue(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* name = lua_setupvalue(L, pArgInf[1].m_int, pArgInf[2].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_lua_upvalueid(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3489,7 +3489,7 @@ EXTERN_C void elua_fn_luaL_tolstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 	{
 		*pArgInf[2].m_pInt = len;
 	}
-	pRetData->m_pText = zy_clone_textlen(str, len);
+	pRetData->m_pText = CloneTextData((char*)str, len);
 }
 EXTERN_C void elua_fn_luaL_argerror(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3505,7 +3505,7 @@ EXTERN_C void elua_fn_luaL_checklstring(PMDATA_INF pRetData, INT iArgCount, PMDA
 	{
 		*pArgInf[2].m_pInt = len;
 	}
-	pRetData->m_pText = zy_clone_textlen(str, len);
+	pRetData->m_pText = CloneTextData((char*)str, len);
 }
 EXTERN_C void elua_fn_luaL_optlstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3516,7 +3516,7 @@ EXTERN_C void elua_fn_luaL_optlstring(PMDATA_INF pRetData, INT iArgCount, PMDATA
 	{
 		*pArgInf[3].m_pInt = len;
 	}
-	pRetData->m_pText = zy_clone_textlen(str, len);
+	pRetData->m_pText = CloneTextData((char*)str, len);
 }
 EXTERN_C void elua_fn_luaL_checknumber(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3640,7 +3640,7 @@ EXTERN_C void elua_fn_luaL_gsub(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF p
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* str = luaL_gsub(L, pArgInf[1].m_pText, pArgInf[2].m_pText, pArgInf[3].m_pText);
-	pRetData->m_pText = zy_clone_text(str);
+	pRetData->m_pText = CloneTextData((char*)str);
 }
 EXTERN_C void elua_fn_luaL_setfuncs(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3710,7 +3710,7 @@ EXTERN_C void elua_fn_luaL_typename(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 {
 	SETUP_LUA_STATE(pArgInf);
 	const char* name = luaL_typename(L, pArgInf[1].m_int);
-	pRetData->m_pText = zy_clone_text(name);
+	pRetData->m_pText = CloneTextData((char*)name);
 }
 EXTERN_C void elua_fn_luaL_dofile(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {

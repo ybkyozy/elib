@@ -2795,8 +2795,11 @@ EXTERN_C void esquirrel3_fn_sq_getstring(PMDATA_INF pRetData, INT iArgCount, PMD
 	SETUP_VM(pArgInf);
 	const SQChar* pString = NULL;
 	pRetData->m_int = sq_getstring(vm, pArgInf[1].m_int, &pString);
-	free(*pArgInf[2].m_ppText);
-	*pArgInf[2].m_ppText = zy_clone_text(pString);
+	if (*pArgInf[2].m_ppText)
+	{
+		MFree(*pArgInf[2].m_ppText);
+	}
+	*pArgInf[2].m_ppText = CloneTextData((char*)pString);
 }
 EXTERN_C void esquirrel3_fn_sq_getinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -2874,15 +2877,15 @@ EXTERN_C void esquirrel3_fn_sq_getfunctioninfo(PMDATA_INF pRetData, INT iArgCoun
 		memcpy(&temp, ptr, sizeof(SQFunctionInfo));
 		if (temp.name)
 		{
-			free((void*)temp.name);
+			MFree((void*)temp.name);
 		}
 		if (temp.source)
 		{
-			free((void*)temp.source);
+			MFree((void*)temp.source);
 		}
-		free(ptr);
+		MFree(ptr);
 	}
-	ptr = (LPBYTE)malloc(sizeof(SQFunctionInfo));
+	ptr = (LPBYTE)MMalloc(sizeof(SQFunctionInfo));
 	memcpy(ptr, &sqinfo, sizeof(SQFunctionInfo));
 	*pArgInf[2].m_ppCompoundData = ptr;
 }
@@ -3126,7 +3129,7 @@ EXTERN_C void esquirrel3_fn_sq_getlocal(PMDATA_INF pRetData, INT iArgCount, PMDA
 	const SQChar* name = sq_getlocal(vm, pArgInf[1].m_int, pArgInf[2].m_int);
 	if (name)
 	{
-		pRetData->m_pText = zy_clone_text(name);
+		pRetData->m_pText = CloneTextData((char*)name);
 	}
 }
 
@@ -3141,7 +3144,7 @@ EXTERN_C void esquirrel3_fn_sq_getfreevariable(PMDATA_INF pRetData, INT iArgCoun
 	const SQChar* name = sq_getfreevariable(vm, pArgInf[1].m_int, pArgInf[2].m_int);
 	if (name)
 	{
-		pRetData->m_pText = zy_clone_text(name);
+		pRetData->m_pText = CloneTextData((char*)name);
 	}
 }
 EXTERN_C void esquirrel3_fn_sq_throwerror(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
@@ -3203,7 +3206,7 @@ EXTERN_C void esquirrel3_fn_sq_objtostring(PMDATA_INF pRetData, INT iArgCount, P
 	const SQChar* str = sq_objtostring((HSQOBJECT*)pArgInf[0].m_pInt64);
 	if (str)
 	{
-		pRetData->m_pText = zy_clone_text(str);
+		pRetData->m_pText = CloneTextData((char*)str);
 	}
 }
 EXTERN_C void esquirrel3_fn_sq_objtobool(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
@@ -3276,16 +3279,16 @@ EXTERN_C void esquirrel3_fn_sq_stackinfos(PMDATA_INF pRetData, INT iArgCount, PM
 		memcpy(&tmp, ptr, sizeof(SQStackInfos));
 		if (tmp.funcname)
 		{
-			free((void*)tmp.funcname);
+			MFree((void*)tmp.funcname);
 		}
 		if (tmp.source)
 		{
-			free((void*)tmp.source);
+			MFree((void*)tmp.source);
 		}
-		free(ptr);
+		MFree(ptr);
 	}
 	pRetData->m_int = sq_stackinfos(vm, pArgInf[1].m_int, &infos);
-	ptr = malloc(sizeof(SQStackInfos));
+	ptr = MMalloc(sizeof(SQStackInfos));
 	memcpy(ptr, &infos, sizeof(SQStackInfos));
 	*pArgInf[2].m_ppCompoundData = ptr;
 
