@@ -908,7 +908,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*arg lp*/	s_arg_lua_idx,
 	},
 	{
-		/*ccname*/	_WT("LUA_取源长度"),
+		/*ccname*/	_WT("LUA_元取长度"),
 		/*egname*/	_WT("lua_rawlen"),
 		/*explain*/ _WT("获取‘栈索引’位置的值的长度。对于文本返回文本长度，对于表返回长度运算符(#)的结果()，对于用户数据返回内存大小，其他值返回0"),
 		/*category*/cmd_type_idx_access_functions,
@@ -2531,7 +2531,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*arg lp*/	s_arg_luaL_loadstring,
 	},
 	{
-		/*ccname*/	_WT("LUAL_新建状态"),
+		/*ccname*/	_WT("LUAL_新建"),
 		/*egname*/	_WT("luaL_newstate"),
 		/*explain*/ _WT("创建一个主线程执行状态，成功返回lua_State指针，失败返回0。"),
 		/*category*/cmd_type_idx_auxiliary_library,
@@ -2573,7 +2573,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*arg lp*/	s_arg_luaL_gsub,
 	},
 	{
-		/*ccname*/	_WT("LUAL_置函数数组"),
+		/*ccname*/	_WT("LUAL_置函数组"),
 		/*egname*/	_WT("luaL_setfuncs"),
 		/*explain*/ _WT("注册数组中的所有函数到栈顶位置的表中。"),
 		/*category*/cmd_type_idx_auxiliary_library,
