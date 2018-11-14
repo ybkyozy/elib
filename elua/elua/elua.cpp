@@ -2690,7 +2690,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*explain*/ _WT("从文件加载并运行脚本。"),
 		/*category*/cmd_type_idx_auxiliary_library,
 		/*state*/	0,
-		/*ret*/		SDT_BOOL,
+		/*ret*/		SDT_INT,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -2704,7 +2704,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*explain*/ _WT("从文本加载并运行脚本。"),
 		/*category*/cmd_type_idx_auxiliary_library,
 		/*state*/	0,
-		/*ret*/		SDT_BOOL,
+		/*ret*/		SDT_INT,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -3715,12 +3715,12 @@ EXTERN_C void elua_fn_luaL_typename(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 EXTERN_C void elua_fn_luaL_dofile(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
-	pRetData->m_bool = luaL_dofile (L, pArgInf[1].m_pText);
+	pRetData->m_int = luaL_dofile (L, pArgInf[1].m_pText);
 }
 EXTERN_C void elua_fn_luaL_dostring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
-	pRetData->m_bool = luaL_dostring(L, pArgInf[1].m_pText);
+	pRetData->m_int = luaL_dostring(L, pArgInf[1].m_pText);
 }
 EXTERN_C void elua_fn_luaL_getmetatable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
