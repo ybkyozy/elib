@@ -1467,10 +1467,10 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("LUA_安全调用K"),
 		/*egname*/	_WT("lua_pcallK"),
-		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。"),
+		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。返回 LUA_ 开头常量。"),
 		/*category*/cmd_type_idx_load_and_call_functions,
 		/*state*/	0,
-		/*ret*/		_SDT_NULL,
+		/*ret*/		SDT_INT,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -1481,10 +1481,10 @@ static CMD_INFO s_CmdInfo[] =
 	{
 		/*ccname*/	_WT("LUA_安全调用"),
 		/*egname*/	_WT("lua_pcall"),
-		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。"),
+		/*explain*/ _WT("调用一个函数，并允许设置一个错误处理闭包。调用之前将函数和参数压入栈，调用完毕后参数和函数都会弹出栈，并将指定数量的返回值压入栈。返回 LUA_ 开头常量。"),
 		/*category*/cmd_type_idx_load_and_call_functions,
 		/*state*/	0,
-		/*ret*/		_SDT_NULL,
+		/*ret*/		SDT_INT,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -3157,13 +3157,13 @@ EXTERN_C void elua_fn_lua_pcallk(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF 
 	{
 		funk = (lua_KFunction)pArgInf[5].m_dwSubCodeAdr;
 	}
-	lua_pcallk(L, pArgInf[1].m_int, pArgInf[2].m_int, pArgInf[3].m_int, pArgInf[4].m_int, funk);
+	pRetData->m_int = lua_pcallk(L, pArgInf[1].m_int, pArgInf[2].m_int, pArgInf[3].m_int, pArgInf[4].m_int, funk);
 }
 
 EXTERN_C void elua_fn_lua_pcall(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
-	lua_pcall(L, pArgInf[1].m_int, pArgInf[2].m_int, pArgInf[3].m_int);
+	pRetData->m_int = lua_pcall(L, pArgInf[1].m_int, pArgInf[2].m_int, pArgInf[3].m_int);
 }
 
 EXTERN_C void elua_fn_lua_load(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
