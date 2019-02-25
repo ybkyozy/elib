@@ -520,6 +520,14 @@ ARG_INFO s_arg_luaL_setfuncs[] =
 	{ _WT("注册数组"), _WT("LUA_注册 结构体数组"),0,0, DTP_LUA_REG, 0, AS_RECEIVE_ARRAY_DATA },
 	{ _WT("上值数"), _WT("如果此参数>0，则在注册之前，在栈中压入相同数量的值，来作为所有函数的上值。"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
 };
+ARG_INFO s_arg_luaL_setfunc[] =
+{
+	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
+	{ _WT("函数名"), _WT(""),0,0, SDT_TEXT, 0, NULL },
+	{ _WT("函数指针"), _WT("返回值：整数型（整数型 Lua状态）"),0,0, _SDT_ALL, 0, NULL },
+	{ _WT("上值数"), _WT("如果此参数>0，则在注册之前，在栈中压入相同数量的值，来作为所有函数的上值。"),0,0, SDT_INT, 0, AS_HAS_DEFAULT_VALUE },
+};
+
 ARG_INFO s_arg_luaL_getsubtable[] =
 {
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
@@ -2587,6 +2595,20 @@ static CMD_INFO s_CmdInfo[] =
 		/*arg lp*/	s_arg_luaL_setfuncs,
 	},
 	{
+		/*ccname*/	_WT("LUAL_置函数"),
+		/*egname*/	_WT("luaL_setfunc"),
+		/*explain*/ _WT("注册一个函数到栈顶位置的表中。"),
+		/*category*/cmd_type_idx_auxiliary_library,
+		/*state*/	0,
+		/*ret*/		_SDT_NULL,
+		/*reserved*/0,
+		/*level*/	LVL_SIMPLE,
+		/*bmp inx*/	0,
+		/*bmp num*/	0,
+		/*ArgCount*/sizeof(s_arg_luaL_setfunc) / sizeof(s_arg_luaL_setfunc[0]),
+		/*arg lp*/	s_arg_luaL_setfunc,
+	},
+	{
 		/*ccname*/	_WT("LUAL_取子表"),
 		/*egname*/	_WT("luaL_getsubtable"),
 		/*explain*/ _WT("确保 t[表名] 的值是一个表，(t 是参数'栈索引'指向的表)，并将值压入到栈中。返回真表示找到之前的表，将表示创建的新表。"),
@@ -3661,6 +3683,19 @@ EXTERN_C void elua_fn_luaL_setfuncs(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 	delete[] regs;
 
 }
+
+EXTERN_C void elua_fn_luaL_setfunc(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
+{
+	SETUP_LUA_STATE(pArgInf);
+	luaL_Reg regs[2];
+	regs[0].name = pArgInf[1].m_pText;
+	regs[0].func = (lua_CFunction)pArgInf[2].m_dwSubCodeAdr;
+	regs[1].name = NULL;
+	regs[1].func = NULL;
+	luaL_setfuncs(L, regs, pArgInf[3].m_int);
+}
+
+
 EXTERN_C void elua_fn_luaL_getsubtable(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
@@ -3895,6 +3930,7 @@ PFN_EXECUTE_CMD s_RunFunc[] =	// 索引应与s_CmdInfo中的命令定义顺序对应
 		elua_fn_luaL_len,
 		elua_fn_luaL_gsub,
 		elua_fn_luaL_setfuncs,
+		elua_fn_luaL_setfunc,
 		elua_fn_luaL_getsubtable,
 		elua_fn_luaL_traceback,
 		elua_fn_luaL_requiref,
@@ -4067,6 +4103,7 @@ static const char* const g_CmdNames[] =
 		"elua_fn_luaL_len",
 		"elua_fn_luaL_gsub",
 		"elua_fn_luaL_setfuncs",
+		"elua_fn_luaL_setfunc",
 		"elua_fn_luaL_getsubtable",
 		"elua_fn_luaL_traceback",
 		"elua_fn_luaL_requiref",
@@ -4112,7 +4149,7 @@ LIB_DATA_TYPE_ELEMENT s_dt_element_lua_reg[] =
 {
 	/*{ 成员类型 ,数组成员 , 中文名称 ,英文名称 ,成员解释 ,成员状态 ,默认值}*/
 	{ SDT_TEXT, NULL,_WT("名称"), _WT("name"), _WT("函数名"), 0, 0 },
-	{ SDT_SUB_PTR, NULL,_WT("函数"), _WT("func"), _WT("返回值：整数型（整数型 Lua状态）"), 0, 0 },
+	{ SDT_INT, NULL,_WT("函数指针"), _WT("func"), _WT("返回值：整数型（整数型 Lua状态）"), 0, 0 },
 };
 
 static LIB_DATA_TYPE_INFO s_DataTypes[] =
