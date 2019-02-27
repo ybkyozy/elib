@@ -173,7 +173,7 @@ ARG_INFO s_arg_lua_pushnumber[] =
 ARG_INFO s_arg_lua_pushinteger[] =
 {
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
-	{ _WT("整数"), _WT("要压入的整数"),0,0, SDT_INT, 0, NULL },
+	{ _WT("整数"), _WT("要压入的整数"),0,0, SDT_INT64, 0, NULL },
 };
 ARG_INFO s_arg_lua_pushlstring[] =
 {
@@ -436,7 +436,7 @@ ARG_INFO s_arg_luaL_optinteger[] =
 {
 	{ _WT("Lua状态"), _WT("lua_State*"),0,0, SDT_INT, 0, NULL },
 	{ _WT("参数索引"), _WT("1表示第一个参数"),0,0, SDT_INT, 0, NULL },
-	{ _WT("默认值"), _WT(""),0,0, SDT_INT, 0, NULL },
+	{ _WT("默认值"), _WT(""),0,0, SDT_INT64, 0, NULL },
 };
 ARG_INFO s_arg_luaL_checkstack[] =
 {
@@ -879,7 +879,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*explain*/ _WT("将‘栈索引’位置的值转换为整数型。"),
 		/*category*/cmd_type_idx_access_functions,
 		/*state*/	0,
-		/*ret*/		SDT_INT,
+		/*ret*/		SDT_INT64,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -2306,7 +2306,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*explain*/ _WT("检查函数参数是否为整数并返回该整数。"),
 		/*category*/cmd_type_idx_auxiliary_library,
 		/*state*/	0,
-		/*ret*/		SDT_INT,
+		/*ret*/		SDT_INT64,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -2320,7 +2320,7 @@ static CMD_INFO s_CmdInfo[] =
 		/*explain*/ _WT("如果参数是整数，则返回该整数；如果不是整数或为空，则返回参数‘默认值’，其他情况会引发错误。"),
 		/*category*/cmd_type_idx_auxiliary_library,
 		/*state*/	0,
-		/*ret*/		SDT_INT,
+		/*ret*/		SDT_INT64,
 		/*reserved*/0,
 		/*level*/	LVL_SIMPLE,
 		/*bmp inx*/	0,
@@ -2872,7 +2872,7 @@ EXTERN_C void elua_fn_lua_tonumberx(PMDATA_INF pRetData, INT iArgCount, PMDATA_I
 EXTERN_C void elua_fn_lua_tointegerx(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	int isNum = 0;
-	pRetData->m_int = lua_tointegerx((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int, &isNum);
+	pRetData->m_int64 = lua_tointegerx((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int, &isNum);
 	if (pArgInf[2].m_dtDataType != _SDT_NULL)
 	{
 		*pArgInf[2].m_pBool = isNum;
@@ -2939,7 +2939,7 @@ EXTERN_C void elua_fn_lua_pushnumber(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 }
 EXTERN_C void elua_fn_lua_pushinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
-	lua_pushinteger((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int);
+	lua_pushinteger((lua_State*)pArgInf[0].m_int, pArgInf[1].m_int64);
 }
 EXTERN_C void elua_fn_lua_pushlstring(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
@@ -3553,12 +3553,12 @@ EXTERN_C void elua_fn_luaL_optnumber(PMDATA_INF pRetData, INT iArgCount, PMDATA_
 EXTERN_C void elua_fn_luaL_checkinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
-	pRetData->m_int = luaL_checkinteger(L, pArgInf[1].m_int);
+	pRetData->m_int64 = luaL_checkinteger(L, pArgInf[1].m_int);
 }
 EXTERN_C void elua_fn_luaL_optinteger(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
 	SETUP_LUA_STATE(pArgInf);
-	pRetData->m_int = luaL_optinteger(L, pArgInf[1].m_int, pArgInf[2].m_int);
+	pRetData->m_int64 = luaL_optinteger(L, pArgInf[1].m_int, pArgInf[2].m_int64);
 }
 EXTERN_C void elua_fn_luaL_checkstack(PMDATA_INF pRetData, INT iArgCount, PMDATA_INF pArgInf)
 {
